@@ -1,0 +1,55 @@
+/* POSTS BLOCK */
+.postsBlock {
+  padding: 10px;
+}
+
+/* NEW POST */
+.new_post {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+/* LINE */
+.line {
+  border-left: 4px solid rgb(219, 219, 219);
+  height: 300px;
+  border-radius: 1px;
+}
+
+/* TEXTAREA */
+
+/* PROFILE PIC */
+.profile_pic {
+  width: 5%;
+  border-radius: 100px;
+  margin-left: 20px;
+}
+
+/* BUTTON */
+.sent {
+  display: inline-block;
+  background: transparent;
+  font: inherit;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  transition: all 200ms ease-in;
+  cursor: pointer;
+}
+
+.sent {
+  background: #54c0ff;
+  color: white;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  padding: 12px 36px;
+}
+
+.sent:hover {
+  background: #26a8f3;
+}
+
+/* POSTS */
+.posts {
+  margin-top: 10px;
+}

@@ -1,0 +1,27 @@
+/* ABOUT */
+.about {
+  display: flex;
+}
+
+/* NAME */
+.name {
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+/* PROFILE BG */
+.profile_bg {
+  width: 100%;
+  height: 350px;
+  border-radius: 30px;
+}
+
+/* PROFILE PIC */
+.profile_pic {
+  width: 15%;
+  border-radius: 100px;
+  border: 5px solid white;
+  margin-top: -90px;
+  margin-left: 20px;
+}

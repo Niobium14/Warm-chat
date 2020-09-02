@@ -1,0 +1,17 @@
+.nav {
+  grid-area: n;
+  padding: 20px;
+  display: flex;
+  margin-top: 30px;
+}
+
+.item a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  margin-left: 50px;
+  font-size: 20px;
+}
+
+.item a.activeLink {
+  color: rgb(0, 143, 153);
+}
