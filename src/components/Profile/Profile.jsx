@@ -1,13 +1,13 @@
 import React from 'react';
-import s from './Profile.module.css';
-import MyPosts from './MyPosts/MyPosts';
+import Posts from './Posts/Posts';
+import css from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = () => {
     return (
-        <div>
-            <ProfileInfo/>
-            <MyPosts/>
+        <div className={css.wrapper}>
+            <ProfileInfo className={css.profile}/>
+            <Posts />
         </div>
     )
 }

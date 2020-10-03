@@ -1,22 +1,14 @@
 .app-wrapper {
-    margin: 0 auto;
-    display: grid;
-    width: 1200px;
-    grid-template-areas: "h n" "c c";
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas: "h n" "c c";
 }
 
 .app-wrapper-content {
-    grid-area: c;
+  grid-area: c;
+  overflow: hidden;
+
 }
-
-
-
-
-
-
-
-
-
 
 /*
 

@@ -9,9 +9,14 @@
   color: rgb(0, 0, 0);
   text-decoration: none;
   margin-left: 50px;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.item  {
+  cursor: pointer;
 }
 
 .item a.activeLink {
-  color: rgb(0, 143, 153);
+  color: #6b2bd5;
 }
