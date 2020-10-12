@@ -1,0 +1,8 @@
+/* DIALOG */
+.dialog {
+  margin-bottom: 30px;
+}
+
+.messages :nth-child(even) {
+  margin-left: 400px;
+}

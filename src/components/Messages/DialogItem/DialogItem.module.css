@@ -1,39 +1,16 @@
-/* DIALOGS */
-.dialogs {
-  display: grid;
-  grid-template-columns: 2fr 1fr 10fr;
-}
-
-/* LINE */
-.line {
-  background: #e3e3e3;
-  box-sizing: border-box;
-  border-radius: 10px;
-  width: 7px;
-}
-/* DIALOGS ITEMS */
-.dialogsItems {
-  padding: 10px;
-}
-
 /* DIALOGS ITEMS ACTIVE */
 .dialog a.activeLink {
   color: #6b2bd5;
 }
 
-/* MESSAGES */
-.messages {
-  padding: 10px;
-}
-
-/* DIALOG */
+/* DIALOGS */
 .dialog {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 /* NAME */
 .name {
-  font-size: 20px;
+  font-size: 23px;
   text-decoration: none;
   color: #676767;
   font-weight: 500;

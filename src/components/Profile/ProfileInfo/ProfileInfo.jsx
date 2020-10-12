@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./ProfileInfo.module.css";
-import profile_bg from "../../../photos/profile_bg.jpg";
-import profile_pic from "../../../photos/profile_pic.jpg";
+import profile_bg from "../../../img/profile_bg.jpg";
+import profile_pic from "../../../img/profile_pic.jpg";
 
 const ProfileInfo = () => {
   return (
