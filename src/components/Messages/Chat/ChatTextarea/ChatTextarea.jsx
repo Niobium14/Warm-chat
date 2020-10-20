@@ -5,13 +5,14 @@ const ChatTextarea = (props) => {
   let newMessage = React.createRef();
 
   let sentMessage = () => {
-    props.addMessage();
-    props.updateNewMessageText("");
+    let action = {type: "ADD-MESSAGE"};
+    props.dispatch(action);
   };
 
   let onMessageChange = () => {
     let text = newMessage.current.value;
-    props.updateNewMessageText(text);
+    let action = {type: "UPDATE-NEW-MESSAGE-TEXT", newMessageText: text};
+    props.dispatch(action);
   };
 
   return (

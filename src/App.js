@@ -16,9 +16,8 @@ const App = (props) => {
           path="/messages"
           render={() => (
             <Messages
-              addMessage={props.addMessage}
+              dispatch={props.dispatch}
               messagesPage={props.state.messagesPage}
-              updateNewMessageText={props.updateNewMessageText}
             />
           )}
         />
@@ -26,9 +25,8 @@ const App = (props) => {
           path="/profile"
           render={() => (
             <Profile
-              addPost={props.addPost}
+              dispatch={props.dispatch}
               profilePage={props.state.profilePage}
-              updateNewPostText={props.updateNewPostText}
             />
           )}
         />

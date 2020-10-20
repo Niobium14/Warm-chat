@@ -14,9 +14,8 @@ const Messages = (props) => {
         <div className={css.dialogsItems}>{dialogsElement}</div>
         <div className={css.line}></div>
         <Chat
-          addMessage={props.addMessage}
+          dispatch={props.dispatch}
           messagesPage={props.messagesPage}
-          updateNewMessageText={props.updateNewMessageText}
         />
       </div>
       <MessagesBG />

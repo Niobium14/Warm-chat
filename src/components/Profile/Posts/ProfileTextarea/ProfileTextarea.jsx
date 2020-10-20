@@ -5,13 +5,14 @@ const ProfileTextarea = (props) => {
   let newPost = React.createRef();
 
   let sentPost = () => {
-    props.addPost();
-    props.updateNewPostText("");
+    let action = {type: "ADD-POST"};
+    props.dispatch(action);
   };
 
   let onPostChange = () => {
     let text = newPost.current.value;
-    props.updateNewPostText(text);
+    let action = {type: "UPDATE-NEW-POST-TEXT", newPostText: text};
+    props.dispatch(action);
   };
 
   return (

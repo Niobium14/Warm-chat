@@ -9,9 +9,8 @@ const Posts = (props) => {
     <div className={css.posts}>
       <ProfileBG />
       <ProfileTextarea
-        addPost={props.addPost}
+        dispatch={props.dispatch}
         newPostText={props.profilePage.newPostText}
-        updateNewPostText={props.updateNewPostText}
       />
       <Post posts={props.profilePage.posts} />
     </div>

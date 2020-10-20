@@ -13,8 +13,7 @@ const Chat = (props) => {
         <div>{messagesElement}</div>
       </div>
       <ChatTextarea
-        addMessage={props.addMessage}
-        updateNewMessageText={props.updateNewMessageText}
+        dispatch={props.dispatch}
         newMessageText={props.messagesPage.newMessageText}
       />
     </div>
