@@ -2,17 +2,18 @@ import React from "react";
 import css from "./ProfileTextarea.module.css";
 
 const ProfileTextarea = (props) => {
+  // GETTING REF FOR TEXTAREA
   let newPost = React.createRef();
 
-  let sentPost = () => {
-    let action = {type: "ADD-POST"};
-    props.dispatch(action);
+  // ONCLICK FOR TEXTAREA
+  let onSentPost = () => {
+    props.sentPost();
   };
 
+  // ONCHANGE FOR TEXTAREA
   let onPostChange = () => {
     let text = newPost.current.value;
-    let action = {type: "UPDATE-NEW-POST-TEXT", newPostText: text};
-    props.dispatch(action);
+    props.postChange(text);
   };
 
   return (
@@ -25,7 +26,7 @@ const ProfileTextarea = (props) => {
           className={css.textarea}
           value={props.newPostText}
         />
-        <button className={css.send} onClick={sentPost}>
+        <button className={css.send} onClick={onSentPost}>
           SEND
         </button>
       </div>

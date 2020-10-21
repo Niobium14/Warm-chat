@@ -1,7 +1,8 @@
-import profile_pic from "../img/profile_pic.jpg";
 import person1 from "../img/person1.jpg";
 import person2 from "../img/person2.jpg";
 import person3 from "../img/person3.jpg";
+import profileReduser from "../myRedusers/profile-reduser";
+import messagesReduser from "../myRedusers/messages-reduser";
 
 let store = {
   // STATE
@@ -78,35 +79,12 @@ let store = {
 
   // DISPATCH
   dispatch(action) {
-    if (action.type === "ADD-POST") {
-      // ADD POST
-      let newPost = {
-        id: 5,
-        name: "Me",
-        message: this._state.profilePage.newPostText,
-        img: profile_pic,
-      };
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._callSubscribe(this._state);
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-      // TEXT FROM TEXTAREA (POSTS)
-      this._state.profilePage.newPostText = action.newPostText;
-      this._callSubscribe(this._state);
-    } else if (action.type === "ADD-MESSAGE") {
-      // ADD MESSAGE
-      let newMessage = {
-        id: 5,
-        message: this._state.messagesPage.newMessageText,
-      };
-      this._state.messagesPage.messages.push(newMessage);
-      this._state.messagesPage.newMessageText = "";
-      this._callSubscribe(this._state);
-    } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
-      // TEXT FROM TEXTAREA (MESSAGES)
-      this._state.messagesPage.newMessageText = action.newMessageText;
-      this._callSubscribe(this._state);
-    }
+    this._state.profilePage = profileReduser(this._state.profilePage, action);
+    this._state.messagesPage = messagesReduser(
+      this._state.messagesPage,
+      action
+    );
+    this._callSubscribe(this._state);
   },
 };
 

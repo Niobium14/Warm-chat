@@ -14,7 +14,7 @@ const Messages = (props) => {
         <div className={css.dialogsItems}>{dialogsElement}</div>
         <div className={css.line}></div>
         <Chat
-          dispatch={props.dispatch}
+          store={props.store}
           messagesPage={props.messagesPage}
         />
       </div>

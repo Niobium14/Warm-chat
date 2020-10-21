@@ -1,7 +1,7 @@
 import React from "react";
-import ChatTextarea from "./ChatTextarea/ChatTextarea";
 import css from "./Chat.module.css";
 import Message from "./Message/Message";
+import ChatTextareaContainer from "./ChatTextarea/ChatTextareaContainer";
 
 const Chat = (props) => {
   let messagesElement = props.messagesPage.messages.map((message) => (
@@ -12,10 +12,7 @@ const Chat = (props) => {
       <div className={css.messages}>
         <div>{messagesElement}</div>
       </div>
-      <ChatTextarea
-        dispatch={props.dispatch}
-        newMessageText={props.messagesPage.newMessageText}
-      />
+      <ChatTextareaContainer store={props.store} />
     </div>
   );
 };

@@ -2,17 +2,18 @@ import React from "react";
 import css from "./ChatTextarea.module.css";
 
 const ChatTextarea = (props) => {
+  // GETTING REF FOR TEXTAREA
   let newMessage = React.createRef();
 
-  let sentMessage = () => {
-    let action = {type: "ADD-MESSAGE"};
-    props.dispatch(action);
+  // ONCLICK FOR TEXTAREA
+  let onSentMessage = () => {
+    props.sentMessage();
   };
 
+  // ONCHANGE FOR TEXTAREA
   let onMessageChange = () => {
     let text = newMessage.current.value;
-    let action = {type: "UPDATE-NEW-MESSAGE-TEXT", newMessageText: text};
-    props.dispatch(action);
+    props.messageChange(text);
   };
 
   return (
@@ -23,7 +24,7 @@ const ChatTextarea = (props) => {
         onChange={onMessageChange}
         value={props.newMessageText}
       ></textarea>
-      <button className={css.send} onClick={sentMessage}>
+      <button className={css.send} onClick={onSentMessage}>
         SEND
       </button>
     </div>

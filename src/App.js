@@ -16,8 +16,8 @@ const App = (props) => {
           path="/messages"
           render={() => (
             <Messages
-              dispatch={props.dispatch}
-              messagesPage={props.state.messagesPage}
+              store={props.store}
+              messagesPage={props.store.getState().messagesPage}
             />
           )}
         />
@@ -25,8 +25,8 @@ const App = (props) => {
           path="/profile"
           render={() => (
             <Profile
-              dispatch={props.dispatch}
-              profilePage={props.state.profilePage}
+              store={props.store}
+              profilePage={props.store.getState().profilePage}
             />
           )}
         />
