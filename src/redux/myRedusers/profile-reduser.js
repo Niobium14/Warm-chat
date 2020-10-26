@@ -39,7 +39,7 @@ let initialState = {
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
 const profileReduser = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       // ADD POST
       let newPost = {
         id: 5,
@@ -47,15 +47,19 @@ const profileReduser = (state = initialState, action) => {
         message: state.newPostText,
         img: profile_pic,
       };
-      state.posts.push(newPost);
-      state.newPostText = "";
-      return state;
-
-    case UPDATE_NEW_POST_TEXT:
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        newPostText: "",
+      };
+    }
+    case UPDATE_NEW_POST_TEXT: {
       // TEXT FROM TEXTAREA (POSTS)
-      state.newPostText = action.newPostText;
-      return state;
-
+      return  {
+        ...state,
+        newPostText: action.newPostText,
+      };
+    }
     default:
       return state;
   }

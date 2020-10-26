@@ -34,21 +34,25 @@ let initialState = {
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
 const messagesReduser = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_MESSAGE:
+    case ADD_MESSAGE: {
       // ADD MESSAGE
       let newMessage = {
         id: 5,
         message: state.newMessageText,
       };
-      state.messages.push(newMessage);
-      state.newMessageText = "";
-      return state;
-
-    case UPDATE_NEW_MESSAGE_TEXT:
+      return {
+        ...state,
+        messages: [...state.messages, newMessage],
+        newMessageText: "",
+      };
+    }
+    case UPDATE_NEW_MESSAGE_TEXT: {
       // TEXT FROM TEXTAREA (MESSAGES)
-      state.newMessageText = action.newMessageText;
-      return state;
-
+      return {
+        ...state,
+        newMessageText: action.newMessageText,
+      };
+    }
     default:
       return state;
   }

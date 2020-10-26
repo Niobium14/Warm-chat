@@ -1,33 +1,37 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   addPostActionCreator,
   updateNewPostTextActionCreator,
 } from "../../../../redux/myRedusers/profile-reduser";
 import ProfileTextarea from "./ProfileTextarea";
 
-// CONTAINER FOR PROFILE TEXTAREA
-const ProfileTextareaContainer = (props) => {
-  // GETTING STATE
-  let state = props.store.getState();
-
-  // DISPATCH ADD POST ACTION CREATOR
-  let sentPost = () => {
-    props.store.dispatch(addPostActionCreator());
+// LOGIC FOR CONTAINER
+let mapStateToProps = (state) => {
+  return {
+    newPostText: state.profilePage.newPostText,
   };
-
-  // DISPATCH UPDATE NEW POST TEXT ACTION CREATOR
-  let postChange = (text) => {
-    let action = updateNewPostTextActionCreator(text);
-    props.store.dispatch(action);
-  };
-
-  return (
-    <ProfileTextarea
-      sentPost={sentPost}
-      postChange={postChange}
-      newPostText={state.profilePage.newPostText}
-    />
-  );
 };
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    // DISPATCH ADD POST ACTION CREATOR
+    sentPost: () => {
+      dispatch(addPostActionCreator());
+    },
+
+    // DISPATCH UPDATE NEW POST TEXT ACTION CREATOR
+    postChange: (text) => {
+      let action = updateNewPostTextActionCreator(text);
+      dispatch(action);
+    },
+  };
+};
+
+// CONTAINER FOR CHAT TEXTAREA
+const ProfileTextareaContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileTextarea);
 
 export default ProfileTextareaContainer;

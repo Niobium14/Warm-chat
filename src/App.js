@@ -3,7 +3,8 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Messages from "./components/Messages/Messages";
+import FriendsContainer from "./components/Friends/FriendsContainer";
+import MessagesContainer from "./components/Messages/MessagesContainer";
 import { Route } from "react-router-dom";
 
 const App = (props) => {
@@ -12,27 +13,11 @@ const App = (props) => {
       <Header />
       <Navbar />
       <div class="app-wrapper-content">
-        <Route
-          path="/messages"
-          render={() => (
-            <Messages
-              store={props.store}
-              messagesPage={props.store.getState().messagesPage}
-            />
-          )}
-        />
-        <Route
-          path="/profile"
-          render={() => (
-            <Profile
-              store={props.store}
-              profilePage={props.store.getState().profilePage}
-            />
-          )}
-        />
+        <Route path="/messages" render={() => <MessagesContainer />} />
+        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/friends" render={() => <FriendsContainer />} />
         <Route path="/news" />
         <Route path="/music" />
-        <Route path="/settings" />
       </div>
     </div>
   );

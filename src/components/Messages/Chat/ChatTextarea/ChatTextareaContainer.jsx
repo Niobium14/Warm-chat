@@ -1,33 +1,34 @@
-import React from "react";
+import { connect } from "react-redux";
 import {
   addMessageActionCreator,
   updateNewMessageTextActionCreator,
 } from "../../../../redux/myRedusers/messages-reduser";
 import ChatTextarea from "./ChatTextarea";
 
-// CONTAINER FOR CHAT TEXTAREA
-const ChatTextareaContainer = (props) => {
-  // GETTING STATE
-  let state = props.store.getState();
-
-  // DISPATCH ADD MESSAGE ACTION CREATOR
-  let sentMessage = () => {
-    props.store.dispatch(addMessageActionCreator());
+// LOGIC FOR CONTAINER
+let mapStateToProps = (state) => {
+  return {
+    newMessageText: state.messagesPage.newMessageText,
   };
-
-  // DISPATCH UPDATE NEW POST TEXT ACTION CREATOR
-  let messageChange = (text) => {
-    let action = updateNewMessageTextActionCreator(text);
-    props.store.dispatch(action);
-  };
-
-  return (
-    <ChatTextarea
-      sentMessage={sentMessage}
-      messageChange={messageChange}
-      newMessageText={state.messagesPage.newMessageText}
-    />
-  );
 };
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+      // DISPATCH ADD MESSAGE ACTION CREATOR
+    sentMessage: () => {
+      dispatch(addMessageActionCreator());
+    },
+      // DISPATCH UPDATE NEW POST TEXT ACTION CREATOR
+
+    messageChange: (text) => {
+      let action = updateNewMessageTextActionCreator(text);
+      dispatch(action);
+  
+    },
+  };
+};
+
+// CONTAINER FOR CHAT TEXTAREA
+const ChatTextareaContainer = connect(mapStateToProps, mapDispatchToProps)(ChatTextarea);
 
 export default ChatTextareaContainer;

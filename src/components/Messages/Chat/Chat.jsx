@@ -4,7 +4,7 @@ import Message from "./Message/Message";
 import ChatTextareaContainer from "./ChatTextarea/ChatTextareaContainer";
 
 const Chat = (props) => {
-  let messagesElement = props.messagesPage.messages.map((message) => (
+  let messagesElement = props.messages.map((message) => (
     <Message message={message.message} />
   ));
   return (
@@ -12,7 +12,7 @@ const Chat = (props) => {
       <div className={css.messages}>
         <div>{messagesElement}</div>
       </div>
-      <ChatTextareaContainer store={props.store} />
+      <ChatTextareaContainer />
     </div>
   );
 };
