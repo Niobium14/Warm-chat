@@ -13,10 +13,31 @@
   font-weight: 600;
 }
 
-.item  {
+.item {
   cursor: pointer;
 }
 
 .item a.activeLink {
   color: #6b2bd5;
+}
+
+.singBlock a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  margin-left: 90px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.login:hover {
+  color: #7da521;
+  transition: all 0.5s ease 0s;
+}
+
+.singBlock {
+  cursor: pointer;
+}
+
+.singBlock a.activeLink {
+  color: #7da521;
 }

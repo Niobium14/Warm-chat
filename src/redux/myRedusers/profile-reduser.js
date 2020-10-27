@@ -7,6 +7,7 @@ import person3 from "../../img/person3.jpg";
 // TYPE FOR MESSAGES
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "SET-USER-PROFILE";
 
 // INITIAL STATE
 let initialState = {
@@ -34,6 +35,7 @@ let initialState = {
     },
   ],
   newPostText: "",
+  profile: null, 
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
@@ -55,9 +57,16 @@ const profileReduser = (state = initialState, action) => {
     }
     case UPDATE_NEW_POST_TEXT: {
       // TEXT FROM TEXTAREA (POSTS)
-      return  {
+      return {
         ...state,
         newPostText: action.newPostText,
+      };
+    }
+    case SET_USER_PROFILE: {
+      // SET USER 
+      return {
+        ...state,
+        profile: action.profile,
       };
     }
     default:
@@ -71,6 +80,11 @@ export const addPostActionCreator = () => ({ type: ADD_POST });
 export const updateNewPostTextActionCreator = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newPostText: text,
+});
+// SET USER PROFILE ACTION CREACTOR
+export const setUserProfile = (profile) => ({
+  type: SET_USER_PROFILE,
+  profile,
 });
 
 export default profileReduser;

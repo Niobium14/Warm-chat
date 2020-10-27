@@ -1,14 +1,36 @@
 /* ABOUT */
 .about {
+  grid-area: aboutUser;
   margin-left: 30px;
   margin-top: 10px;
 }
+
+.aboutUser {
+  display: grid;
+  grid-template-areas: "aboutUser jobInfo";
+}
+/* LINE */
+.line {
+  background: #e3e3e3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 5px;
+  height: 70px;
+}
+
 /* NAME */
 .name {
   font-weight: bold;
   font-size: 30px;
   margin-left: 250px;
   margin-top: -120px;
+}
+/* NAME */
+.aboutMe {
+  color: #727272;
+  font-weight: 500;
+  font-size: 25px;
+  margin-left: 250px;
 }
 
 /* PROFILE BG */
@@ -31,5 +53,35 @@
   border: 12px solid #ffffff;
   border-radius: 150px;
   margin-top: -110px;
+  margin-left: 65px;
+}
+
+/* JOB INFORMATION */
+.jobSet {
+  color: #363636;
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 0px;
+}
+
+.jobStatus {
+  margin-top: -80px;
+  margin-left: 40px;
+}
+.aboutStatus {
+  color: #636363;
+  font-weight: 500;
+  font-size: 30px;
   margin-left: 20px;
+
+}
+.jobComment {
+  color: #636363;
+  font-size: 25px;
+  margin-left: 40px;
+}
+.jobInfo {
+  grid-area: jobInfo;
+  margin-top: -100px;
+  margin-left: -100px;
 }

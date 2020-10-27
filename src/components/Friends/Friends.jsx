@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import BG from "./FriendsBG/FriendsBG";
 import css from "./Friends.module.css";
 import userDefault from "../../img/user-default.png";
+import { NavLink } from "react-router-dom";
+import * as axios from "axios";
 
 const Friends = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -20,13 +22,13 @@ const Friends = (props) => {
         {props.users.map((user) => (
           <div className={css.form} key={user.id}>
             <div className={css.content}>
-              <div className={css.person}>
+              <NavLink to={"/profile/" + user.id} className={css.person}>
                 <img
                   src={
                     user.photos.small != null ? user.photos.small : userDefault
                   }
                 />
-              </div>
+              </NavLink>
               <div className={css.data}>
                 <div className={css.fullName}>{user.name}</div>
                 <div className={css.inData}>
@@ -41,7 +43,21 @@ const Friends = (props) => {
                   <button
                     className={css.followBn}
                     onClick={() => {
-                      props.unfollow(user.id);
+                      axios
+                        .delete(
+                          `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                          {
+                            withCredentials: true,
+                            headers: {
+                              "API-KEY": "cb0df379-06e2-48ad-b9ae-b5c5e59d5a4d",
+                            },
+                          }
+                        )
+                        .then((response) => {
+                          if (response.data.resultCode === 0) {
+                            props.unfollow(user.id);
+                          }
+                        });
                     }}
                   >
                     <text>FOLLOW</text>
@@ -50,7 +66,23 @@ const Friends = (props) => {
                   <button
                     className={css.unfollowBn}
                     onClick={() => {
-                      props.follow(user.id);
+                      axios
+                      .post(
+                        `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                        {},
+                        {
+                          withCredentials: true,
+                          headers: {
+                            "API-KEY": "cb0df379-06e2-48ad-b9ae-b5c5e59d5a4d",
+                          },
+                        }
+                      )
+                      .then((response) => {
+                        if (response.data.resultCode === 0) {
+                          props.follow(user.id);
+                        }
+                      });
+
                     }}
                   >
                     <text>UNFOLLOW</text>
@@ -71,7 +103,7 @@ const Friends = (props) => {
                   : css.item
               }
               onClick={(e) => {
-               props.setPage(p);
+                props.setPage(p);
               }}
             >
               {p}

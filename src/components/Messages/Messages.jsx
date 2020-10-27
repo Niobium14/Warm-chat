@@ -12,7 +12,7 @@ const Messages = (props) => {
     <div className={css.messages}>
       <div className={css.dialogs}>
         <div className={css.dialogsItems}>{dialogsElement}</div>
-        <div className={css.line}></div>
+        <div className={css.line}/>
         <ChatContainer />
       </div>
       <MessagesBG />
