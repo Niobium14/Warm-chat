@@ -1,8 +1,11 @@
 .nav {
-  grid-area: n;
+  grid-area: nav;
   padding: 20px;
   display: flex;
   margin-top: 30px;
+  position: relative;
+  z-index: 1;
+margin-left: 20px;
 }
 
 .item a {
@@ -19,6 +22,20 @@
 
 .item a.activeLink {
   color: #6b2bd5;
+}
+
+.header {
+  grid-area: h;
+  display: grid ;
+  grid-template-areas: "logo nav";
+}
+.logo {
+  grid-area: logo;
+  margin-top: -40px;
+  margin-bottom: -30px;
+  width: 200px;
+  margin-left: 150px;
+  margin-right: -200px;
 }
 
 .singBlock a {

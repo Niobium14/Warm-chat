@@ -1,5 +1,6 @@
 /* FIRST BG */
 .bg_3 {
+    position: fixed;
     width: 700px;
     height: 700px;
     margin-left: 700px;

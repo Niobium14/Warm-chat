@@ -5,7 +5,6 @@ import Preloader from "../../common/preloader/preloader";
 import userDefault from "../../../img/user-default.png";
 
 const ProfileInfo = (props) => {
-  debugger;
   if (!props.profile) {
     return <Preloader />;
   }

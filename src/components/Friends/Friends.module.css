@@ -132,7 +132,7 @@
 }
 
 /* SHOW USERS BUTTON */
-.showUsers text {
+.showUsers span {
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -165,16 +165,16 @@
   transition: all 0.5s ease 0s;
 }
 
-/* TEXT IN FOLLOW BUTTON */
-.followBn text {
+/* span IN FOLLOW BUTTON */
+.followBn span {
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   color: white;
 }
 
-/* TEXT IN  UNFOLLOW BUTTON */
-.unfollowBn text {
+/* span IN  UNFOLLOW BUTTON */
+.unfollowBn span {
   font-style: normal;
   font-weight: bold;
   font-size: 20px;

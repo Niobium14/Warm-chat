@@ -16,7 +16,7 @@ let initialState = {
   totalUsersCount: 0,
   // current page
   currentPage: 1,
-  // LOADING 
+  // LOADING
   isFetching: false,
 };
 
@@ -61,7 +61,7 @@ const friendsReduser = (state = initialState, action) => {
     case SET_TOTAL_USERS_COUNT: {
       return { ...state, totalUsersCount: action.totalUsersCount };
     }
-    // GIF 
+    // GIF
     case TOGGLE_IS_FETCHING: {
       return { ...state, isFetching: action.isFetching };
     }
@@ -78,7 +78,7 @@ export const unfollow = (userId) => ({
   userId,
 });
 // SET CURRENT PAGE ACTION CREACTOR
-export const  setCurrentPage = (currentPage) => ({
+export const setCurrentPage = (currentPage) => ({
   type: SET_CURRENT_PAGE,
   currentPage,
 });
