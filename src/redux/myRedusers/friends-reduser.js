@@ -5,6 +5,7 @@ const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
+const TOGGLE_FOLLOWING_PROGRESS = "TOGGLE-FOLLOWING-PROGRESS";
 
 // INITIAL STATE
 let initialState = {
@@ -17,7 +18,7 @@ let initialState = {
   // current page
   currentPage: 1,
   // LOADING
-  isFetching: false,
+  followingInProgress: [],
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
@@ -62,6 +63,15 @@ const friendsReduser = (state = initialState, action) => {
       return { ...state, totalUsersCount: action.totalUsersCount };
     }
     // GIF
+    case TOGGLE_FOLLOWING_PROGRESS: {
+      return {
+        ...state,
+        followingInProgress: action.isFetching
+          ? [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter((id) => id != action.userId),
+      };
+    }
+    // GIF
     case TOGGLE_IS_FETCHING: {
       return { ...state, isFetching: action.isFetching };
     }
@@ -96,6 +106,12 @@ export const setTotalUsersCount = (totalUsersCount) => ({
 export const toggleIsFetching = (isFetching) => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
+});
+// SET TOTAL USERS COUNT ACTION CREACTOR
+export const toggleFollowingProgress = (followingInProgress, userId) => ({
+  type: TOGGLE_FOLLOWING_PROGRESS,
+  followingInProgress,
+  userId
 });
 
 export default friendsReduser;

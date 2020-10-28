@@ -6,6 +6,7 @@ import {
   setCurrentPage,
   setTotalUsersCount,
   toggleIsFetching,
+  toggleFollowingProgress,
 } from "../../redux/myRedusers/friends-reduser";
 import React, { Component } from "react";
 import Friends from "./Friends";
@@ -47,6 +48,10 @@ class FriendsContainer extends Component {
             unfollow={this.props.unfollow}
             currentPage={this.props.currentPage}
             totalUsersCount={this.props.totalUsersCount}
+            followingInProgress={this.props.followingInProgress}
+            isFetching={this.props.isFetching}
+            toggleIsFetching={this.props.toggleIsFetching}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
           />
         )}
       </>
@@ -61,6 +66,8 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.friendsPage.totalUsersCount,
     currentPage: state.friendsPage.currentPage,
     isFetching: state.friendsPage.isFetching,
+    toggleIsFetching: state.friendsPage.toggleIsFetching,
+    followingInProgress: state.friendsPage.followingInProgress,
   };
 };
 
@@ -71,4 +78,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setTotalUsersCount,
   toggleIsFetching,
+  toggleFollowingProgress,
 })(FriendsContainer);

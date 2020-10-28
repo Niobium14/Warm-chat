@@ -7,10 +7,7 @@ import * as axios from "axios";
 import { usersAPI } from "../../api/api";
 
 const Friends = (props) => {
-
-  let pagesCount = Math.ceil(
-    props.totalUsersCount / props.pageSize
-  );
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
@@ -45,12 +42,17 @@ const Friends = (props) => {
               <div className={css.button}>
                 {user.followed ? (
                   <button
+                    disabled={props.followingInProgress.some(
+                      (id) => id === user.id
+                    )}
                     className={css.followBn}
                     onClick={() => {
+                      props.toggleFollowingProgress(true, user.id);
                       usersAPI.followUser(user.id).then((data) => {
                         if (data.resultCode === 0) {
                           props.unfollow(user.id);
                         }
+                        props.toggleFollowingProgress(false);
                       });
                     }}
                   >
@@ -58,12 +60,17 @@ const Friends = (props) => {
                   </button>
                 ) : (
                   <button
+                    disabled={props.followingInProgress.some(
+                      (id) => id === user.id
+                    )}
                     className={css.unfollowBn}
                     onClick={() => {
+                      props.toggleFollowingProgress(true, user.id);
                       usersAPI.unfollowUser(user.id).then((response) => {
                         if (response.data.resultCode === 0) {
                           props.follow(user.id);
                         }
+                        props.toggleFollowingProgress(false);
                       });
                     }}
                   >
