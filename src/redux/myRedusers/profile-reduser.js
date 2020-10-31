@@ -3,6 +3,7 @@ import profile_pic from "../../img/profile_pic.jpg";
 import person1 from "../../img/person1.jpg";
 import person2 from "../../img/person2.jpg";
 import person3 from "../../img/person3.jpg";
+import { usersAPI } from "../../api/api";
 
 // TYPE FOR MESSAGES
 const ADD_POST = "ADD-POST";
@@ -35,7 +36,7 @@ let initialState = {
     },
   ],
   newPostText: "",
-  profile: null, 
+  profile: null,
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
@@ -63,7 +64,7 @@ const profileReduser = (state = initialState, action) => {
       };
     }
     case SET_USER_PROFILE: {
-      // SET USER 
+      // SET USER
       return {
         ...state,
         profile: action.profile,
@@ -87,4 +88,11 @@ export const setUserProfile = (profile) => ({
   profile,
 });
 
+export const getProfileThunkCreator = (userId) => {
+  return (dispatch) => {
+    usersAPI.getProfile(userId).then((data) => {
+      dispatch(setUserProfile(data));
+    });
+  };
+};
 export default profileReduser;

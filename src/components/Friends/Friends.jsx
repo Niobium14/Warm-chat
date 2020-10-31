@@ -3,7 +3,6 @@ import BG from "./FriendsBG/FriendsBG";
 import css from "./Friends.module.css";
 import userDefault from "../../img/user-default.png";
 import { NavLink } from "react-router-dom";
-import * as axios from "axios";
 import { usersAPI } from "../../api/api";
 
 const Friends = (props) => {
@@ -47,13 +46,7 @@ const Friends = (props) => {
                     )}
                     className={css.followBn}
                     onClick={() => {
-                      props.toggleFollowingProgress(true, user.id);
-                      usersAPI.followUser(user.id).then((data) => {
-                        if (data.resultCode === 0) {
-                          props.unfollow(user.id);
-                        }
-                        props.toggleFollowingProgress(false);
-                      });
+                      props.followUserThunkCreator(user.id);
                     }}
                   >
                     <span>FOLLOW</span>
@@ -65,13 +58,7 @@ const Friends = (props) => {
                     )}
                     className={css.unfollowBn}
                     onClick={() => {
-                      props.toggleFollowingProgress(true, user.id);
-                      usersAPI.unfollowUser(user.id).then((response) => {
-                        if (response.data.resultCode === 0) {
-                          props.follow(user.id);
-                        }
-                        props.toggleFollowingProgress(false);
-                      });
+                      props.unfollowUserThunkCreator(user.id);
                     }}
                   >
                     <span>UNFOLLOW</span>

@@ -1,3 +1,5 @@
+import { authAPI } from "../../api/api";
+
 // TYPE FOR MESSAGES
 const SET_USER_DATA = "SET-USER-DATA";
 const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
@@ -46,5 +48,16 @@ export const toggleIsFetching = (isFetching) => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
 });
+
+export const myDataThunkCreator = () => {
+  return (dispatch) => {
+    authAPI.authMe().then((data) => {
+      if (data.resultCode === 0) {
+        let { id, login, email } = data.data;
+        dispatch(setUserData(id, email, login));
+      }
+    });
+  };
+};
 
 export default authReduser;

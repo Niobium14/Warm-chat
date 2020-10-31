@@ -5,7 +5,7 @@
   margin-top: 30px;
   position: relative;
   z-index: 1;
-margin-left: 20px;
+  margin-left: 40px;
 }
 
 .item a {
@@ -26,7 +26,7 @@ margin-left: 20px;
 
 .header {
   grid-area: h;
-  display: grid ;
+  display: grid;
   grid-template-areas: "logo nav";
 }
 .logo {

@@ -58,6 +58,7 @@ const messagesReduser = (state = initialState, action) => {
   }
 };
 
+// REDIRECT 
 // ADD MESSAGE ACTION CREACTOR
 export const addMessageActionCreator = () => ({ type: ADD_MESSAGE });
 // UPDATE NEW MESSAGE TEXT ACTION CREACTOR

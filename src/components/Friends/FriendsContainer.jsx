@@ -7,6 +7,10 @@ import {
   setTotalUsersCount,
   toggleIsFetching,
   toggleFollowingProgress,
+  getUsersThunkCreator,
+  followUserThunkCreator,
+  unfollowUserThunkCreator,
+  setPageThunkCreator,
 } from "../../redux/myRedusers/friends-reduser";
 import React, { Component } from "react";
 import Friends from "./Friends";
@@ -15,23 +19,14 @@ import { usersAPI } from "../../api/api";
 
 class FriendsContainer extends Component {
   componentDidMount() {
-    this.props.toggleIsFetching(true);
-    usersAPI
-      .getUsers(this.props.currentPage, this.props.pageSize)
-      .then((data) => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(data.items);
-        this.props.setTotalUsersCount(data.totalCount);
-      });
+    this.props.getUsersThunkCreator(
+      this.props.currentPage,
+      this.props.pageSize
+    );
   }
 
   setPage = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.toggleIsFetching(true);
-    usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.setPageThunkCreator(pageNumber, this.props.pageSize);
   };
 
   render() {
@@ -51,6 +46,8 @@ class FriendsContainer extends Component {
             followingInProgress={this.props.followingInProgress}
             isFetching={this.props.isFetching}
             toggleIsFetching={this.props.toggleIsFetching}
+            followUserThunkCreator={this.props.followUserThunkCreator}
+            unfollowUserThunkCreator={this.props.unfollowUserThunkCreator}
             toggleFollowingProgress={this.props.toggleFollowingProgress}
           />
         )}
@@ -79,4 +76,8 @@ export default connect(mapStateToProps, {
   setTotalUsersCount,
   toggleIsFetching,
   toggleFollowingProgress,
+  getUsersThunkCreator,
+  followUserThunkCreator,
+  unfollowUserThunkCreator,
+  setPageThunkCreator,
 })(FriendsContainer);

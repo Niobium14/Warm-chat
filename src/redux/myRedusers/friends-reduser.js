@@ -1,3 +1,5 @@
+import { usersAPI } from "../../api/api";
+
 // TYPE FOR MESSAGES
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -111,7 +113,60 @@ export const toggleIsFetching = (isFetching) => ({
 export const toggleFollowingProgress = (followingInProgress, userId) => ({
   type: TOGGLE_FOLLOWING_PROGRESS,
   followingInProgress,
-  userId
+  userId,
 });
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
+
+export const setPageThunkCreator = (pageNumber, pageSize) => {
+  return (dispatch) => {
+    dispatch(setCurrentPage(pageNumber));
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(pageNumber, pageSize).then((data) => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.items));
+    });
+  };
+};
+
+export const unfollowUserThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    usersAPI.followUser(userId).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(unfollow(userId));
+      }
+      dispatch(toggleFollowingProgress(false));
+    });
+  };
+};
+
+export const followUserThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    usersAPI.unfollowUser(userId).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(follow(userId));
+      }
+      dispatch(toggleFollowingProgress(false));
+    });
+  };
+};
+
+// this.props.toggleIsFetching(true);
+// usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+//   this.props.toggleIsFetching(false);
+//   this.props.setUsers(data.items);
+//   this.props.setTotalUsersCount(data.totalCount);
+// });
 
 export default friendsReduser;

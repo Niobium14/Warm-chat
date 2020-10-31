@@ -1,21 +1,8 @@
 .app-wrapper {
   margin: 0 auto;
-  display: grid;
-  grid-template-areas: "h h" "c c";
 }
 
 .app-wrapper-content {
-  grid-area: c;
   overflow: hidden;
-
 }
 
-/*
-
-/messages
-/dialogs
-
-/dialogs/3
-/dialogs/2
-
-*/
