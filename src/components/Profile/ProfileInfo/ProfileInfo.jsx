@@ -3,6 +3,7 @@ import css from "./ProfileInfo.module.css";
 import profile_bg from "../../../img/profile_bg.jpg";
 import Preloader from "../../common/preloader/preloader";
 import userDefault from "../../../img/user-default.png";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -12,11 +13,18 @@ const ProfileInfo = (props) => {
     <div className={css.profile}>
       <div className={css.main}>
         <img src={profile_bg} className={css.profile_bg} />
-        <img src={props.profile.photos.small != null ? props.profile.photos.large : userDefault} className={css.profile_pic} />
+        <img
+          src={
+            props.profile.photos.small != null
+              ? props.profile.photos.large
+              : userDefault
+          }
+          className={css.profile_pic}
+        />
         <div className={css.aboutUser}>
           <div className={css.about}>
             <div className={css.name}>{props.profile.fullName}</div>
-            <div className={css.aboutMe}>{props.profile.aboutMe}</div>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
           </div>
           <div className={css.jobInfo}>
             <div className={css.line} />
@@ -31,7 +39,7 @@ const ProfileInfo = (props) => {
             <div className={css.jobComment}>
               <text className={css.jobSet}>Comment:</text>
               <text className={css.aboutStatus}>
-                "{props.profile.lookingForAJobDescription}"
+                {props.profile.lookingForAJobDescription || "No comment"}
               </text>
             </div>
           </div>

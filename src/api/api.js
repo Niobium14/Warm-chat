@@ -8,6 +8,7 @@ const instance = axios.create({
   },
 });
 
+// USERS API
 export const usersAPI = {
   // GET USERS FOR "FRIENDS"
   getUsers(currentPage = 1, pageSize = 4) {
@@ -27,14 +28,37 @@ export const usersAPI = {
   },
   //   GET USER FOR PROFILE
   getProfile(userId) {
-    return instance.get(`profile/${userId}`).then((response) => response.data);
+    return profileAPI.getProfile(userId);
   },
-  //   IS AUTH
-  authMe() {
-    return instance.get(`auth/me`).then((response) => response.data);
+  //   GET STATUS FOR USER PROFILE
+  getStatus(userId) {
+    return profileAPI.getStatus(userId);
+  },
+  //   GET STATUS FOR USER PROFILE
+  updateStatus(status) {
+    return profileAPI.updateStatus(status);
   },
 };
 
+// PROFILE API
+export const profileAPI = {
+  //   GET USER FOR PROFILE
+  getProfile(userId) {
+    return instance.get(`profile/${userId}`).then((response) => response.data);
+  },
+  getStatus(userId) {
+    return instance
+      .get(`/profile/status/${userId}`)
+      .then((response) => response.data);
+  },
+  updateStatus(status) {
+    return instance
+      .put(`/profile/status`, { status: status })
+      .then((response) => response.data);
+  },
+};
+
+// AUTH API
 export const authAPI = {
   //   IS AUTH
   authMe() {

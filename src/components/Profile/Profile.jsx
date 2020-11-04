@@ -6,8 +6,13 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 const Profile = (props) => {
   return (
     <div className={css.wrapper}>
-      <ProfileInfo className={css.profile} profile={props.profile}/>
-      <Posts  />
+      <ProfileInfo
+        className={css.profile}
+        profile={props.profile}
+        status={props.status}
+        updateStatus={props.updateStatusThunkCreator}
+      />
+      <Posts />
     </div>
   );
 };
