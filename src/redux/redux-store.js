@@ -1,17 +1,19 @@
-import friendsReduser from "./myRedusers/friends-reduser";
-import messagesReduser from "./myRedusers/messages-reduser";
-import profileReduser from "./myRedusers/profile-reduser";
-import authReduser from "./myRedusers/auth-reduser";
 import thunk from "redux-thunk";
+import authReducer from "./myRedusers/auth-reduser";
+import profileReducer from "./myRedusers/profile-reduser";
+import messagesReducer from "./myRedusers/messages-reduser";
+import friendsReducer from "./myRedusers/friends-reduser";
+import { reducer as formReducer } from "redux-form";
 
 const { createStore, combineReducers, applyMiddleware } = require("redux");
 
-let redusers = combineReducers({
-  profilePage: profileReduser,
-  messagesPage: messagesReduser,
-  friendsPage: friendsReduser,
-  auth: authReduser,
+let reducers = combineReducers({
+  profilePage: profileReducer,
+  messagesPage: messagesReducer,
+  friendsPage: friendsReducer,
+  auth: authReducer,
+  form: formReducer,
 });
 
-let store = createStore(redusers, applyMiddleware(thunk));
+let store = createStore(reducers, applyMiddleware(thunk));
 export default store;

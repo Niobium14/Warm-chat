@@ -3,7 +3,7 @@ import profile_pic from "../../img/profile_pic.jpg";
 import person1 from "../../img/person1.jpg";
 import person2 from "../../img/person2.jpg";
 import person3 from "../../img/person3.jpg";
-import { profileAPI, usersAPI } from "../../api/api";
+import { profileAPI } from "../../api/api";
 
 // TYPE FOR MESSAGES
 const ADD_POST = "ADD-POST";
@@ -43,7 +43,7 @@ let initialState = {
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
-const profileReduser = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
       // ADD POST
@@ -115,32 +115,24 @@ export const updateStatusProfile = (status) => ({
   status,
 });
 
-export const getProfileThunkCreator = (userId) => {
-  return (dispatch) => {
-    profileAPI.getProfile(userId).then((data) => {
-      dispatch(setUserProfile(data));
-    });
-  };
+export const getProfileThunkCreator = (userId) => (dispatch) => {
+  profileAPI.getProfile(userId).then((response) => {
+    dispatch(setUserProfile(response.data));
+  });
 };
 
-export const getStatusThunkCreator = (userId) => {
-  return (dispatch) => {
-    profileAPI.getStatus(userId).then((data) => {
-      dispatch(setStatusProfile(data));
-    });
-  };
+export const getStatusThunkCreator = (userId) => (dispatch) => {
+  profileAPI.getStatus(userId).then((response) => {
+    dispatch(setStatusProfile(response.data));
+  });
 };
 
-export const updateStatusThunkCreator = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(updateStatusProfile(data));
-      } else {
-        console.log("FUCK");
-      }
-    });
-  };
+export const updateStatusThunkCreator = (status) => (dispatch) => {
+  profileAPI.updateStatus(status).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(updateStatusProfile(status));
+    }
+  });
 };
 
-export default profileReduser;
+export default profileReducer;

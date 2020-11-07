@@ -5,7 +5,7 @@ export default class ProfileStatus extends Component {
   // LOCAL STATE
   state = {
     editorMode: false,
-    state: this.props.state,
+    status: this.props.status,
   };
 
   // EDITOR MODE FOR TEXTAREA
@@ -16,12 +16,12 @@ export default class ProfileStatus extends Component {
   };
 
   // DEACTIVATE EDITOR MODE FOR TEXTAREA
-  deactivateEditorMode = () => {
+  deactivateEditorMode() {
     this.setState({
       editorMode: false,
     });
-    this.props.updateStatus(this.state.state);
-  };
+    this.props.updateStatus(this.state.status);
+  }
 
   // CHANGE STATUS
   onStatusChange = (e) => {
@@ -29,14 +29,23 @@ export default class ProfileStatus extends Component {
       status: e.currentTarget.value,
     });
   };
+  // COMPONENT DID UPDATE
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        status: this.props.status,
+      });
+    } 
+    console.log("componentDidUpdate");
+  }
   render() {
     return (
       <div>
         {this.state.editorMode ? (
           <input
-            autoFocus={true}
-            onBlur={this.deactivateEditorMode}
             onChange={this.onStatusChange}
+            autoFocus={true}
+            onBlur={this.deactivateEditorMode.bind(this)}
             value={this.state.status}
             className={css.statusChange}
           />

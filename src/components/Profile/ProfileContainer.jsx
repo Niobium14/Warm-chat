@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Profile from "./Profile";
 import {
-  setUserProfile,
   getProfileThunkCreator,
   getStatusThunkCreator,
   updateStatusThunkCreator,
 } from "../../redux/myRedusers/profile-reduser";
 import { withRouter } from "react-router-dom";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 class ProfileContainer extends Component {
   componentDidMount() {
@@ -40,7 +39,6 @@ let mapStateToProps = (state) => ({
 // REDIRECT
 export default compose(
   connect(mapStateToProps, {
-    setUserProfile,
     getProfileThunkCreator,
     getStatusThunkCreator,
     updateStatusThunkCreator,

@@ -9,14 +9,11 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Login from "./components/Login/Login";
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="app-wrapper">
       <NavbarContainer />
       <div class="app-wrapper-content">
-        <Route exact path="/">
-          <Redirect to="/music" />
-        </Route>
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
         <Route path="/messages" render={() => <MessagesContainer />} />
         <Route path="/friends" render={() => <FriendsContainer />} />

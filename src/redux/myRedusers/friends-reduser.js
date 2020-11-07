@@ -24,7 +24,7 @@ let initialState = {
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
-const friendsReduser = (state = initialState, action) => {
+const friendsReducer = (state = initialState, action) => {
   switch (action.type) {
     //   FOLLOW
     case FOLLOW: {
@@ -169,4 +169,4 @@ export const followUserThunkCreator = (userId) => {
 //   this.props.setTotalUsersCount(data.totalCount);
 // });
 
-export default friendsReduser;
+export default friendsReducer;

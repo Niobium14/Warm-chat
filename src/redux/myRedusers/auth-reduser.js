@@ -19,7 +19,7 @@ let initialState = {
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
-const authReduser = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     //   FOLLOW
     case SET_USER_DATA: {
@@ -60,4 +60,4 @@ export const myDataThunkCreator = () => {
   };
 };
 
-export default authReduser;
+export default authReducer;
