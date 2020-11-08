@@ -14,8 +14,7 @@ import {
 } from "../../redux/myRedusers/friends-reduser";
 import React, { Component } from "react";
 import Friends from "./Friends";
-import Preloader from "../common/preloader/preloader";
-import { usersAPI } from "../../api/api";
+import Preloader from "../common/Preloader/Preloader";
 
 class FriendsContainer extends Component {
   componentDidMount() {

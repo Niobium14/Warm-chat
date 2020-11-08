@@ -1,18 +1,14 @@
 /* FIRST BG */
 .bg_1 {
-    width: 700px;
-    height: 700px;
-    margin-left: 700px;
-    margin-top: -60px;
-    z-index: 0;
-
+  width: 700px;
+  height: 700px;
+  margin-left: 700px;
 }
 
 /* SECOND BG */
 .bg_2 {
-    width: 700px;
-    height: 700px;
-    margin-left: -150px;
-    margin-top: -200px;
-    z-index: 0;
+  width: 700px;
+  height: 700px;
+  margin-left: -150px;
+  margin-top: -150px;
 }

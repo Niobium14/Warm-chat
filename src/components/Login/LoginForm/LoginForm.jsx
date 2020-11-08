@@ -3,8 +3,6 @@ import { Field, reduxForm } from "redux-form";
 import css from "./LoginForm.module.css";
 
 const LoginForm = (props) => {
-  console.log("formData");
-
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
