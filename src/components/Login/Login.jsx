@@ -8,7 +8,7 @@ const Login = (props) => {
   };
   return (
     <div>
-      <h1>Sing In</h1>
+      <h1 className={css.singInName}>Sing In</h1>
       <ReduxLoginForm onSubmit={onSubmit} {...props} />
     </div>
   );
