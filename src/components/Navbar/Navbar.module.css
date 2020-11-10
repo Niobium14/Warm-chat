@@ -15,7 +15,6 @@
   font-size: 22px;
   font-weight: 600;
 }
-
 .item {
   cursor: pointer;
 }
@@ -38,15 +37,19 @@
   margin-right: -200px;
 }
 
-.singBlock a {
+.myProfile {
+  margin-left: 50px;
   color: rgb(0, 0, 0);
   text-decoration: none;
-  margin-left: 90px;
   font-size: 22px;
   font-weight: 600;
 }
 
 .login:hover {
+  color: #7da521;
+  transition: all 0.5s ease 0s;
+}
+.logout:hover {
   color: #7da521;
   transition: all 0.5s ease 0s;
 }
@@ -57,4 +60,8 @@
 
 .singBlock a.activeLink {
   color: #7da521;
+  margin-left: 90px;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 600;
 }

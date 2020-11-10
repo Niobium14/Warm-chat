@@ -1,7 +1,8 @@
 import React from "react";
 import css from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
-import logo from '../../img/header_logo.png'
+import logo from "../../img/header_logo.png";
+import logout from "../../img/logout.svg";
 
 const Navbar = (props) => {
   return (
@@ -35,7 +36,12 @@ const Navbar = (props) => {
         </div>
         <div className={css.singBlock}>
           {props.isAuth ? (
-            <a className={css.login}>{props.login}</a>
+            <div className={css.myProfile}>
+              <a className={css.login}>{props.login}</a>/
+              <a className={css.logout} onClick={props.logoutThunkCreator}>
+                Logout
+              </a>
+            </div>
           ) : (
             <NavLink to="/singIn" activeClassName={css.activeLink}>
               Sing in

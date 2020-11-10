@@ -2,15 +2,17 @@ import * as axios from "axios";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
-import { myDataThunkCreator } from "../../redux/myRedusers/auth-reduser";
-import { authAPI } from "../../api/api";
+import {
+  myDataThunkCreator,
+  logoutThunkCreator,
+} from "../../redux/myReducers/auth-reducer";
 
 class NavbarContainer extends Component {
   componentDidMount() {
     this.props.myDataThunkCreator();
   }
   render() {
-    return <Navbar {...this.props} />;
+    return <Navbar {...this.props}/>;
   }
 }
 
@@ -19,6 +21,7 @@ let mapStateToProps = (state) => ({
   login: state.auth.login,
 });
 
-export default connect(mapStateToProps, { myDataThunkCreator })(
-  NavbarContainer
-);
+export default connect(mapStateToProps, {
+  myDataThunkCreator,
+  logoutThunkCreator,
+})(NavbarContainer);

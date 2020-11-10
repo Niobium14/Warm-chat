@@ -26,18 +26,6 @@ export const usersAPI = {
   followUser(userId) {
     return instance.post(`follow/${userId}`).then((response) => response.data);
   },
-  //   GET USER FOR PROFILE
-  getProfile(userId) {
-    return profileAPI.getProfile(userId);
-  },
-  //   GET STATUS FOR USER PROFILE
-  getStatus(userId) {
-    return profileAPI.getStatus(userId);
-  },
-  //   GET STATUS FOR USER PROFILE
-  updateStatus(status) {
-    return profileAPI.updateStatus(status);
-  },
 };
 
 // PROFILE API
@@ -58,6 +46,16 @@ export const profileAPI = {
 export const authAPI = {
   //   IS AUTH
   authMe() {
-    return instance.get(`auth/me`).then((response) => response.data);
+    return instance.get(`auth/me`);
+  },
+  //   SING IN
+  login(email, password, rememberMe = false) {
+    return instance
+      .post(`auth/login`, { email, password, rememberMe })
+      .then((response) => response.data);
+  },
+  //   SING IN
+  logout() {
+    return instance.delete(`auth/login`).then((response) => response.data);
   },
 };

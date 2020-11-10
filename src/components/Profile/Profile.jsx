@@ -1,5 +1,5 @@
 import React from "react";
-import PostsContainer from "./Posts/PostsContainer";
+import Posts from "./Posts/Posts";
 import css from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
@@ -12,7 +12,7 @@ const Profile = (props) => {
         status={props.status}
         updateStatus={props.updateStatusThunkCreator}
       />
-      <PostsContainer />
+      <Posts />
     </div>
   );
 };

@@ -11,7 +11,7 @@ import {
   followUserThunkCreator,
   unfollowUserThunkCreator,
   setPageThunkCreator,
-} from "../../redux/myRedusers/friends-reduser";
+} from "../../redux/myReducers/friends-reducer";
 import React, { Component } from "react";
 import Friends from "./Friends";
 import Preloader from "../common/Preloader/Preloader";

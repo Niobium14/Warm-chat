@@ -1,11 +1,12 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { maxLength, required } from "../../../validation/validation";
+import { maxLength, required } from "../../../utils/validators";
 import { SingInField } from "../../common/FormValidation/Field";
 import css from "./LoginForm.module.css";
 
-let maxLength12 = maxLength(12);
-let maxLength8 = maxLength(8);
+// MAX LENGTH
+let maxLength30 = maxLength(30);
+let maxLength15 = maxLength(15);
 
 const LoginForm = (props) => {
   return (
@@ -13,10 +14,10 @@ const LoginForm = (props) => {
       <div>
         <Field
           component={SingInField}
-          name={"login"}
+          name={"email"}
           type="text"
-          placeholder="login"
-          validate={[required, maxLength12]}
+          placeholder="Email"
+          validate={[required, maxLength30]}
         />
       </div>
       <div>
@@ -25,17 +26,19 @@ const LoginForm = (props) => {
           name={"password"}
           type="text"
           placeholder="password"
-          validate={[required, maxLength8]}
+          type="password"
+          validate={[required, maxLength15]}
         />
       </div>
+      {props.error && <div className={css.error}>{props.error}</div>}
       <div className={css.recall}>
         <Field
-          id="recall"
-          component={"input"}
-          type={"checkbox"}
-          name={"recall"}
+          id="rememberMe"
+          component="input"
+          type="checkbox"
+          name="rememberMe"
         />
-        <label className={css.remember} for="recall">
+        <label for="rememberMe" className={css.remember}>
           remember me
         </label>
       </div>

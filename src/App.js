@@ -9,6 +9,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Login from "./components/Login/Login";
 
+// APP
 const App = (props) => {
   return (
     <div className="app-wrapper">

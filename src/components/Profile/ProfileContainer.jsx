@@ -5,7 +5,7 @@ import {
   getProfileThunkCreator,
   getStatusThunkCreator,
   updateStatusThunkCreator,
-} from "../../redux/myRedusers/profile-reduser";
+} from "../../redux/myReducers/profile-reducer";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
