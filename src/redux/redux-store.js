@@ -5,6 +5,7 @@ import messagesReducer from "./myReducers/messages-reducer";
 import friendsReducer from "./myReducers/friends-reducer";
 import newsReducer from "./myReducers/news-reducer";
 import musicReducer from "./myReducers/music-reducer";
+import appReducer from "./myReducers/app-reducer";
 import { reducer as formReducer } from "redux-form";
 
 // IMPORT REDUX FEATURES
@@ -18,6 +19,7 @@ let reducers = combineReducers({
   newsPage: newsReducer,
   musicPage: musicReducer,
   auth: authReducer,
+  app: appReducer,
   form: formReducer,
 });
 
