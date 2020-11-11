@@ -1,11 +1,13 @@
 import React from "react";
-import BG from "../Profile/Posts/ProfileBG/ProfileBG";
 import css from "./News.module.css";
+import BG from "./NewsBG/NewsBG";
+import UncosContainer from "./Uncos/UncosContainer";
 
 const News = (props) => {
   return (
-    <div className="">
+    <div className={css.newsPage}>
       <BG />
+      <UncosContainer />
     </div>
   );
 };

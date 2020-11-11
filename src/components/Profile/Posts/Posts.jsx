@@ -1,15 +1,18 @@
 import React from "react";
-import PostContainer from "./Post/PostContainer";
+import Post from "./Post/Post";
 import css from "./Posts.module.css";
 import ProfileBG from "./ProfileBG/ProfileBG";
-import ProfileTextareaContainer from "./ProfileTextarea/ProfileTextareaContainer";
+import ReduxProfileForm from "./ProfileForm/ProfileForm";
 
 const Posts = (props) => {
+  let onAddPost = (values) => {
+    props.sentPost(values.newPostText);
+  };
   return (
     <div className={css.posts}>
       <ProfileBG />
-      <ProfileTextareaContainer />
-      <PostContainer />
+      <ReduxProfileForm onSubmit={onAddPost} />
+      <Post posts={props.posts} />
     </div>
   );
 };

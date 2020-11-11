@@ -43,7 +43,7 @@ const Navbar = (props) => {
               </a>
             </div>
           ) : (
-            <NavLink to="/singIn" activeClassName={css.activeLink}>
+            <NavLink to="/singIn" className={css.sing}>
               Sing in
             </NavLink>
           )}

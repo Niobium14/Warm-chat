@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { maxLength, required } from "../../../../validation/validation";
+import { maxLength, required } from "../../../../utils/validators";
 import { ProfileField } from "../../../common/FormValidation/Field";
 import css from "./ProfileForm.module.css";
 
@@ -13,7 +13,7 @@ const ProfileForm = (props) => {
       <div className={css.add}>Add new post</div>
       <Field
         component={ProfileField}
-        name={"newPost"}
+        name={"newPostText"}
         type={"text"}
         placeholder="What's new?"
         validate={[required, maxLength15]}

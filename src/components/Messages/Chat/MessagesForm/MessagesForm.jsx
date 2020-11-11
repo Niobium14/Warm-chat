@@ -1,7 +1,6 @@
 import React from "react";
-import css from "./MessagesForm.module.css";
 import { Field, reduxForm } from "redux-form";
-import { maxLength, required } from "../../../../validation/validation";
+import { maxLength, required } from "../../../../utils/validators";
 import { MessagesField } from "../../../common/FormValidation/Field";
 
 let maxLength15 = maxLength(20);

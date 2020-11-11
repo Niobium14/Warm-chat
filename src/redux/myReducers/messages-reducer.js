@@ -28,7 +28,6 @@ let initialState = {
       message: "The standard chunk of Lorem Ipsum used since the 1500s.",
     },
   ],
-  newMessageText: "",
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
@@ -38,19 +37,11 @@ const messagesReducer = (state = initialState, action) => {
       // ADD MESSAGE
       let newMessage = {
         id: 5,
-        message: state.newMessageText,
+        message: action.newMessage,
       };
       return {
         ...state,
         messages: [...state.messages, newMessage],
-        newMessageText: "",
-      };
-    }
-    case UPDATE_NEW_MESSAGE_TEXT: {
-      // TEXT FROM TEXTAREA (MESSAGES)
-      return {
-        ...state,
-        newMessageText: action.newMessageText,
       };
     }
     default:
@@ -58,13 +49,10 @@ const messagesReducer = (state = initialState, action) => {
   }
 };
 
-// REDIRECT 
+// REDIRECT
 // ADD MESSAGE ACTION CREACTOR
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE });
-// UPDATE NEW MESSAGE TEXT ACTION CREACTOR
-export const updateNewMessageTextActionCreator = (text) => ({
-  type: UPDATE_NEW_MESSAGE_TEXT,
-  newMessageText: text,
+export const addMessageActionCreator = (newMessage) => ({
+  type: ADD_MESSAGE,
+  newMessage,
 });
-
 export default messagesReducer;

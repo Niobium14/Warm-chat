@@ -4,6 +4,10 @@ import bg_3 from "../../../img/bg_3.png";
 
 export default class MessagesBG extends Component {
   render() {
-    return <img src={bg_3} className={css.bg_3} />;
+    return (
+      <div className={css.module}>
+        <img src={bg_3} className={css.bg_3} />
+      </div>
+    );
   }
 }

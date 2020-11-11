@@ -11,12 +11,12 @@ const Messages = (props) => {
   ));
   return (
     <div className={css.messages}>
+      <MessagesBG />
       <div className={css.dialogs}>
         <div className={css.dialogsItems}>{dialogsElement}</div>
         <div className={css.line} />
-        <Chat messages={props.messages} />
+        <Chat messages={props.messages} sentMessage={props.sentMessage} />
       </div>
-      <MessagesBG />
     </div>
   );
 };

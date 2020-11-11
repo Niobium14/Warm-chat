@@ -7,7 +7,6 @@ import { profileAPI } from "../../api/api";
 
 // TYPE FOR MESSAGES
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_PROFILE_STATUS = "SET-PROFILE-STATUS";
 const UPDATE_PROFILE_STATUS = "UPDATE-PROFILE-STATUS";
@@ -50,20 +49,12 @@ const profileReducer = (state = initialState, action) => {
       let newPost = {
         id: 5,
         name: "Me",
-        message: state.newPostText,
+        message: action.newPostText,
         img: profile_pic,
       };
       return {
         ...state,
         posts: [...state.posts, newPost],
-        newPostText: "",
-      };
-    }
-    case UPDATE_NEW_POST_TEXT: {
-      // TEXT FROM TEXTAREA (POSTS)
-      return {
-        ...state,
-        newPostText: action.newPostText,
       };
     }
     case SET_PROFILE_STATUS: {
@@ -93,11 +84,9 @@ const profileReducer = (state = initialState, action) => {
 };
 
 // ADD POST ACTION CREATOR
-export const addPostActionCreator = () => ({ type: ADD_POST });
-// UPDATE NEW POST TEXT ACTION CREATOR
-export const updateNewPostTextActionCreator = (text) => ({
-  type: UPDATE_NEW_POST_TEXT,
-  newPostText: text,
+export const addPostActionCreator = (newPostText) => ({
+  type: ADD_POST,
+  newPostText,
 });
 // SET USER PROFILE ACTION CREATOR
 export const setUserProfile = (profile) => ({

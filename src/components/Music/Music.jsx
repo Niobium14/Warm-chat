@@ -1,10 +1,12 @@
 import React from "react";
-import BG from "../Profile/Posts/ProfileBG/ProfileBG";
 import css from "./Music.module.css";
+import BG from "./MusicBG/MusicBG";
+import PlaylistsContainer from "./Playlists/PlaylistsContainer";
 
 const Music = (props) => {
   return (
-    <div className="">
+    <div className={css.musicPage}>
+      <PlaylistsContainer />
       <BG />
     </div>
   );
