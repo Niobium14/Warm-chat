@@ -9,6 +9,11 @@ import {
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import {
+  getUserProfile,
+  getUserStatus,
+} from "../../redux/selectors/profile-selector";
+import { checkAuth, getUserId } from "../../redux/selectors/auth-selector";
 
 class ProfileContainer extends Component {
   componentDidMount() {
@@ -35,10 +40,10 @@ class ProfileContainer extends Component {
 }
 
 let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile,
-  status: state.profilePage.status,
-  isAuth: state.auth.isAuth,
-  authorizedUserId: state.auth.userId,
+  profile: getUserProfile(state),
+  status: getUserStatus(state),
+  isAuth: checkAuth(state),
+  authorizedUserId: getUserId(state),
 });
 
 // REDIRECT

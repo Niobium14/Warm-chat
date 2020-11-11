@@ -1,10 +1,10 @@
-import React from "react";
 import { connect } from "react-redux";
+import { getUncos } from "../../../redux/selectors/news-selector";
 import Uncos from "./Uncos";
 
 let mapStateToProps = (state) => {
   return {
-    uncos: state.newsPage.uncos,
+    uncos: getUncos(state),
   };
 };
 const UncosContainer = connect(mapStateToProps)(Uncos);

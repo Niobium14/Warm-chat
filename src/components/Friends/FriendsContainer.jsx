@@ -15,6 +15,15 @@ import {
 import React, { Component } from "react";
 import Friends from "./Friends";
 import Preloader from "../common/Preloader/Preloader";
+import {
+  checkIsFetching,
+  checkToggleIsFetching,
+  getCurrentPage,
+  getPageSize,
+  getTotalUsersCount,
+  getUsers,
+  setFollowingInProgress,
+} from "../../redux/selectors/users-selector";
 
 class FriendsContainer extends Component {
   componentDidMount() {
@@ -57,13 +66,13 @@ class FriendsContainer extends Component {
 
 let mapStateToProps = (state) => {
   return {
-    users: state.friendsPage.users,
-    pageSize: state.friendsPage.pageSize,
-    totalUsersCount: state.friendsPage.totalUsersCount,
-    currentPage: state.friendsPage.currentPage,
-    isFetching: state.friendsPage.isFetching,
-    toggleIsFetching: state.friendsPage.toggleIsFetching,
-    followingInProgress: state.friendsPage.followingInProgress,
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: checkIsFetching(state),
+    toggleIsFetching: checkToggleIsFetching(state),
+    followingInProgress: setFollowingInProgress(state),
   };
 };
 
