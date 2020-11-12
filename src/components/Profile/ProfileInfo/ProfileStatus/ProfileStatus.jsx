@@ -1,63 +1,44 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import css from "./ProfileStatus.module.css";
 
-export default class ProfileStatus extends Component {
-  // LOCAL STATE
-  state = {
-    editorMode: false,
-    status: this.props.status,
-  };
+const textInput = React.createRef();
 
-  // EDITOR MODE FOR TEXTAREA
-  activateEditorMode = () => {
-    this.setState({
-      editorMode: true,
-    });
-  };
+function ProfileStatus(props) {
+  // HOOKS
+  const [editorMode, setEditorMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
 
-  // DEACTIVATE EDITOR MODE FOR TEXTAREA
-  deactivateEditorMode() {
-    this.setState({
-      editorMode: false,
-    });
-    this.props.updateStatus(this.state.status);
-  }
-
-  // CHANGE STATUS
-  onStatusChange = (e) => {
-    this.setState({
-      status: e.currentTarget.value,
-    });
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status]);
+  
+  const activateEditorMode = () => {
+    setEditorMode(true);
   };
-  // COMPONENT DID UPDATE
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({
-        status: this.props.status,
-      });
-    } 
-    console.log("componentDidUpdate");
-  }
-  render() {
-    return (
-      <div>
-        {this.state.editorMode ? (
-          <input
-            onChange={this.onStatusChange}
-            autoFocus={true}
-            onBlur={this.deactivateEditorMode.bind(this)}
-            value={this.state.status}
-            className={css.statusChange}
-          />
-        ) : (
-          <div
-            onDoubleClick={this.activateEditorMode}
-            className={css.statusRead}
-          >
-            {this.props.status || "No status"}
-          </div>
-        )}
-      </div>
-    );
-  }
+  const deactivateEditorMode = () => {
+    setEditorMode(false);
+    props.updateStatus(status);
+  };
+  const onStatusChange = (e) => {
+    setStatus(e.currentTarget.value);
+  };
+  return (
+    <div>
+      {editorMode ? (
+        <input
+          onChange={onStatusChange}
+          autoFocus={true}
+          onBlur={deactivateEditorMode}
+          value={status}
+          className={css.statusChange}
+        />
+      ) : (
+        <div onDoubleClick={activateEditorMode} className={css.statusRead}>
+          {props.status || "No status"}
+        </div>
+      )}
+    </div>
+  );
 }
+
+export default ProfileStatus;

@@ -27,8 +27,8 @@ class App extends Component {
         <NavbarContainer />
         <div class="app-wrapper-content">
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route path="/messages" render={() => <MessagesContainer />} />
           <Route path="/friends" render={() => <FriendsContainer />} />
+          <Route path="/messages" render={() => <MessagesContainer />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/singIn" render={() => <Login />} />

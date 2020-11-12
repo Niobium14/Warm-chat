@@ -8,6 +8,14 @@
   margin-left: 40px;
 }
 
+.warmChat {
+  margin-top: -40px;
+  margin-bottom: -20px;
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .item a {
   color: rgb(0, 0, 0);
   text-decoration: none;
@@ -18,7 +26,6 @@
 .item {
   cursor: pointer;
 }
-
 .item a.activeLink {
   color: #6b2bd5;
 }
@@ -26,7 +33,7 @@
 .header {
   grid-area: h;
   display: grid;
-  grid-template-areas: "logo nav";
+  grid-template-areas: "logo logo nav singBlock";
 }
 .logo {
   grid-area: logo;
@@ -38,7 +45,6 @@
 }
 
 .myProfile {
-  margin-left: 50px;
   color: rgb(0, 0, 0);
   text-decoration: none;
   font-size: 22px;
@@ -55,21 +61,14 @@
 }
 
 .singBlock {
+  grid-area: "singBlock";
   cursor: pointer;
-}
-
-.singBlock a.activeLink {
-  color: #7da521;
-  margin-left: 90px;
-  text-decoration: none;
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.sing {
-  color: #7da521;
-  margin-left: 90px;
-  text-decoration: none;
+  z-index: 1;
+  padding: 20px;
+  margin-left: -50px;
+  display: flex;
+  margin-top: 30px;
+  position: relative;
   font-size: 22px;
   font-weight: 600;
 }

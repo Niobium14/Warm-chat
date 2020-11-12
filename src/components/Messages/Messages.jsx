@@ -3,7 +3,6 @@ import css from "./Messages.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import MessagesBG from "./MessagesBG/MessagesBG";
 import Chat from "./Chat/Chat";
-import { Redirect } from "react-router-dom";
 
 const Messages = (props) => {
   let dialogsElement = props.dialogs.map((dialog) => (
