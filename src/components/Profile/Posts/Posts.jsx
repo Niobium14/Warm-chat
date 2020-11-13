@@ -4,7 +4,7 @@ import css from "./Posts.module.css";
 import ProfileBG from "./ProfileBG/ProfileBG";
 import ReduxProfileForm from "./ProfileForm/ProfileForm";
 
-const Posts = (props) => {
+const Posts = React.memo((props) => {
   let onAddPost = (values) => {
     props.sentPost(values.newPostText);
   };
@@ -15,6 +15,6 @@ const Posts = (props) => {
       <Post posts={props.posts} />
     </div>
   );
-};
+});
 
 export default Posts;

@@ -1,6 +1,5 @@
 import "./App.css";
 import FriendsContainer from "./components/Friends/FriendsContainer";
-import MessagesContainer from "./components/Messages/MessagesContainer";
 import { Route, withRouter } from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
@@ -12,6 +11,7 @@ import { initializeApp } from "./redux/myReducers/app-reducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import Preloader from "./components/common/Preloader/Preloader";
+import MessagesContainer from "./components/Messages/MessagesContainer";
 
 // APP
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
   }
   render() {
     if (!this.props.initialized) {
-      return <Preloader/>;
+      return <Preloader />;
     }
     return (
       <div className="app-wrapper">

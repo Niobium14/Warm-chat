@@ -3,7 +3,7 @@ import PostsContainer from "./Posts/PostsContainer";
 import css from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = (props) => {
+function Profile(props) {
   return (
     <div className={css.wrapper}>
       <ProfileInfo
@@ -15,6 +15,6 @@ const Profile = (props) => {
       <PostsContainer />
     </div>
   );
-};
+}
 
 export default Profile;

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-export const withAuthRedirect = (Component) => {
+export function withAuthRedirect(Component) {
   class RedirectContainer extends React.Component {
     render() {
       if (!this.props.isAuth) return <Redirect to={"/singIn"} />;
@@ -16,4 +16,4 @@ export const withAuthRedirect = (Component) => {
     RedirectContainer
   );
   return ConnectedAuthContainer;
-};
+}
