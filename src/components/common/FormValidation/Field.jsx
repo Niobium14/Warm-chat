@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-expressions */
 import React from "react";
+import { Field } from "redux-form";
+import { maxLength, required } from "../../../utils/validators";
 import css from "./Field.module.css";
 
 export const ProfileField = ({ input, meta, ...props }) => {
@@ -48,12 +51,7 @@ export const SingInField = ({ input, meta, ...props }) => {
   return (
     <>
       <div className={hasError ? css.singInAreaError : css.singInArea}>
-        <input
-          className={css.singInTextarea}
-          {...input}
-          {...meta}
-          {...props}
-        />
+        <input className={css.singInTextarea} {...input} {...meta} {...props} />
       </div>
       <div className={css.singInError}>
         {hasError && <span>{meta.error}</span>}
@@ -61,3 +59,21 @@ export const SingInField = ({ input, meta, ...props }) => {
     </>
   );
 };
+
+export const CreateField = (
+  id = null,
+  component,
+  name,
+  type,
+  placeholder,
+  validate
+) => (
+  <Field
+    id={id}
+    component={component}
+    name={name}
+    type={type}
+    placeholder={placeholder}
+    validate={validate}
+  />
+);

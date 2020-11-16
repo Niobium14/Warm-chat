@@ -1,4 +1,5 @@
 import { usersAPI } from "../../api/api";
+import { followUnfollowCase } from "../../components/common/Helpers/helpers";
 
 // TYPE FOR MESSAGES
 const FOLLOW = "FOLLOW";
@@ -30,13 +31,16 @@ const friendsReducer = (state = initialState, action) => {
     case FOLLOW: {
       return {
         ...state,
-        // users: [...state.users]
-        users: state.users.map((user) => {
-          if (user.id === action.userId) {
-            return { ...user, followed: true };
-          }
-          return user;
+        users: followUnfollowCase(state.users, action.userId, "id", {
+          followed: true,
         }),
+        //   users: state.users.map((user) => {
+        //     if (user.id === action.userId) {
+        //       return { ...user, followed: true };
+        //     }
+        //     return user;
+        //   }),
+        // };
       };
     }
     // UNFOLLOW
@@ -117,48 +121,53 @@ export const toggleFollowingProgress = (followingInProgress, userId) => ({
 });
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(currentPage, pageSize).then((data) => {
-      dispatch(toggleIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
+    let data = await usersAPI.getUsers(currentPage, pageSize);
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(data.data.items));
+    dispatch(setTotalUsersCount(data.data.totalCount));
   };
 };
 
 export const setPageThunkCreator = (pageNumber, pageSize) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(setCurrentPage(pageNumber));
     dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(pageNumber, pageSize).then((data) => {
-      dispatch(toggleIsFetching(false));
-      dispatch(setUsers(data.items));
-    });
+    let data = await usersAPI.getUsers(pageNumber, pageSize);
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(data.data.items));
   };
 };
 
+const followUnfollowFlow = async (dispatch, userId, apiMetchod, action) => {
+  dispatch(toggleFollowingProgress(true, userId));
+  let data = await apiMetchod(userId);
+  if (data.data.resultCode === 0) {
+    dispatch(action(userId));
+  }
+  dispatch(toggleFollowingProgress(false));
+};
+
 export const unfollowUserThunkCreator = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId));
-    usersAPI.followUser(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(unfollow(userId));
-      }
-      dispatch(toggleFollowingProgress(false));
-    });
+  return async (dispatch) => {
+    followUnfollowFlow(
+      dispatch,
+      userId,
+      usersAPI.unfollowUser.bind(userId),
+      unfollow
+    );
   };
 };
 
 export const followUserThunkCreator = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId));
-    usersAPI.unfollowUser(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(follow(userId));
-      }
-      dispatch(toggleFollowingProgress(false));
-    });
+  return async (dispatch) => {
+    followUnfollowFlow(
+      dispatch,
+      userId,
+      usersAPI.followUser.bind(userId),
+      follow
+    );
   };
 };
 

@@ -1,95 +1,35 @@
-import React, { Component } from "react";
+/* eslint-disable jsx-a11y/alt-text */
+import React from "react";
 import BG from "./FriendsBG/FriendsBG";
 import css from "./Friends.module.css";
-import userDefault from "../../img/user-default.png";
-import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { AllUsers } from "./Content/AllUsers";
+import AllPages from "./Content/AllPages";
 
-const Friends = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-  let pages = [];
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-
+function Friends({
+  totalUsersCount,
+  pageSize,
+  users,
+  followingInProgress,
+  unfollowUserThunkCreator,
+  followUserThunkCreator,
+  currentPage,
+  setPage,
+}) {
   return (
     <div className={css.friendsPage}>
-      <div className={css.users}>
-        <div className={css.listName}>
-          <h3>Your list of users</h3>
-        </div>
-        {props.users.map((user) => (
-          <div className={css.form} key={user.id}>
-            <div className={css.content}>
-              <NavLink to={"/profile/" + user.id} className={css.person}>
-                <img
-                  src={
-                    user.photos.small != null ? user.photos.small : userDefault
-                  }
-                />
-              </NavLink>
-              <div className={css.data}>
-                <div className={css.fullName}>{user.name}</div>
-                <div className={css.inData}>
-                  <div className={css.location}>
-                    {"Country"} - {"City"}
-                  </div>
-                  <div className={css.status}>{user.status}</div>
-                </div>
-              </div>
-              <div className={css.button}>
-                {user.followed ? (
-                  <button
-                    disabled={props.followingInProgress.some(
-                      (id) => id === user.id
-                    )}
-                    className={css.followBn}
-                    onClick={() => {
-                      props.followUserThunkCreator(user.id);
-                    }}
-                  >
-                    <span>FOLLOW</span>
-                  </button>
-                ) : (
-                  <button
-                    disabled={props.followingInProgress.some(
-                      (id) => id === user.id
-                    )}
-                    className={css.unfollowBn}
-                    onClick={() => {
-                      props.unfollowUserThunkCreator(user.id);
-                    }}
-                  >
-                    <span>UNFOLLOW</span>
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className={css.numbers}>
-        {pages.map((p) => {
-          return (
-            <text
-              className={
-                props.currentPage === p
-                  ? `${css.item} ${css.activePage}`
-                  : css.item
-              }
-              onClick={(e) => {
-                props.setPage(p);
-              }}
-            >
-              {p}
-            </text>
-          );
-        })}
-      </div>
+      {AllUsers(
+        users,
+        followingInProgress,
+        unfollowUserThunkCreator,
+        followUserThunkCreator
+      )}
+      {AllPages(totalUsersCount, pageSize, currentPage, setPage)}
       <BG />
     </div>
   );
-};
+}
 
-export default Friends;
+export default compose(connect(null, {}), withAuthRedirect)(Friends);

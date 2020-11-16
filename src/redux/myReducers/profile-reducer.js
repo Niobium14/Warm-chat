@@ -104,24 +104,21 @@ export const updateStatusProfile = (status) => ({
   status,
 });
 
-export const getProfileThunkCreator = (userId) => (dispatch) => {
-  profileAPI.getProfile(userId).then((response) => {
-    dispatch(setUserProfile(response.data));
-  });
+export const getProfileThunkCreator = (userId) => async (dispatch) => {
+  let response = await profileAPI.getProfile(userId);
+  dispatch(setUserProfile(response.data));
 };
 
-export const getStatusThunkCreator = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId).then((response) => {
-    dispatch(setStatusProfile(response.data));
-  });
+export const getStatusThunkCreator = (userId) => async (dispatch) => {
+  let response = await profileAPI.getStatus(userId);
+  dispatch(setStatusProfile(response.data));
 };
 
-export const updateStatusThunkCreator = (status) => (dispatch) => {
-  profileAPI.updateStatus(status).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(updateStatusProfile(status));
-    }
-  });
+export const updateStatusThunkCreator = (status) => async (dispatch) => {
+  let response = await profileAPI.updateStatus(status);
+  if (response.data.resultCode === 0) {
+    dispatch(updateStatusProfile(status));
+  }
 };
 
 export default profileReducer;

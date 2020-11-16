@@ -3,6 +3,7 @@ import css from "./Navbar.module.css";
 import logo from "../../img/header_logo.png";
 import NavElements from "./NavElements";
 import UserName from "./UserName";
+import Login from "../Login/Login";
 
 const Navbar = (props) => {
   return (

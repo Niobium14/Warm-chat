@@ -12,19 +12,15 @@ const instance = axios.create({
 export const usersAPI = {
   // GET USERS FOR "FRIENDS"
   getUsers(currentPage = 1, pageSize = 4) {
-    return instance
-      .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then((response) => response.data);
+    return instance.get(`users?page=${currentPage}&count=${pageSize}`);
   },
   //   FOLLOW BUTTON
   unfollowUser(userId) {
-    return instance
-      .delete(`follow/${userId}`)
-      .then((response) => response.data);
+    return instance.delete(`follow/${userId}`);
   },
   //   UNFOLLOW BUTTON
   followUser(userId) {
-    return instance.post(`follow/${userId}`).then((response) => response.data);
+    return instance.post(`follow/${userId}`);
   },
 };
 
@@ -50,12 +46,10 @@ export const authAPI = {
   },
   //   SING IN
   login(email, password, rememberMe = false) {
-    return instance
-      .post(`auth/login`, { email, password, rememberMe })
-      .then((response) => response.data);
+    return instance.post(`auth/login`, { email, password, rememberMe });
   },
   //   SING IN
   logout() {
-    return instance.delete(`auth/login`).then((response) => response.data);
+    return instance.delete(`auth/login`);
   },
 };
