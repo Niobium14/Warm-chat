@@ -7,9 +7,10 @@ import newsReducer from "./myReducers/news-reducer";
 import musicReducer from "./myReducers/music-reducer";
 import appReducer from "./myReducers/app-reducer";
 import { reducer as formReducer } from "redux-form";
+import { createStore, applyMiddleware } from "redux";
 
 // IMPORT REDUX FEATURES
-const { createStore, combineReducers, applyMiddleware } = require("redux");
+const { combineReducers, compose } = require("redux");
 
 // REDUCERS TO STATE
 let reducers = combineReducers({
@@ -24,5 +25,7 @@ let reducers = combineReducers({
 });
 
 // CREATE STORE
-let store = createStore(reducers, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+
 export default store;

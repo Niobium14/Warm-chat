@@ -1,0 +1,169 @@
+/* USERS */
+.users {
+  margin-top: -40px;
+  position: relative;
+}
+
+/* LIST NAME */
+.listName {
+  color: #a4a4a4;
+}
+
+.listName h3 {
+  text-align: center;
+  font-size: 40px;
+  color: #a4a4a4;
+}
+
+/* CONTENT */
+.content {
+  display: flex;
+  padding: 10px;
+}
+
+/* USER NAME */
+.fullName {
+  font-weight: 500;
+  font-size: 25px;
+}
+
+/* USERS PICTURE */
+.person img {
+  margin-left: 10px;
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+}
+
+/* LOCATION (DATA) */
+.location {
+  margin-right: 7px;
+}
+
+/* FORM */
+.form {
+  background: rgba(255, 255, 255, 0.8);
+  width: 1000px;
+  border: 5px solid #e3e3e3;
+  margin-left: 100px;
+  margin-bottom: 20px;
+}
+
+/* IN DATA */
+.data {
+  margin-left: 10px;
+}
+
+/* IN DATA */
+.inData {
+  margin-top: 5px;
+  font-size: 20px;
+  display: flex;
+  color: #838383;
+}
+
+/* UNFOLLOW BUTTON */
+.button {
+  position: absolute;
+  right: 15%;
+  margin-top: 10px;
+}
+
+.unfollowBn {
+  background: #c7c7c7;
+  width: 150px;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.unfollowBn:hover {
+  background: #a7a7a7;
+  transition: all 0.5s ease 0s;
+}
+
+/* SHOW USERS BUTTON */
+.showUsers {
+  background: linear-gradient(
+      267.42deg,
+      #e51cb0 2.15%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #6e2ad4;
+  width: 150px;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 45%;
+}
+
+.showUsers:hover {
+  background: linear-gradient(
+      267.42deg,
+      #aa1682 2.15%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #5b23af;
+  transition: all 0.5s ease 0s;
+}
+
+/* SHOW USERS BUTTON */
+.showUsers span {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+
+/* FOLLOW BUTTON */
+.followBn {
+  background: linear-gradient(
+      267.42deg,
+      #e51cb0 2.15%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #6e2ad4;
+  width: 150px;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.followBn:hover {
+  background: linear-gradient(
+      267.42deg,
+      #aa1682 2.15%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #5b23af;
+  transition: all 0.5s ease 0s;
+}
+
+/* span IN FOLLOW BUTTON */
+.followBn span {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+
+/* span IN  UNFOLLOW BUTTON */
+.unfollowBn span {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+
+/* PAGES */
+.pages {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

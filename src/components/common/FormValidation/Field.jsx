@@ -61,7 +61,7 @@ export const SingInField = ({ input, meta, ...props }) => {
 };
 
 export const CreateField = (
-  id = null,
+  id,
   component,
   name,
   type,

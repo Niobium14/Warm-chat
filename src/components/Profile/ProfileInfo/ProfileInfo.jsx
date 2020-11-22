@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import css from "./ProfileInfo.module.css";
 import profile_bg from "../../../img/profile_bg.jpg";

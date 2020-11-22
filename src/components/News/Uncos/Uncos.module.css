@@ -1,4 +1,7 @@
 /* UNCOS */
 .uncos {
-    margin-bottom: 30px;
+  background-image: url(../../../img/background_news2.png);
+  background-repeat: no-repeat;
+  background-position-y: 100%;
+  background-size: 50%;
 }

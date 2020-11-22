@@ -1,5 +1,7 @@
 /* PLACEHOLDER */
 .preloader {
   margin-top: 100px;
-  margin-left: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
