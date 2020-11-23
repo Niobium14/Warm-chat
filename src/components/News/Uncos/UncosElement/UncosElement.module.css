@@ -1,5 +1,6 @@
 /* ITEM */
 .element {
+  z-index: 1;
   width: 1100px;
   display: flex;
   margin-left: auto;

@@ -14,6 +14,7 @@ import {
 } from "../../redux/myReducers/friends-reducer";
 import React, { Component } from "react";
 import Friends from "./Friends";
+import Preloader from "../common/Preloader/Preloader";
 import {
   checkIsFetching,
   checkToggleIsFetching,
@@ -38,7 +39,27 @@ class FriendsContainer extends Component {
 
   render() {
     return (
-        <Friends {...this.props} setPage={this.setPage} /> 
+      <>
+        {this.props.isFetching ? (
+          <Preloader />
+        ) : (
+          <Friends
+            setPage={this.setPage}
+            users={this.props.users}
+            follow={this.props.follow}
+            pageSize={this.props.pageSize}
+            unfollow={this.props.unfollow}
+            currentPage={this.props.currentPage}
+            totalUsersCount={this.props.totalUsersCount}
+            followingInProgress={this.props.followingInProgress}
+            isFetching={this.props.isFetching}
+            toggleIsFetching={this.props.toggleIsFetching}
+            followUserThunkCreator={this.props.followUserThunkCreator}
+            unfollowUserThunkCreator={this.props.unfollowUserThunkCreator}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
+          />
+        )}
+      </>
     );
   }
 }

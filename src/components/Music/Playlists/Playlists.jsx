@@ -13,7 +13,7 @@ const Playlists = (props) => {
       img={element.img}
     />
   ));
-  return <div className={css.music}>{playlistElement} <div className={css.bk}></div></div>;
+  return <div className={css.uncos}>{playlistElement}</div>;
 };
 
 export default Playlists;

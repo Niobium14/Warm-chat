@@ -1,8 +1,7 @@
-/* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { maxLength, required } from "../../../utils/validators";
-import { SingInField } from "../../common/FormValidation/Field";
+import { CreateField, SingInField } from "../../common/FormValidation/Field";
 import css from "./LoginForm.module.css";
 
 // MAX LENGTH
@@ -13,32 +12,34 @@ const LoginForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        <Field
-          component={SingInField}
-          name={"email"}
-          type="text"
-          placeholder="Email"
-          validate={[required, maxLength30]}
-        />
+        {CreateField(SingInField, "email", "text", "Email", [
+          required,
+          maxLength30,
+        ])}
       </div>
       <div>
+        {CreateField(SingInField, "password", "text", "password", [
+          required,
+          maxLength30,
+        ])}
         <Field
           component={SingInField}
           name={"password"}
           type="text"
           placeholder="password"
-          type="password"
           validate={[required, maxLength15]}
         />
       </div>
       {props.error && <div className={css.error}>{props.error}</div>}
       <div className={css.recall}>
-        <Field
-          id="rememberMe"
-          component="input"
-          type="checkbox"
-          name="rememberMe"
-        />
+        {CreateField(
+          "rememberMe",
+          "input",
+          "rememberMe",
+          "checkbox",
+          null,
+          null
+        )}
         <label for="rememberMe" className={css.remember}>
           remember me
         </label>

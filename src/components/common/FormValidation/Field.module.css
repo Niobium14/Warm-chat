@@ -45,7 +45,7 @@
   width: 1200px;
   height: 90px;
   background: rgba(255, 255, 255, 0.8);
-  border: 4px solid #85ddf2;
+  border: 4px solid #ffac5f;
   border-radius: 50px;
   position: relative;
   margin-top: 50px;
@@ -120,13 +120,13 @@
   cursor: pointer;
   color: #747474;
   background: rgba(255, 255, 255, 0.8);
-  border: 4px solid #85ddf2;
+  border: 4px solid #ffac5f;
 }
 
 .sendError:hover {
   color: #4b4b4b !important;
   border-radius: 50px;
-  border-color: #73bdcf !important;
+  border-color: #cf8d4f !important;
   transition: all 0.5s ease 0s;
 }
 
@@ -201,7 +201,7 @@
 /*TEXTAREA BLOCK*/
 .profileError {
   margin-left: 40px;
-  color: #85ddf2;
+  color: #e09957;
   font-size: 20px;
   font-weight: 500;
   margin-bottom: -45px;

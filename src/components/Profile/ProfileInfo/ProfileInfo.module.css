@@ -36,7 +36,6 @@
 
 /* PROFILE BG */
 .profile {
-  margin-bottom: 50px;
   z-index: 1;
 }
 
@@ -66,6 +65,7 @@
   font-weight: 500;
   font-size: 30px;
   margin-left: 20px;
+
 }
 .jobComment {
   color: #636363;

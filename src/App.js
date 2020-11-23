@@ -3,17 +3,16 @@ import FriendsContainer from "./components/Friends/FriendsContainer";
 import { Route, withRouter } from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
+import News from "./components/News/News";
+import Music from "./components/Music/Music";
+import Login from "./components/Login/Login";
 import React, { Component } from "react";
 import { initializeApp } from "./redux/myReducers/app-reducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import Preloader from "./components/common/Preloader/Preloader";
 import MessagesContainer from "./components/Messages/MessagesContainer";
-import { withSuspense } from "./hoc/withSuspense";
 
-const Login = React.lazy(() => import("./components/Login/Login"));
-const Music = React.lazy(() => import("./components/Music/Music"));
-const News = React.lazy(() => import("./components/News/News"));
 // APP
 class App extends Component {
   componentDidMount() {
@@ -30,9 +29,9 @@ class App extends Component {
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
           <Route path="/friends" render={() => <FriendsContainer />} />
           <Route path="/messages" render={() => <MessagesContainer />} />
-          <Route path="/news" render={withSuspense(News)} />
-          <Route path="/music" render={withSuspense(Music)} />
-          <Route path="/singIn" render={withSuspense(Login)} />
+          <Route path="/news" render={() => <News />} />
+          <Route path="/music" render={() => <Music />} />
+          <Route path="/singIn" render={() => <Login />} />
         </div>
       </div>
     );

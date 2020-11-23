@@ -1,0 +1,14 @@
+/* FIRST BG */
+.bg_3 {
+  width: 700px;
+  height: 700px;
+  margin-left: 700px;
+  margin-top: -100px;
+  margin-bottom: -600px;
+}
+.module {
+  z-index: 0;
+  position: absolute;
+
+
+}

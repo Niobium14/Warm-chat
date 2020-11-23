@@ -1,10 +1,15 @@
 import React from "react";
 import css from "./Preloader.module.css";
 import preloader from "../../../img/preloader.svg";
+import PreloaderBG from "./PreloaderBG/PreloaderBG";
 
 const Preloader = () => {
-  // eslint-disable-next-line jsx-a11y/alt-text
-  return <img src={preloader} className={css.preloader} /> ;
+  return (
+    <div className="">
+      <img src={preloader} className={css.preloader} />
+      <PreloaderBG />
+    </div>
+  );
 };
 
 export default Preloader;
