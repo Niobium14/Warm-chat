@@ -1,4 +1,8 @@
 /* UNCOS */
-.uncos {
-    margin-bottom: 30px;
+.playlist {
+  margin-bottom: 30px;
+  background-image: url(../../../img/music_bg1.png);
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-size: 50%;
 }

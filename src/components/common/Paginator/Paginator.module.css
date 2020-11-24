@@ -1,0 +1,40 @@
+/* PAGINATOR */
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+/* NUMBERS */
+.numbers {
+  z-index: 1;
+  font-size: 30px;
+  color: #838383;
+  text-align: center;
+  position: relative;
+}
+/* NUMBERS */
+.item {
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* ACTIVE PAGE */
+.activePage {
+  font-weight: bold;
+  color: #8e63d3;
+}
+/* BUTTONS */
+.leftButton {
+  margin-top: 7px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+.rightButton {
+  margin-top: 7px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}

@@ -39,27 +39,21 @@ class FriendsContainer extends Component {
 
   render() {
     return (
-      <>
-        {this.props.isFetching ? (
-          <Preloader />
-        ) : (
-          <Friends
-            setPage={this.setPage}
-            users={this.props.users}
-            follow={this.props.follow}
-            pageSize={this.props.pageSize}
-            unfollow={this.props.unfollow}
-            currentPage={this.props.currentPage}
-            totalUsersCount={this.props.totalUsersCount}
-            followingInProgress={this.props.followingInProgress}
-            isFetching={this.props.isFetching}
-            toggleIsFetching={this.props.toggleIsFetching}
-            followUserThunkCreator={this.props.followUserThunkCreator}
-            unfollowUserThunkCreator={this.props.unfollowUserThunkCreator}
-            toggleFollowingProgress={this.props.toggleFollowingProgress}
-          />
-        )}
-      </>
+      <Friends
+        setPage={this.setPage}
+        users={this.props.users}
+        follow={this.props.follow}
+        pageSize={this.props.pageSize}
+        unfollow={this.props.unfollow}
+        currentPage={this.props.currentPage}
+        totalUsersCount={this.props.totalUsersCount}
+        followingInProgress={this.props.followingInProgress}
+        isFetching={this.props.isFetching}
+        toggleIsFetching={this.props.toggleIsFetching}
+        followUserThunkCreator={this.props.followUserThunkCreator}
+        unfollowUserThunkCreator={this.props.unfollowUserThunkCreator}
+        toggleFollowingProgress={this.props.toggleFollowingProgress}
+      />
     );
   }
 }

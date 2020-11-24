@@ -10,8 +10,8 @@ import React, { Component } from "react";
 import { initializeApp } from "./redux/myReducers/app-reducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import Preloader from "./components/common/Preloader/Preloader";
 import MessagesContainer from "./components/Messages/MessagesContainer";
+import Preloader from "./components/common/Preloader/Preloader";
 
 // APP
 class App extends Component {

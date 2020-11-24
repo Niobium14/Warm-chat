@@ -1,3 +1,11 @@
+/* MAIN */
+.friendsPage {
+  background-image: url(../../img/users_bg.png);
+  background-repeat: no-repeat;
+  background-position-y: 50%;
+  background-size: 50%;
+}
+
 /* USERS */
 .users {
   margin-top: -40px;
@@ -5,25 +13,6 @@
   z-index: 1;
 }
 
-/* ACTIVE PAGE */
-.activePage {
-  font-weight: bold;
-  color: #8e63d3;
-}
-/* NUMBERS */
-.numbers {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  font-size: 30px;
-  color: #838383;
-}
-/* NUMBERS */
-.item {
-  cursor: pointer;
-  margin-left: 10px;
-  margin-right: 10px;
-}
 /* LIST NAME */
 .listName {
   color: #a4a4a4;

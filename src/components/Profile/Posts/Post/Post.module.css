@@ -1,1 +1,9 @@
-/* POSTS */
+/* MAIN SETTING */
+.posts {
+    margin-bottom: 5%;
+    background-image: url(../../../../img/profile_bg1.png);
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-size: 50%;
+  }
+  

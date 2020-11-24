@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import css from "./ProfileInfo.module.css";
 import profile_bg from "../../../img/profile_bg.jpg";
@@ -24,7 +25,10 @@ const ProfileInfo = (props) => {
         <div className={css.aboutUser}>
           <div className={css.about}>
             <div className={css.name}>{props.profile.fullName}</div>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+            <ProfileStatus
+              status={props.status}
+              updateStatus={props.updateStatus}
+            />
           </div>
           <div className={css.jobInfo}>
             <div className={css.line} />

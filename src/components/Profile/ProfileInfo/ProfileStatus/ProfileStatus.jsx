@@ -1,7 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./ProfileStatus.module.css";
-
-const textInput = React.createRef();
 
 function ProfileStatus(props) {
   // HOOKS

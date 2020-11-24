@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import BG from "./FriendsBG/FriendsBG";
 import css from "./Friends.module.css";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { AllUsers } from "./Content/AllUsers";
-import AllPages from "./Content/AllPages";
+import Preloader from "../common/Preloader/Preloader";
+import Paginator from "../common/Paginator/Paginator";
 
 function Friends({
   totalUsersCount,
@@ -17,17 +17,26 @@ function Friends({
   followUserThunkCreator,
   currentPage,
   setPage,
+  isFetching,
 }) {
   return (
-    <div className={css.friendsPage}>
-      {AllUsers(
-        users,
-        followingInProgress,
-        unfollowUserThunkCreator,
-        followUserThunkCreator
+    <div className={!isFetching && css.friendsPage}>
+      {isFetching ? (
+        <Preloader />
+      ) : (
+        AllUsers(
+          users,
+          followingInProgress,
+          unfollowUserThunkCreator,
+          followUserThunkCreator
+        )
       )}
-      {AllPages(totalUsersCount, pageSize, currentPage, setPage)}
-      <BG />
+      <Paginator
+        totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        setPage={setPage}
+      />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import css from "./Messages.module.css";
 import DialogItem from "./DialogItem/DialogItem";
-import MessagesBG from "./MessagesBG/MessagesBG";
 import Chat from "./Chat/Chat";
 
 const Messages = (props) => {
@@ -10,7 +9,6 @@ const Messages = (props) => {
   ));
   return (
     <div className={css.messages}>
-      <MessagesBG />
       <div className={css.dialogs}>
         <div className={css.dialogsItems}>{dialogsElement}</div>
         <div className={css.line} />
