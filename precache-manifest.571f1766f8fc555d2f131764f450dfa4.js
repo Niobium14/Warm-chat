@@ -1,59 +1,47 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e311acf38f995a35f0cd68f964b635a5",
+    "revision": "1e8cc30410c558f1f4648a4424a66bc7",
     "url": "/Warm-chat/index.html"
   },
   {
-    "revision": "4f7ad1ff07703c50413a",
-    "url": "/Warm-chat/static/css/main.c9542500.chunk.css"
+    "revision": "24fa88df6a49f24d879c",
+    "url": "/Warm-chat/static/css/main.56fd8d70.chunk.css"
   },
   {
-    "revision": "934a8d5bd10c67063302",
-    "url": "/Warm-chat/static/js/2.da918f45.chunk.js"
+    "revision": "fb160198e75f06af2b0d",
+    "url": "/Warm-chat/static/js/2.5671b858.chunk.js"
   },
   {
-    "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/Warm-chat/static/js/2.da918f45.chunk.js.LICENSE.txt"
+    "revision": "3453b8997016469371284a28c0e873e2",
+    "url": "/Warm-chat/static/js/2.5671b858.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4f7ad1ff07703c50413a",
-    "url": "/Warm-chat/static/js/main.3abeb552.chunk.js"
+    "revision": "24fa88df6a49f24d879c",
+    "url": "/Warm-chat/static/js/main.a76412e1.chunk.js"
   },
   {
     "revision": "a9303439fd8c72099232",
     "url": "/Warm-chat/static/js/runtime-main.e2ba1559.js"
   },
   {
-    "revision": "71d16f9ec3bdeb61ca8a40d13620fd5f",
-    "url": "/Warm-chat/static/media/bg_1.71d16f9e.png"
-  },
-  {
-    "revision": "c6fcde8c7c3a3d9ecbce4cec40815a22",
-    "url": "/Warm-chat/static/media/bg_2.c6fcde8c.png"
-  },
-  {
-    "revision": "bdd633a18dd34f73339d609b5b47febb",
-    "url": "/Warm-chat/static/media/bg_3.bdd633a1.png"
-  },
-  {
-    "revision": "6c21f06617dfb7007ecb1c0942f6a9d6",
-    "url": "/Warm-chat/static/media/bg_music.6c21f066.png"
-  },
-  {
-    "revision": "2ec57330cdc51a8768ca51cd31a60233",
-    "url": "/Warm-chat/static/media/friends_bg1.2ec57330.png"
-  },
-  {
     "revision": "46438351dde0b3073035a8d8f11eabc0",
     "url": "/Warm-chat/static/media/header_logo.46438351.png"
   },
   {
-    "revision": "f50391822909aeeeb9640efbb4144811",
-    "url": "/Warm-chat/static/media/news_bg1.f5039182.png"
+    "revision": "8f4062fe80fddbe9c00136ee719668cb",
+    "url": "/Warm-chat/static/media/messages_bg.8f4062fe.png"
   },
   {
-    "revision": "b0f7f9fa136b92f47de0b8e30e4a3c0e",
-    "url": "/Warm-chat/static/media/news_bg3.b0f7f9fa.png"
+    "revision": "96831ac6b0543a97884efea86c2a36e9",
+    "url": "/Warm-chat/static/media/music_bg1.96831ac6.png"
+  },
+  {
+    "revision": "c90c6caddc63f369e31f28967ab250cb",
+    "url": "/Warm-chat/static/media/news_bg1.c90c6cad.png"
+  },
+  {
+    "revision": "79e7a8c0eb535ff78df80890dd3ab219",
+    "url": "/Warm-chat/static/media/news_bg2.79e7a8c0.png"
   },
   {
     "revision": "d8b41c227c484462cdf3fa6c47815833",
@@ -108,11 +96,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Warm-chat/static/media/profile_bg.23cec310.jpg"
   },
   {
+    "revision": "91b2d5fba90663a81841d484054efb95",
+    "url": "/Warm-chat/static/media/profile_bg1.91b2d5fb.png"
+  },
+  {
     "revision": "92e21265a4f6522bf7111505846c0f82",
     "url": "/Warm-chat/static/media/profile_pic.92e21265.jpg"
   },
   {
     "revision": "a95274a6d60c3d3780790bd86da55ec1",
     "url": "/Warm-chat/static/media/spotify.a95274a6.png"
+  },
+  {
+    "revision": "7f5505b8e8b1646f754424e066d2a7f2",
+    "url": "/Warm-chat/static/media/users_bg.7f5505b8.png"
   }
 ]);
