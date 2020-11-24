@@ -10,6 +10,7 @@ const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_PROFILE_STATUS = "SET-PROFILE-STATUS";
 const UPDATE_PROFILE_STATUS = "UPDATE-PROFILE-STATUS";
+const SAVE_PHOTO_SUCCESS = "SAVE-PHOTO-SUCCESS";
 
 // INITIAL STATE
 let initialState = {
@@ -78,6 +79,13 @@ const profileReducer = (state = initialState, action) => {
         profile: action.profile,
       };
     }
+    case SAVE_PHOTO_SUCCESS: {
+      // SAVE PHOTO
+      return {
+        ...state,
+        profile: { ...state.profile, photos: action.photos },
+      };
+    }
     default:
       return state;
   }
@@ -99,9 +107,14 @@ export const setStatusProfile = (status) => ({
   status,
 });
 // UPDATE STATUS PROFILE ACTION CREATOR
-export const updateStatusProfile = (status) => ({
+export const updateStatusProfile = (photos) => ({
   type: UPDATE_PROFILE_STATUS,
-  status,
+  photos,
+});
+// UPDATE STATUS PROFILE ACTION CREATOR
+export const savePhotoSuccess = (photos) => ({
+  type: SAVE_PHOTO_SUCCESS,
+  photos,
 });
 
 export const getProfileThunkCreator = (userId) => async (dispatch) => {
@@ -118,6 +131,13 @@ export const updateStatusThunkCreator = (status) => async (dispatch) => {
   let response = await profileAPI.updateStatus(status);
   if (response.data.resultCode === 0) {
     dispatch(updateStatusProfile(status));
+  }
+};
+
+export const savePhotoThunkCreator = (file) => async (dispatch) => {
+  let response = await profileAPI.savePhoto(file);
+  if (response.data.resultCode === 0) {
+    dispatch(savePhotoSuccess(response.data.data.photos));
   }
 };
 

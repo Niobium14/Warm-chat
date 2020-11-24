@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Profile from "./Profile";
@@ -5,6 +6,7 @@ import {
   getProfileThunkCreator,
   getStatusThunkCreator,
   updateStatusThunkCreator,
+  savePhotoThunkCreator,
 } from "../../redux/myReducers/profile-reducer";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
@@ -16,7 +18,7 @@ import {
 import { checkAuth, getUserId } from "../../redux/selectors/auth-selector";
 
 class ProfileContainer extends Component {
-  componentDidMount() {
+  refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
@@ -27,10 +29,20 @@ class ProfileContainer extends Component {
     this.props.getProfileThunkCreator(userId);
     this.props.getStatusThunkCreator(userId);
   }
+  componentDidMount() {
+    this.refreshProfile();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.match.params.userId != prevProps.match.params.userId) {
+      this.refreshProfile();
+    }
+  }
   render() {
     return (
       <Profile
         {...this.props}
+        savePhoto={this.props.savePhotoThunkCreator}
+        isOwner={!this.props.match.params.userId}
         profile={this.props.profile}
         status={this.props.status}
         updateStatus={this.props.updateStatusThunkCreator}
@@ -52,6 +64,7 @@ export default compose(
     getProfileThunkCreator,
     getStatusThunkCreator,
     updateStatusThunkCreator,
+    savePhotoThunkCreator,
   }),
   withRouter,
   withAuthRedirect
