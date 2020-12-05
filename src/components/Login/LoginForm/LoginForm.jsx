@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { reduxForm } from "redux-form";
 import { maxLength, required } from "../../../utils/validators";
@@ -37,6 +38,21 @@ const LoginForm = (props) => {
           remember me
         </label>
       </div>
+      {props.captchaUrl && (
+        <div className={css.captchaForm}>
+          <label for="captcha" >
+            <img src={props.captchaUrl} className={css.captchaImg}/>
+          </label>
+          {CreateField(
+            "captcha",
+            SingInField,
+            "captcha",
+            "text",
+            "Text from image",
+            [required]
+          )}
+        </div>
+      )}
       <button className={css.login}>Login</button>
     </form>
   );

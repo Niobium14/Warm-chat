@@ -10,7 +10,8 @@ const Login = (props) => {
     props.loginThunkCreator(
       formData.email,
       formData.password,
-      formData.rememberMe
+      formData.rememberMe,
+      formData.captcha,
     );
   };
   if (props.isAuth) {
@@ -19,13 +20,18 @@ const Login = (props) => {
   return (
     <div>
       <h1 className={css.singInName}>Sing In</h1>
-      <ReduxLoginForm onSubmit={onSubmit} {...props} />
+      <ReduxLoginForm
+        captchaUrl={props.captchaUrl}
+        onSubmit={onSubmit}
+        {...props}
+      />
     </div>
   );
 };
 
 let mapStateToProps = (state) => {
   return {
+    captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth,
   };
 };

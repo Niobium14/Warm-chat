@@ -22,7 +22,7 @@ const ProfileStatus = (props) => {
   };
   return (
     <div>
-      {props.isOwner && editorMode ? (
+      {editorMode ? (
         <input
           onChange={onStatusChange}
           autoFocus={true}
@@ -31,7 +31,7 @@ const ProfileStatus = (props) => {
           className={css.statusChange}
         />
       ) : (
-        <div onDoubleClick={activateEditorMode} className={css.statusRead}>
+        <div onDoubleClick={props.isOwner && activateEditorMode} className={css.statusRead}>
           {status || "No status"}
         </div>
       )}

@@ -40,7 +40,7 @@ export const profileAPI = {
     return instance.put(`profile`, { lookingForAJobDescription: comment });
   },
   saveProfile(profile) {
-    return instance.put(`profile`,  profile );
+    return instance.put(`profile`, profile);
   },
   savePhoto(photoFile) {
     const formData = new FormData();
@@ -61,11 +61,19 @@ export const authAPI = {
     return instance.get(`auth/me`);
   },
   //   SING IN
-  login(email, password, rememberMe = false) {
-    return instance.post(`auth/login`, { email, password, rememberMe });
+  login(email, password, rememberMe = false, captcha = null) {
+    return instance.post(`auth/login`, { email, password, rememberMe, captcha });
   },
   //   SING IN
   logout() {
     return instance.delete(`auth/login`);
+  },
+};
+
+// AUTH API
+export const captchaAPI = {
+  //   IS AUTH
+  getCaptcha() {
+    return instance.get(`security/get-captcha-url`);
   },
 };

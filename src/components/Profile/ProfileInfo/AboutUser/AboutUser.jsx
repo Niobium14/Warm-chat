@@ -85,6 +85,7 @@ export function AboutUser(props) {
             profile={props.profile}
             goToEditMode={goToEditMode}
             informationView={informationView}
+            isOwner={props.isOwner}
           />
         )}
       </div>

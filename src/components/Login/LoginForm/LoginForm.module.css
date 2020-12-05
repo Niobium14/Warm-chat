@@ -6,6 +6,12 @@
   color: rgb(177, 177, 177);
 }
 
+/* CAPTCHA */
+.captchaImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .remember {
   cursor: pointer;
 }
