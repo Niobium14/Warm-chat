@@ -1,0 +1,121 @@
+/* CONTACTS */
+.label {
+  color: #525252;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lookingForAJob {
+  font-size: 22px;
+  color: #ababab;
+  font-weight: 500;
+  margin-right: 20px;
+}
+.jobContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ERROR */
+.error {
+  text-align: center;
+  font-size: 22px;
+  color: #73d7fd;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+/* SPAN */
+.preInfo {
+  font-size: 22px;
+  color: #ababab;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+/* CONTACTS */
+.contactsLabel {
+  color: #ababab;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+.showContacts {
+  display: grid;
+  text-align: center;
+  align-items: center;
+  color: #525252;
+  font-size: 25px;
+  list-style: none;
+  grid-template-columns: repeat(2, 1fr);
+  user-select: none;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.hideContacts {
+  display: none;
+}
+
+/* JOB */
+.showJob {
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  color: #898989;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.hideJob {
+  display: none;
+}
+/* EDIT BUTTON */
+.edit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ARROW */
+.showContactsArrow {
+  width: 2%;
+  margin-right: 1%;
+  transform: rotate(180deg);
+  transition: 0.1s;
+}
+.hideContactsArrow {
+  width: 2%;
+  margin-right: 1%;
+  transform: rotate(90deg);
+  transition: 0.1s;
+}
+
+/* BUTTON SAVE */
+.save {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 50px;
+  border-radius: 50px;
+  outline: none;
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  color: #747474;
+  background: rgba(255, 255, 255, 0.8);
+  border: 4px solid #e3e3e3;
+}
+
+.save:hover {
+  color: #4b4b4b !important;
+  border-radius: 50px;
+  border-color: #4b4b4b !important;
+  transition: all 0.5s ease 0s;
+}

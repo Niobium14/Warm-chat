@@ -4,12 +4,14 @@ import person1 from "../../img/person1.jpg";
 import person2 from "../../img/person2.jpg";
 import person3 from "../../img/person3.jpg";
 import { profileAPI } from "../../api/api";
+import { stopSubmit } from "redux-form";
 
 // TYPE FOR MESSAGES
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_PROFILE_STATUS = "SET-PROFILE-STATUS";
 const UPDATE_PROFILE_STATUS = "UPDATE-PROFILE-STATUS";
+const UPDATE_PROFILE_COMMENT = "UPDATE-PROFILE-COMMENT";
 const SAVE_PHOTO_SUCCESS = "SAVE-PHOTO-SUCCESS";
 
 // INITIAL STATE
@@ -39,6 +41,7 @@ let initialState = {
   ],
   newPostText: "",
   profile: null,
+  comment: null,
   status: "",
 };
 
@@ -70,6 +73,13 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         status: action.status,
+      };
+    }
+    case UPDATE_PROFILE_COMMENT: {
+      // TEXT FROM TEXTAREA (POSTS)
+      return {
+        ...state,
+        comment: action.comment,
       };
     }
     case SET_USER_PROFILE: {
@@ -107,9 +117,14 @@ export const setStatusProfile = (status) => ({
   status,
 });
 // UPDATE STATUS PROFILE ACTION CREATOR
-export const updateStatusProfile = (photos) => ({
+export const updateStatusProfile = (status) => ({
   type: UPDATE_PROFILE_STATUS,
-  photos,
+  status,
+});
+// UPDATE STATUS PROFILE ACTION CREATOR
+export const updateCommentProfile = (comment) => ({
+  type: UPDATE_PROFILE_COMMENT,
+  comment,
 });
 // UPDATE STATUS PROFILE ACTION CREATOR
 export const savePhotoSuccess = (photos) => ({
@@ -134,10 +149,32 @@ export const updateStatusThunkCreator = (status) => async (dispatch) => {
   }
 };
 
+export const updateCommentThunkCreator = (comment) => async (dispatch) => {
+  let response = await profileAPI.updateComment(comment);
+  if (response.data.resultCode === 0) {
+    dispatch(updateCommentProfile(comment));
+  }
+};
+
 export const savePhotoThunkCreator = (file) => async (dispatch) => {
   let response = await profileAPI.savePhoto(file);
   if (response.data.resultCode === 0) {
     dispatch(savePhotoSuccess(response.data.data.photos));
+  }
+};
+
+export const saveProfileThunkCreator = (profile) => async (
+  dispatch,
+  getState
+) => {
+  let userId = await getState().auth.userId;
+  let response = await profileAPI.saveProfile(profile);
+
+  if (response.data.resultCode === 0) {
+    dispatch(getProfileThunkCreator(userId));
+  } else {
+    dispatch(stopSubmit("contacts", { _error: response.data.messages[0] }));
+    return Promise.reject(response.data.messages[0]);
   }
 };
 

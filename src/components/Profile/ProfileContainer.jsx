@@ -6,12 +6,15 @@ import {
   getProfileThunkCreator,
   getStatusThunkCreator,
   updateStatusThunkCreator,
+  updateCommentThunkCreator,
+  saveProfileThunkCreator,
   savePhotoThunkCreator,
 } from "../../redux/myReducers/profile-reducer";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {
+  getUserJobComment,
   getUserProfile,
   getUserStatus,
 } from "../../redux/selectors/profile-selector";
@@ -44,14 +47,18 @@ class ProfileContainer extends Component {
         savePhoto={this.props.savePhotoThunkCreator}
         isOwner={!this.props.match.params.userId}
         profile={this.props.profile}
+        jobComment={this.props.jobComment}
         status={this.props.status}
         updateStatus={this.props.updateStatusThunkCreator}
+        updateComment={this.props.updateCommentThunkCreator}
+        saveProfile={this.props.saveProfileThunkCreator}
       />
     );
   }
 }
 
 let mapStateToProps = (state) => ({
+  jobComment: getUserJobComment(state),
   profile: getUserProfile(state),
   status: getUserStatus(state),
   isAuth: checkAuth(state),
@@ -64,7 +71,9 @@ export default compose(
     getProfileThunkCreator,
     getStatusThunkCreator,
     updateStatusThunkCreator,
+    updateCommentThunkCreator,
     savePhotoThunkCreator,
+    saveProfileThunkCreator,
   }),
   withRouter,
   withAuthRedirect

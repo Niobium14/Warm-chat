@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import css from "./ProfileStatus.module.css";
 
-function ProfileStatus(props) {
+const ProfileStatus = (props) => {
   // HOOKS
   const [editorMode, setEditorMode] = useState(false);
   const [status, setStatus] = useState(props.status);
@@ -9,7 +9,7 @@ function ProfileStatus(props) {
   useEffect(() => {
     setStatus(props.status);
   }, [props.status]);
-  
+
   const activateEditorMode = () => {
     setEditorMode(true);
   };
@@ -22,7 +22,7 @@ function ProfileStatus(props) {
   };
   return (
     <div>
-      {editorMode ? (
+      {props.isOwner && editorMode ? (
         <input
           onChange={onStatusChange}
           autoFocus={true}
@@ -32,11 +32,11 @@ function ProfileStatus(props) {
         />
       ) : (
         <div onDoubleClick={activateEditorMode} className={css.statusRead}>
-          {props.status || "No status"}
+          {status || "No status"}
         </div>
       )}
     </div>
   );
-}
+};
 
 export default ProfileStatus;

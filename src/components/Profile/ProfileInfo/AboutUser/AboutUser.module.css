@@ -1,0 +1,191 @@
+/* BACKGROUND */
+.background {
+  width: 1200px;
+  height: 350px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 30px;
+  margin-top: 10px;
+}
+/* PROFILE PICTURE (CHOSE PICTURE) */
+.profile_picture {
+  margin-top: -150px;
+}
+
+/* USUAL USER PICTURE */
+.userPic {
+  width: 15%;
+  border: 12px solid #ffffff;
+  border-radius: 150px;
+}
+
+/* OWNER PICTURE */
+.ownerPic {
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+  width: 15%;
+  border: 12px solid #ffffff;
+  border-radius: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* NAME */
+.name {
+  color: #525252;
+  margin-top: -20px;
+  text-align: center;
+}
+
+/* HOVER */
+.text:hover {
+  opacity: 1;
+}
+
+/* PHOTO CHOOSER */
+.photoPoop {
+  cursor: pointer;
+}
+.choosePhoto {
+  display: none;
+}
+/* TEXT */
+.text {
+  cursor: pointer;
+  transition: 0.5s ease;
+  opacity: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -110px;
+  width: 200px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: rgb(0, 0, 0);
+}
+
+/* CONTACTS */
+.contactsLabel {
+  color: #ababab;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.informationLabel {
+  color: #595959;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.showContacts {
+  display: grid;
+  text-align: center;
+  color: #696969;
+  font-size: 25px;
+  list-style: none;
+  grid-template-columns: repeat(2, 1fr);
+  user-select: none;
+}
+.showJob {
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  color: #898989;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.hideJob {
+  display: none;
+}
+.hideContacts {
+  display: none;
+}
+.showInfo {
+  text-align: center;
+}
+.hideInfo {
+  display: none;
+}
+
+/* EDIT BUTTON */
+.edit {
+  text-align: center;
+}
+/* ARROW */
+.showInfoArrow {
+  width: 2%;
+  margin-right: 1%;
+  transform: rotate(180deg);
+  transition: 0.1s;
+}
+.hideInfoArrow {
+  width: 2%;
+  margin-right: 1%;
+  transform: rotate(90deg);
+  transition: 0.1s;
+}
+
+.showContactsArrow {
+  width: 2%;
+  margin-right: 1%;
+  transform: rotate(180deg);
+  transition: 0.1s;
+}
+.hideContactsArrow {
+  width: 2%;
+  margin-right: 1%;
+  transform: rotate(90deg);
+  transition: 0.1s;
+}
+
+/* JOB INFORMATION */
+.item {
+  margin-top: 10px;
+}
+.section {
+  color: #525252;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+/* SPAN */
+.preInfo {
+  font-size: 22px;
+  color: #ababab;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+/* BUTTON EDIT */
+.edit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 50px;
+  border-radius: 50px;
+  outline: none;
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  color: #747474;
+  background: rgba(255, 255, 255, 0.8);
+  border: 4px solid #e3e3e3;
+}
+
+.edit:hover {
+  color: #4b4b4b !important;
+  border-radius: 50px;
+  border-color: #4b4b4b !important;
+  transition: all 0.5s ease 0s;
+}

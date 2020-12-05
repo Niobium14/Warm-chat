@@ -6,4 +6,7 @@ export const getUserProfile = (state) => {
 export const getUserStatus = (state) => {
   return state.profilePage.status;
 };
-
+// GET USER COMMENT SELECTOR
+export const getUserJobComment = (state) => {
+  return state.profilePage.lookingForAJobDescription;
+};

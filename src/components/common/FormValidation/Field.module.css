@@ -40,6 +40,21 @@
   margin-right: auto;
 }
 
+/* AREA */
+.InformationArea {
+  display: flex;
+  width: 300px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 4px solid #e3e3e3;
+  border-radius: 50px;
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*ERROR AREA*/
 .profileAreaError {
   width: 1200px;
@@ -157,7 +172,6 @@
 /*TEXTAREA BLOCK*/
 .profileTextarea {
   resize: none;
-
   background: rgba(255, 255, 255, 0);
   border: 0px solid #e3e3e3;
   width: 1000px;
@@ -172,7 +186,6 @@
 /*TEXTAREA BLOCK*/
 .messagesTextarea {
   resize: none;
-
   background: rgba(255, 255, 255, 0);
   border: 0px solid #e3e3e3;
   width: 700px;
@@ -188,6 +201,19 @@
 .singInTextarea {
   resize: none;
 
+  background: rgba(255, 255, 255, 0);
+  border: 0px solid #e3e3e3;
+  width: 250px;
+  height: 40px;
+  outline: none;
+  font-size: 20px;
+  color: #575757;
+  margin-left: 20px;
+}
+
+/*TEXTAREA BLOCK*/
+.InformationTextarea {
+  resize: none;
   background: rgba(255, 255, 255, 0);
   border: 0px solid #e3e3e3;
   width: 250px;

@@ -2,7 +2,6 @@
 .statusChange {
   font-weight: 500;
   font-size: 25px;
-  margin-left: 250px;
   border: 4px solid #e3e3e3;
   border-radius: 50px;
   color: #727272;
@@ -16,5 +15,4 @@
   color: #727272;
   font-weight: 500;
   font-size: 25px;
-  margin-left: 250px;
 }

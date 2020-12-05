@@ -7,12 +7,15 @@ function Profile(props) {
   return (
     <div className={css.wrapper}>
       <ProfileInfo
+        saveProfile={props.saveProfile}
         savePhoto={props.savePhoto}
         isOwner={props.isOwner}
         className={css.profile}
         profile={props.profile}
         status={props.status}
-        updateStatus={props.updateStatusThunkCreator}
+        updateStatus={props.updateStatus}
+        jobComment={props.jobComment}
+        updateComment={props.updateComment}
       />
       <PostsContainer />
     </div>

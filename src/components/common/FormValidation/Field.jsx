@@ -59,6 +59,18 @@ export const SingInField = ({ input, meta, ...props }) => {
     </>
   );
 };
+export const InformationField = ({ input, meta, ...props }) => {
+  return (
+    <div className={css.InformationArea}>
+      <input
+        className={css.InformationTextarea}
+        {...input}
+        {...meta}
+        {...props}
+      />
+    </div>
+  );
+};
 
 export const CreateField = (
   id = null,
