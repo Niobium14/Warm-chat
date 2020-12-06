@@ -7,6 +7,7 @@ function Profile(props) {
   return (
     <div className={css.wrapper}>
       <ProfileInfo
+        error={props.error}
         saveProfile={props.saveProfile}
         savePhoto={props.savePhoto}
         isOwner={props.isOwner}

@@ -44,9 +44,11 @@ export function AboutUser(props) {
 
   return (
     <div className={css.aboutUser}>
+      {/*  */}
       <div className={css.name}>
         <h1>{props.profile.fullName}</h1>
         <ProfileStatus
+          error={props.error}
           isOwner={props.isOwner}
           status={props.status}
           updateStatus={props.updateStatus}

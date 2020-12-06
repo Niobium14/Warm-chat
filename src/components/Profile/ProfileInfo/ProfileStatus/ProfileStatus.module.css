@@ -10,6 +10,18 @@
   outline: none;
 }
 
+/* INPUT ERROR*/
+.statusChangeError {
+  font-weight: 500;
+  font-size: 25px;
+  border: 4px solid #3db8ff;
+  border-radius: 50px;
+  color: #727272;
+}
+.statusChangeError:focus {
+  outline: none;
+}
+
 /* TEXT */
 .statusRead {
   color: #727272;

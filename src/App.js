@@ -1,6 +1,6 @@
 import "./App.css";
 import FriendsContainer from "./components/Friends/FriendsContainer";
-import { Route, withRouter } from "react-router-dom";
+import { Redirect, Route, withRouter } from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import News from "./components/News/News";
@@ -26,6 +26,7 @@ class App extends Component {
       <div className="app-wrapper">
         <NavbarContainer />
         <div class="app-wrapper-content">
+          <Route path="/" render={() => <Redirect to={"/profile"} />} />
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
           <Route path="/friends" render={() => <FriendsContainer />} />
           <Route path="/messages" render={() => <MessagesContainer />} />

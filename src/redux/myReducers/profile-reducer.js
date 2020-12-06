@@ -13,6 +13,7 @@ const SET_PROFILE_STATUS = "SET-PROFILE-STATUS";
 const UPDATE_PROFILE_STATUS = "UPDATE-PROFILE-STATUS";
 const UPDATE_PROFILE_COMMENT = "UPDATE-PROFILE-COMMENT";
 const SAVE_PHOTO_SUCCESS = "SAVE-PHOTO-SUCCESS";
+const SHOW_ERROR = "SHOW-ERROR";
 
 // INITIAL STATE
 let initialState = {
@@ -43,6 +44,7 @@ let initialState = {
   profile: null,
   comment: null,
   status: "",
+  error: null,
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
@@ -96,6 +98,13 @@ const profileReducer = (state = initialState, action) => {
         profile: { ...state.profile, photos: action.photos },
       };
     }
+    case SHOW_ERROR: {
+      // (ADD)SHOW ERROR
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
     default:
       return state;
   }
@@ -131,35 +140,62 @@ export const savePhotoSuccess = (photos) => ({
   type: SAVE_PHOTO_SUCCESS,
   photos,
 });
+// SHOW ERROR ACTION CREATOR
+export const showError = (error) => ({
+  type: SHOW_ERROR,
+  error,
+});
 
 export const getProfileThunkCreator = (userId) => async (dispatch) => {
-  let response = await profileAPI.getProfile(userId);
-  dispatch(setUserProfile(response.data));
+  try {
+    let response = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(response.data));
+  } catch (error) {
+    dispatch(showError("Something goes wrong"));
+  }
 };
 
 export const getStatusThunkCreator = (userId) => async (dispatch) => {
-  let response = await profileAPI.getStatus(userId);
-  dispatch(setStatusProfile(response.data));
+  try {
+    let response = await profileAPI.getStatus(userId);
+    dispatch(setStatusProfile(response.data));
+  } catch (error) {
+    dispatch(showError("Something goes wrong"));
+  }
 };
 
 export const updateStatusThunkCreator = (status) => async (dispatch) => {
-  let response = await profileAPI.updateStatus(status);
-  if (response.data.resultCode === 0) {
-    dispatch(updateStatusProfile(status));
+  try {
+    let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+      dispatch(updateStatusProfile(status));
+    } else {
+      dispatch(showError(response.data.messages[0]));
+    }
+  } catch (error) {
+    dispatch(showError("Something goes wrong"));
   }
 };
 
 export const updateCommentThunkCreator = (comment) => async (dispatch) => {
-  let response = await profileAPI.updateComment(comment);
-  if (response.data.resultCode === 0) {
-    dispatch(updateCommentProfile(comment));
+  try {
+    let response = await profileAPI.updateComment(comment);
+    if (response.data.resultCode === 0) {
+      dispatch(updateCommentProfile(comment));
+    }
+  } catch (error) {
+    dispatch(showError("Something goes wrong"));
   }
 };
 
 export const savePhotoThunkCreator = (file) => async (dispatch) => {
-  let response = await profileAPI.savePhoto(file);
-  if (response.data.resultCode === 0) {
-    dispatch(savePhotoSuccess(response.data.data.photos));
+  try {
+    let response = await profileAPI.savePhoto(file);
+    if (response.data.resultCode === 0) {
+      dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+  } catch (error) {
+    dispatch(showError("Something goes wrong"));
   }
 };
 
@@ -167,14 +203,18 @@ export const saveProfileThunkCreator = (profile) => async (
   dispatch,
   getState
 ) => {
-  let userId = await getState().auth.userId;
-  let response = await profileAPI.saveProfile(profile);
+  try {
+    let userId = await getState().auth.userId;
+    let response = await profileAPI.saveProfile(profile);
 
-  if (response.data.resultCode === 0) {
-    dispatch(getProfileThunkCreator(userId));
-  } else {
-    dispatch(stopSubmit("contacts", { _error: response.data.messages[0] }));
-    return Promise.reject(response.data.messages[0]);
+    if (response.data.resultCode === 0) {
+      dispatch(getProfileThunkCreator(userId));
+    } else {
+      dispatch(stopSubmit("contacts", { _error: response.data.messages[0] }));
+      return Promise.reject(response.data.messages[0]);
+    }
+  } catch (error) {
+    dispatch(showError("Something goes wrong"));
   }
 };
 

@@ -14,11 +14,13 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {
+  getError,
   getUserJobComment,
   getUserProfile,
   getUserStatus,
 } from "../../redux/selectors/profile-selector";
 import { checkAuth, getUserId } from "../../redux/selectors/auth-selector";
+import ErrorPage from "../common/Error/ErrorPage";
 
 class ProfileContainer extends Component {
   refreshProfile() {
@@ -39,11 +41,18 @@ class ProfileContainer extends Component {
     if (this.props.match.params.userId != prevProps.match.params.userId) {
       this.refreshProfile();
     }
+    if (this.props.error != prevProps.error) {
+      this.refreshProfile();
+    }
   }
   render() {
+    if (this.props.error) {
+      return <ErrorPage error={this.props.error} />;
+    }
     return (
       <Profile
         {...this.props}
+        error={this.props.error}
         savePhoto={this.props.savePhotoThunkCreator}
         isOwner={!this.props.match.params.userId}
         profile={this.props.profile}
@@ -59,6 +68,7 @@ class ProfileContainer extends Component {
 
 let mapStateToProps = (state) => ({
   jobComment: getUserJobComment(state),
+  error: getError(state),
   profile: getUserProfile(state),
   status: getUserStatus(state),
   isAuth: checkAuth(state),

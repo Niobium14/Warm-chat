@@ -10,3 +10,7 @@ export const getUserStatus = (state) => {
 export const getUserJobComment = (state) => {
   return state.profilePage.lookingForAJobDescription;
 };
+// GET ERROR SELECTOR
+export const getError = (state) => {
+  return state.profilePage.error;
+};

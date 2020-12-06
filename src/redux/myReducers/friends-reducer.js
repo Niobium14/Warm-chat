@@ -9,6 +9,7 @@ const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
 const TOGGLE_FOLLOWING_PROGRESS = "TOGGLE-FOLLOWING-PROGRESS";
+const SHOW_ERROR = "SHOW-ERROR";
 
 // INITIAL STATE
 let initialState = {
@@ -22,6 +23,8 @@ let initialState = {
   currentPage: 1,
   // LOADING
   followingInProgress: [],
+  // ERROR
+  error: null,
 };
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
@@ -81,11 +84,23 @@ const friendsReducer = (state = initialState, action) => {
     case TOGGLE_IS_FETCHING: {
       return { ...state, isFetching: action.isFetching };
     }
+    case SHOW_ERROR: {
+      // (ADD)SHOW ERROR
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
     default:
       return state;
   }
 };
 
+// SHOW ERROR ACTION CREATOR
+export const showError = (error) => ({
+  type: SHOW_ERROR,
+  error,
+});
 // FOLLOW ACTION CREACTOR
 export const follow = (userId) => ({ type: FOLLOW, userId });
 // UNFOLLOW ACTION CREACTOR
@@ -122,52 +137,73 @@ export const toggleFollowingProgress = (followingInProgress, userId) => ({
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
   return async (dispatch) => {
-    dispatch(toggleIsFetching(true));
-    let data = await usersAPI.getUsers(currentPage, pageSize);
-    dispatch(toggleIsFetching(false));
-    dispatch(setUsers(data.data.items));
-    dispatch(setTotalUsersCount(data.data.totalCount));
+    try {
+      dispatch(toggleIsFetching(true));
+      let data = await usersAPI.getUsers(currentPage, pageSize);
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.data.items));
+      dispatch(setTotalUsersCount(data.data.totalCount));
+    } catch (error) {
+      dispatch(showError("Something goes wrong"));
+    }
   };
 };
 
 export const setPageThunkCreator = (pageNumber, pageSize) => {
   return async (dispatch) => {
-    dispatch(setCurrentPage(pageNumber));
-    dispatch(toggleIsFetching(true));
-    let data = await usersAPI.getUsers(pageNumber, pageSize);
-    dispatch(toggleIsFetching(false));
-    dispatch(setUsers(data.data.items));
+    try {
+      dispatch(setCurrentPage(pageNumber));
+      dispatch(toggleIsFetching(true));
+      let data = await usersAPI.getUsers(pageNumber, pageSize);
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.data.items));
+    } catch (error) {
+      dispatch(showError("Something goes wrong"));
+    }
   };
 };
 
 const followUnfollowFlow = async (dispatch, userId, apiMetchod, action) => {
-  dispatch(toggleFollowingProgress(true, userId));
-  let data = await apiMetchod(userId);
-  if (data.data.resultCode === 0) {
-    dispatch(action(userId));
+  try {
+    dispatch(toggleFollowingProgress(true, userId));
+    let data = await apiMetchod(userId);
+    if (data.data.resultCode === 0) {
+      dispatch(action(userId));
+    }
+    dispatch(toggleFollowingProgress(false));
+  } catch (error) {
+    dispatch(showError("Something goes wrong"));
   }
-  dispatch(toggleFollowingProgress(false));
 };
 
 export const unfollowUserThunkCreator = (userId) => {
   return async (dispatch) => {
-    followUnfollowFlow(
-      dispatch,
-      userId,
-      usersAPI.unfollowUser.bind(userId),
-      unfollow
-    );
+    try {
+      followUnfollowFlow(
+        dispatch,
+        userId,
+        usersAPI.unfollowUser.bind(userId),
+        unfollow
+      );
+      dispatch(toggleFollowingProgress(false));
+    } catch (error) {
+      dispatch(showError("Something goes wrong"));
+    }
   };
 };
 
 export const followUserThunkCreator = (userId) => {
   return async (dispatch) => {
-    followUnfollowFlow(
-      dispatch,
-      userId,
-      usersAPI.followUser.bind(userId),
-      follow
-    );
+    try {
+      followUnfollowFlow(
+        dispatch,
+        userId,
+        usersAPI.followUser.bind(userId),
+        follow
+      );
+    } catch (error) {
+      dispatch(showError("Something goes wrong"));
+    }
   };
 };
 
