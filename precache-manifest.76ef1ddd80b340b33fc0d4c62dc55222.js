@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "74f3b3d118df5c830ccb797b9380d4ec",
+    "revision": "fb1a78b43835462efc016cefd9de9215",
     "url": "/Warm-chat/index.html"
   },
   {
-    "revision": "06b1169b65cb4d8d6928",
-    "url": "/Warm-chat/static/css/main.5433a47d.chunk.css"
+    "revision": "bd9ef838962051fc5865",
+    "url": "/Warm-chat/static/css/main.5eb40a6a.chunk.css"
   },
   {
-    "revision": "3d8493db364105cabd2d",
-    "url": "/Warm-chat/static/js/2.5eddf6e7.chunk.js"
+    "revision": "e4c6ac8322844a42ee7d",
+    "url": "/Warm-chat/static/js/2.a9c18967.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/Warm-chat/static/js/2.5eddf6e7.chunk.js.LICENSE.txt"
+    "url": "/Warm-chat/static/js/2.a9c18967.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "06b1169b65cb4d8d6928",
-    "url": "/Warm-chat/static/js/main.566d707c.chunk.js"
+    "revision": "bd9ef838962051fc5865",
+    "url": "/Warm-chat/static/js/main.70741047.chunk.js"
   },
   {
     "revision": "a9303439fd8c72099232",
