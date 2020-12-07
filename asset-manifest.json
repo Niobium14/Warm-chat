@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Warm-chat/static/css/main.5eb40a6a.chunk.css",
-    "main.js": "/Warm-chat/static/js/main.70741047.chunk.js",
-    "main.js.map": "/Warm-chat/static/js/main.70741047.chunk.js.map",
+    "main.css": "/Warm-chat/static/css/main.c2cc1181.chunk.css",
+    "main.js": "/Warm-chat/static/js/main.03b9686b.chunk.js",
+    "main.js.map": "/Warm-chat/static/js/main.03b9686b.chunk.js.map",
     "runtime-main.js": "/Warm-chat/static/js/runtime-main.e2ba1559.js",
     "runtime-main.js.map": "/Warm-chat/static/js/runtime-main.e2ba1559.js.map",
-    "static/js/2.a9c18967.chunk.js": "/Warm-chat/static/js/2.a9c18967.chunk.js",
-    "static/js/2.a9c18967.chunk.js.map": "/Warm-chat/static/js/2.a9c18967.chunk.js.map",
+    "static/js/2.029c022d.chunk.js": "/Warm-chat/static/js/2.029c022d.chunk.js",
+    "static/js/2.029c022d.chunk.js.map": "/Warm-chat/static/js/2.029c022d.chunk.js.map",
     "index.html": "/Warm-chat/index.html",
-    "precache-manifest.76ef1ddd80b340b33fc0d4c62dc55222.js": "/Warm-chat/precache-manifest.76ef1ddd80b340b33fc0d4c62dc55222.js",
+    "precache-manifest.5346d9adbcade8aa96f93a40347899c7.js": "/Warm-chat/precache-manifest.5346d9adbcade8aa96f93a40347899c7.js",
     "service-worker.js": "/Warm-chat/service-worker.js",
-    "static/css/main.5eb40a6a.chunk.css.map": "/Warm-chat/static/css/main.5eb40a6a.chunk.css.map",
-    "static/js/2.a9c18967.chunk.js.LICENSE.txt": "/Warm-chat/static/js/2.a9c18967.chunk.js.LICENSE.txt",
+    "static/css/main.c2cc1181.chunk.css.map": "/Warm-chat/static/css/main.c2cc1181.chunk.css.map",
+    "static/js/2.029c022d.chunk.js.LICENSE.txt": "/Warm-chat/static/js/2.029c022d.chunk.js.LICENSE.txt",
     "static/media/header_logo.png": "/Warm-chat/static/media/header_logo.46438351.png",
     "static/media/Messages.module.css": "/Warm-chat/static/media/messages_bg.8f4062fe.png",
     "static/media/Playlists.module.css": "/Warm-chat/static/media/music_bg1.96831ac6.png",
@@ -31,14 +31,13 @@
     "static/media/preloader.svg": "/Warm-chat/static/media/preloader.e96d0ff4.svg",
     "static/media/profile_bg.jpg": "/Warm-chat/static/media/profile_bg.23cec310.jpg",
     "static/media/Post.module.css": "/Warm-chat/static/media/profile_bg1.91b2d5fb.png",
-    "static/media/profile_pic.jpg": "/Warm-chat/static/media/profile_pic.92e21265.jpg",
     "static/media/spotify.png": "/Warm-chat/static/media/spotify.a95274a6.png",
     "static/media/Friends.module.css": "/Warm-chat/static/media/users_bg.7f5505b8.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e2ba1559.js",
-    "static/js/2.a9c18967.chunk.js",
-    "static/css/main.5eb40a6a.chunk.css",
-    "static/js/main.70741047.chunk.js"
+    "static/js/2.029c022d.chunk.js",
+    "static/css/main.c2cc1181.chunk.css",
+    "static/js/main.03b9686b.chunk.js"
   ]
 }
