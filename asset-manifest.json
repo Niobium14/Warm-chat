@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Warm-chat/static/css/main.c2cc1181.chunk.css",
-    "main.js": "/Warm-chat/static/js/main.03b9686b.chunk.js",
-    "main.js.map": "/Warm-chat/static/js/main.03b9686b.chunk.js.map",
+    "main.js": "/Warm-chat/static/js/main.746f0e6d.chunk.js",
+    "main.js.map": "/Warm-chat/static/js/main.746f0e6d.chunk.js.map",
     "runtime-main.js": "/Warm-chat/static/js/runtime-main.e2ba1559.js",
     "runtime-main.js.map": "/Warm-chat/static/js/runtime-main.e2ba1559.js.map",
     "static/js/2.029c022d.chunk.js": "/Warm-chat/static/js/2.029c022d.chunk.js",
     "static/js/2.029c022d.chunk.js.map": "/Warm-chat/static/js/2.029c022d.chunk.js.map",
     "index.html": "/Warm-chat/index.html",
-    "precache-manifest.5346d9adbcade8aa96f93a40347899c7.js": "/Warm-chat/precache-manifest.5346d9adbcade8aa96f93a40347899c7.js",
+    "precache-manifest.d1a02a80ef3b7a5aa8a2d88098e7e7e1.js": "/Warm-chat/precache-manifest.d1a02a80ef3b7a5aa8a2d88098e7e7e1.js",
     "service-worker.js": "/Warm-chat/service-worker.js",
     "static/css/main.c2cc1181.chunk.css.map": "/Warm-chat/static/css/main.c2cc1181.chunk.css.map",
     "static/js/2.029c022d.chunk.js.LICENSE.txt": "/Warm-chat/static/js/2.029c022d.chunk.js.LICENSE.txt",
@@ -38,6 +38,6 @@
     "static/js/runtime-main.e2ba1559.js",
     "static/js/2.029c022d.chunk.js",
     "static/css/main.c2cc1181.chunk.css",
-    "static/js/main.03b9686b.chunk.js"
+    "static/js/main.746f0e6d.chunk.js"
   ]
 }
