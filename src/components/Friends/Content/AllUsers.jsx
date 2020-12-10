@@ -10,6 +10,7 @@ export function AllUsers(
   unfollowUserThunkCreator,
   followUserThunkCreator
 ) {
+  debugger
   return (
     <div className={css.users}>
       <div className={css.listName}>
@@ -28,8 +29,8 @@ export function AllUsers(
             <div className={css.data}>
               <div className={css.fullName}>{user.name}</div>
               <div className={css.inData}>
-                <div className={css.location}>
-                  {"Country"} - {"City"}
+                <div className={css.status}>
+                  {user.status ? user.status : "No status"}
                 </div>
                 <div className={css.status}>{user.status}</div>
               </div>

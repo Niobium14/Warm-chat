@@ -26,4 +26,7 @@ export const checkToggleIsFetching = (state) => {
 export const setFollowingInProgress = (state) => {
   return state.friendsPage.followingInProgress;
 };
-
+// GET ERROR SELECTOR
+export const getError = (state) => {
+  return state.friendsPage.error;
+};

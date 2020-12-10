@@ -18,7 +18,7 @@ function Profile(props) {
         jobComment={props.jobComment}
         updateComment={props.updateComment}
       />
-      <PostsContainer />
+      <PostsContainer profile={props.profile} />
     </div>
   );
 }

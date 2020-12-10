@@ -4,6 +4,7 @@ import css from "./Login.module.css";
 import { connect } from "react-redux";
 import { loginThunkCreator } from "../../redux/myReducers/auth-reducer";
 import { Redirect } from "react-router-dom";
+import ErrorPage from "../common/Error/ErrorPage";
 
 const Login = (props) => {
   const onSubmit = (formData) => {
@@ -11,11 +12,14 @@ const Login = (props) => {
       formData.email,
       formData.password,
       formData.rememberMe,
-      formData.captcha,
+      formData.captcha
     );
   };
   if (props.isAuth) {
     return <Redirect to={"/profile"} />;
+  }
+  if (this.props.error) {
+    return <ErrorPage error={this.props.error} />;
   }
   return (
     <div>
@@ -31,6 +35,7 @@ const Login = (props) => {
 
 let mapStateToProps = (state) => {
   return {
+    error: state.auth.error,
     captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth,
   };

@@ -19,11 +19,13 @@ import {
   checkIsFetching,
   checkToggleIsFetching,
   getCurrentPage,
+  getError,
   getPageSize,
   getTotalUsersCount,
   getUsers,
   setFollowingInProgress,
 } from "../../redux/selectors/users-selector";
+import ErrorPage from "../common/Error/ErrorPage";
 
 class FriendsContainer extends Component {
   componentDidMount() {
@@ -38,6 +40,9 @@ class FriendsContainer extends Component {
   };
 
   render() {
+    if (this.props.error) {
+      return <ErrorPage error={this.props.error} />;
+    }
     return (
       <Friends
         setPage={this.setPage}
@@ -60,6 +65,7 @@ class FriendsContainer extends Component {
 
 let mapStateToProps = (state) => {
   return {
+    error: getError(state),
     users: getUsers(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
