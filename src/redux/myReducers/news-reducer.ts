@@ -3,7 +3,7 @@ import news1 from "../../img/news_info1.jpg";
 import news2 from "../../img/news_info2.jpg";
 import news3 from "../../img/news_info3.jpg";
 
-type uncosType = {
+export type uncosType = {
   id: number;
   event: string;
   title: string;

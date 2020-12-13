@@ -1,6 +1,6 @@
 export type photosType = {
-  small: string | null;
-  large: string | null;
+  small: any;
+  large: any;
 };
 
 export type postsType = {
@@ -35,3 +35,4 @@ export type usersType = {
   photos: photosType;
   followed: boolean;
 };
+

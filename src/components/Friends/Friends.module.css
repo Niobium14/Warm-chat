@@ -1,13 +1,9 @@
-/* MAIN */
-.friendsPage {
+/* USERS */
+.users {
   background-image: url(../../img/users_bg.png);
   background-repeat: no-repeat;
   background-position-y: 50%;
   background-size: 50%;
-}
-
-/* USERS */
-.users {
   margin-top: -40px;
   position: relative;
   z-index: 1;

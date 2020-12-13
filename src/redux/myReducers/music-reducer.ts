@@ -5,7 +5,7 @@ import playlist3 from "../../img/playlist3.png";
 import playlist4 from "../../img/playlist4.png";
 import playlist5 from "../../img/playlist5.png";
 
-type musicType = {
+export type musicType = {
   id: number;
   title: string;
   author: string;

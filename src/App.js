@@ -28,7 +28,7 @@ class App extends Component {
         <div class="app-wrapper-content">
           <Route path="/" render={() => <Redirect to={"/profile"} />} />
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route path="/friends" render={() => <FriendsContainer />} />
+          <Route path="/friends" render={() => <FriendsContainer pageTitle="friends"/>} />
           <Route path="/messages" render={() => <MessagesContainer />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />

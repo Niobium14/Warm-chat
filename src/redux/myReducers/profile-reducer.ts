@@ -1,3 +1,5 @@
+import { RootState } from "./../redux-store";
+import { ThunkAction } from "redux-thunk";
 // IMPORT PICTURES FOR NEW POST
 // import profile_pic from "../../img/profile_pic.jpg";
 import person1 from "../../img/person1.jpg";
@@ -45,7 +47,7 @@ let initialState = {
   profile: null as profileType | null,
   comment: null as null | string,
   commentPhoto: null as null | any,
-  status: "",
+  status: "" as string | null,
   error: null as null | string,
 };
 
@@ -53,7 +55,7 @@ type initialStateType = typeof initialState;
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
 const profileReducer = (
   state: initialStateType = initialState,
-  action: any
+  action: ActionType
 ): initialStateType => {
   switch (action.type) {
     case ADD_POST: {
@@ -116,6 +118,15 @@ const profileReducer = (
   }
 };
 
+// ACTIONS
+type ActionType =
+  | addPostActionCreatorType
+  | setUserProfileType
+  | setStatusProfileType
+  | updateStatusProfileType
+  | updateCommentProfileType
+  | savePhotoSuccessType
+  | showErrorType;
 // ADD POST ACTION CREATOR
 type addPostActionCreatorType = {
   type: typeof ADD_POST;
@@ -182,10 +193,10 @@ export const updateCommentProfile = (
 // UPDATE STATUS PROFILE ACTION CREATOR
 type savePhotoSuccessType = {
   type: typeof SAVE_PHOTO_SUCCESS;
-  photos: string;
+  photos: photosType;
 };
 // UPDATE STATUS PROFILE ACTION CREATOR
-export const savePhotoSuccess = (photos: string): savePhotoSuccessType => ({
+export const savePhotoSuccess = (photos: photosType): savePhotoSuccessType => ({
   type: SAVE_PHOTO_SUCCESS,
   photos,
 });
@@ -200,8 +211,11 @@ export const showError = (error: string): showErrorType => ({
   error,
 });
 
-export const getProfileThunkCreator = (userId: number) => async (
-  dispatch: any
+// THUNKS
+type ThunkType = ThunkAction<void, RootState, unknown, ActionType>;
+
+export const getProfileThunkCreator = (userId: number): ThunkType => async (
+  dispatch
 ) => {
   try {
     let response = await profileAPI.getProfile(userId);
@@ -211,8 +225,8 @@ export const getProfileThunkCreator = (userId: number) => async (
   }
 };
 
-export const getStatusThunkCreator = (userId: number) => async (
-  dispatch: any
+export const getStatusThunkCreator = (userId: number): ThunkType => async (
+  dispatch
 ) => {
   try {
     let response = await profileAPI.getStatus(userId);
@@ -222,8 +236,8 @@ export const getStatusThunkCreator = (userId: number) => async (
   }
 };
 
-export const updateStatusThunkCreator = (status: string) => async (
-  dispatch: any
+export const updateStatusThunkCreator = (status: string): ThunkType => async (
+  dispatch
 ) => {
   try {
     let response = await profileAPI.updateStatus(status);
@@ -237,8 +251,8 @@ export const updateStatusThunkCreator = (status: string) => async (
   }
 };
 
-export const updateCommentThunkCreator = (comment: string) => async (
-  dispatch: any
+export const updateCommentThunkCreator = (comment: string): ThunkType => async (
+  dispatch
 ) => {
   try {
     let response = await profileAPI.updateComment(comment);
@@ -250,8 +264,8 @@ export const updateCommentThunkCreator = (comment: string) => async (
   }
 };
 
-export const savePhotoThunkCreator = (photos: photosType) => async (
-  dispatch: any
+export const savePhotoThunkCreator = (photos: photosType): ThunkType => async (
+  dispatch
 ) => {
   try {
     let response = await profileAPI.savePhoto(photos);
@@ -263,10 +277,9 @@ export const savePhotoThunkCreator = (photos: photosType) => async (
   }
 };
 
-export const saveProfileThunkCreator = (profile: profileType) => async (
-  dispatch: any,
-  getState: any
-) => {
+export const saveProfileThunkCreator = (
+  profile: profileType
+): ThunkType => async (dispatch: any, getState: RootState) => {
   try {
     let userId = await getState().auth.userId;
     let response = await profileAPI.saveProfile(profile);

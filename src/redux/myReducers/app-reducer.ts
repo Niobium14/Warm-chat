@@ -1,3 +1,5 @@
+import { RootState } from "./../redux-store";
+import { ThunkAction } from "redux-thunk";
 import { myDataThunkCreator } from "./auth-reducer";
 
 // TYPE FOR MESSAGES
@@ -16,7 +18,7 @@ type initialStateType = typeof initialState;
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
 const appReducer = (
   state: initialStateType = initialState,
-  action: any
+  action: ActionType
 ): initialStateType => {
   switch (action.type) {
     //   FOLLOW
@@ -38,6 +40,7 @@ const appReducer = (
   }
 };
 
+type ActionType = initializedSuccessType | showErrorType;
 // TYPE OF FOLLOW ACTION CREATOR
 export type initializedSuccessType = {
   type: typeof INITIALIZED_SUCCESS;
@@ -59,7 +62,12 @@ export const showError = (error: string): showErrorType => ({
   error,
 });
 // SET NEW DATA
-export const initializeApp = () => (dispatch: any) => {
+export const initializeApp = (): ThunkAction<
+  void,
+  RootState,
+  unknown,
+  ActionType
+> => (dispatch: any) => {
   try {
     let promise = dispatch(myDataThunkCreator());
     Promise.all([promise]).then(() => {

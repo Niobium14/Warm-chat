@@ -23,7 +23,6 @@ export const ProfileField = ({ input, meta, ...props }) => {
     </>
   );
 };
-
 export const MessagesField = ({ input, meta, ...props }) => {
   let hasError = meta.touched && meta.error;
   return (
@@ -45,7 +44,6 @@ export const MessagesField = ({ input, meta, ...props }) => {
     </>
   );
 };
-
 export const SingInField = ({ input, meta, ...props }) => {
   let hasError = meta.touched && meta.error;
   return (
@@ -71,7 +69,6 @@ export const InformationField = ({ input, meta, ...props }) => {
     </div>
   );
 };
-
 export const CreateField = (
   id = null,
   component,

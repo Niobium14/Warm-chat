@@ -1,3 +1,5 @@
+import { RootState } from "./../redux-store";
+import { ThunkAction } from "redux-thunk";
 import { stopSubmit } from "redux-form";
 import { authAPI, captchaAPI } from "../../api/api";
 
@@ -41,7 +43,7 @@ let initialState = {
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
 const authReducer = (
   state: initialStateType = initialState,
-  action: any
+  action: ActionType
 ): initialStateType => {
   switch (action.type) {
     //   FOLLOW
@@ -64,6 +66,7 @@ const authReducer = (
   }
 };
 
+type ActionType = setUserDataType | getCaptchaType | showErrorType;
 // FOLLOW ACTION CREATOR
 export type setUserDataType = {
   type: typeof SET_USER_DATA;
@@ -103,8 +106,10 @@ export const showError = (error: string): showErrorType => ({
   type: SHOW_ERROR,
   error,
 });
+
+type ThunkType = ThunkAction<void, RootState, unknown, ActionType>;
 // SET NEW DATA
-export const myDataThunkCreator = () => async (dispatch: any) => {
+export const myDataThunkCreator = (): ThunkType => async (dispatch) => {
   try {
     let response = await authAPI.authMe();
     if (response.data.resultCode === 0) {
@@ -122,7 +127,7 @@ export const loginThunkCreator = (
   password: string,
   rememberMe: boolean,
   captcha: string
-) => async (dispatch: any) => {
+): ThunkType => async (dispatch: any) => {
   try {
     let response = await authAPI.login(email, password, rememberMe, captcha);
     if (response.data.resultCode === 0) {
@@ -143,7 +148,7 @@ export const loginThunkCreator = (
 };
 
 // LOGOUT
-export const logoutThunkCreator = () => async (dispatch: any) => {
+export const logoutThunkCreator = (): ThunkType => async (dispatch) => {
   try {
     let response = await authAPI.logout();
     if (response.data.resultCode === 0) {
@@ -155,7 +160,7 @@ export const logoutThunkCreator = () => async (dispatch: any) => {
 };
 
 // LOGOUT
-export const getCaptchaThunkCreator = () => async (dispatch: any) => {
+export const getCaptchaThunkCreator = (): ThunkType => async (dispatch) => {
   try {
     let response = await captchaAPI.getCaptcha();
     const captchaUrl = response.data.url;
