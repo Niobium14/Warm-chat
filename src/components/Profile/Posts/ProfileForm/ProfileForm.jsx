@@ -2,7 +2,7 @@ import React from "react";
 import { reduxForm } from "redux-form";
 import { maxLength, required } from "../../../../utils/validators";
 import {
-  CreateField,
+  createField,
   ProfileField,
   Textarea,
 } from "../../../common/FormValidation/Field";
@@ -15,7 +15,7 @@ const ProfileForm = (props) => {
   return (
     <form className={css.profileArea} onSubmit={props.handleSubmit}>
       <div className={css.add}>Add new post</div>
-      {CreateField(
+      {createField(
         "newPostText",
         "text",
         [required, maxLength15],

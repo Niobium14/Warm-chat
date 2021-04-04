@@ -1,35 +1,37 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { reduxForm } from "redux-form";
+import { InjectedFormProps, reduxForm } from "redux-form";
 import { maxLength, required } from "../../../utils/validators";
-import { CreateField, Input } from "../../common/FormValidation/Field";
+import { createField, Input } from "../../common/FormValidation/Field";
+import { SubmitInterface } from "../Login";
 import css from "./LoginForm.module.css";
 
 // MAX LENGTH
 let maxLength30 = maxLength(30);
-// let maxLength15 = maxLength(15);
 
-interface PropsType {
+interface PropsInterface {
   captchaUrl: null | string;
 }
-const LoginForm = (props: any) => {
+const LoginForm: React.FC<
+  InjectedFormProps<SubmitInterface, PropsInterface> & PropsInterface
+> = (props: any) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        {CreateField("email", "text", Input, [required, maxLength30], "Email")}
+        {createField<SubmitInterfaceKeys>("email", "text", [required, maxLength30], Input, "Email")}
       </div>
       <div>
-        {CreateField(
+        {createField<SubmitInterfaceKeys>(
           "password",
           "password",
-          Input,
           [required, maxLength30],
+          Input,
           "Password"
         )}
       </div>
       {props.error && <div className={css.error}>{props.error}</div>}
       <div className={css.recall}>
-        {CreateField("rememberMe", "checkbox", [], "input", null)}
+        {createField<SubmitInterfaceKeys>("rememberMe", "checkbox", [], "input", undefined)}
         <label htmlFor="rememberMe" className={css.remember}>
           remember me
         </label>
@@ -39,8 +41,7 @@ const LoginForm = (props: any) => {
           <label htmlFor="captcha">
             <img src={props.captchaUrl} className={css.captchaImg} />
           </label>
-          name, type, validate, component, placeholder
-          {CreateField("captcha", "text", [required], Input, "Text from image")}
+          {createField<SubmitInterfaceKeys>("captcha", "text", [required], Input, "Text from image")}
         </div>
       )}
       <button className={css.login}>Login</button>
@@ -48,5 +49,11 @@ const LoginForm = (props: any) => {
   );
 };
 
-const ReduxLoginForm = reduxForm<any, PropsType>({ form: "singIn" })(LoginForm);
+// KEYS
+type SubmitInterfaceKeys = Extract<keyof SubmitInterface, string>;
+
+// MAIN REDUX FORM
+const ReduxLoginForm = reduxForm<SubmitInterface, PropsInterface>({
+  form: "singIn",
+})(LoginForm);
 export default ReduxLoginForm;

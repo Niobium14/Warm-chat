@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import css from "./Information.module.css";
-import { CreateField, Input } from "../../../../common/FormValidation/Field";
+import { createField, Input } from "../../../../common/FormValidation/Field";
 import { reduxForm } from "redux-form";
 
 function InformationForm(props) {
@@ -28,20 +28,20 @@ function InformationForm(props) {
         </label>
         <div className={props.jobView ? css.showJob : css.hideJob}>
           <div className={css.aboutMe}>
-            {CreateField("aboutMe", "text", [], Input, "About me")}
+            {createField("aboutMe", "text", [], Input, "About me")}
           </div>
           <div className={css.fullName}>
-            {CreateField("fullName", "text", [], Input, "Name")}
+            {createField("fullName", "text", [], Input, "Name")}
           </div>
           <div className={css.jobContent}>
             <div className={css.jobInfo}>
-              {CreateField("lookingForAJob", "checkbox", [], "input", null)}
+              {createField("lookingForAJob", "checkbox", [], "input", null)}
               <label for="lookingForAJob" className={css.lookingForAJob}>
                 Looking for a job
               </label>
             </div>
             <div className={css.jobDescription}>
-              {CreateField(
+              {createField(
                 "lookingForAJobDescription",
                 "text",
                 [],
@@ -72,7 +72,7 @@ function InformationForm(props) {
         >
           {Object.keys(props.profile.contacts).map((key) => {
             return (
-              <div>{CreateField("contacts." + key, "text", [], Input)}</div>
+              <div>{createField("contacts." + key, "text", [], Input)}</div>
             );
           })}
         </ul>

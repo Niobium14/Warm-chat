@@ -7,27 +7,16 @@ import { Redirect } from "react-router-dom";
 import ErrorPage from "../common/Error/ErrorPage";
 import { RootState } from "../../redux/redux-store";
 
-type mapStateToPropsType = {
-  error: string;
-  captchaUrl: any;
-  isAuth: boolean;
-};
+// SUBMIT INTERFACE
+export interface SubmitInterface {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+  captcha: string;
+}
 
-let mapStateToProps = (state: RootState): mapStateToPropsType => {
-  return {
-    error: state.auth.error,
-    captchaUrl: state.auth.captchaUrl,
-    isAuth: state.auth.isAuth,
-  };
-};
-
-const connector = connect(mapStateToProps, { loginThunkCreator });
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-type PropsType = PropsFromRedux;
-
-const Login = (props: PropsType) => {
-  const onSubmit = (formData: any) => {
+const Login: React.FC<mapStateToPropsType & mapDispatchPropsType> = (props) => {
+  const onSubmit = (formData: SubmitInterface) => {
     props.loginThunkCreator(
       formData.email,
       formData.password,
@@ -41,7 +30,6 @@ const Login = (props: PropsType) => {
   if (props.error) {
     return <ErrorPage error={props.error} />;
   }
-  
   return (
     <div>
       <h1 className={css.singInName}>Sing In</h1>
@@ -50,4 +38,28 @@ const Login = (props: PropsType) => {
   );
 };
 
-export default connector(Login);
+// MAP STATE ... TYPE
+type mapStateToPropsType = {
+  error: string;
+  captchaUrl: any;
+  isAuth: boolean;
+};
+// MAP DISPATCH ... TYPE
+type mapDispatchPropsType = {
+  loginThunkCreator: (
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    captcha: string
+  ) => void;
+};
+// MAP STATE
+let mapStateToProps = (state: RootState): mapStateToPropsType => {
+  return {
+    error: state.auth.error,
+    captchaUrl: state.auth.captchaUrl,
+    isAuth: state.auth.isAuth,
+  };
+};
+
+export default connect(mapStateToProps, { loginThunkCreator })(Login);
