@@ -4,85 +4,58 @@ import { Field } from "redux-form";
 import { maxLength, required } from "../../../utils/validators";
 import css from "./Field.module.css";
 
-export const ProfileField = ({ input, meta, ...props }) => {
+// ProfileField MessagesField - textarea
+// SingInField InformationField - input
+
+export const Textarea = (props) => {
+  //const {input, meta, child, ...restProps} = props;
+  const { input, meta, ...restProps } = props;
   let hasError = meta.touched && meta.error;
+
   return (
     <>
-      <div className={css.profileError}>
+      <div className={css.textareaMessageError}>
         {hasError && <span>{meta.error}</span>}
       </div>
-      <div className={hasError ? css.profileAreaError : css.profileArea}>
+      <div className={hasError ? css.textareaError : css.textarea}>
         <textarea
-          className={css.profileTextarea}
+          className={css.mainTextarea}
           {...input}
-          {...meta}
-          {...props}
+          {...input}
+          {...restProps}
         />
         <button className={hasError ? css.sendError : css.send}>SEND</button>
       </div>
     </>
   );
 };
-export const MessagesField = ({ input, meta, ...props }) => {
+
+export const Input = (props) => {
+  const { input, meta, ...restProps } = props;
   let hasError = meta.touched && meta.error;
   return (
     <>
-      <div className={css.messagesError}>
-        {hasError && <span>{meta.error}</span>}
-      </div>
-      <div className={hasError ? css.messagesAreaError : css.messagesArea}>
-        <textarea
-          className={css.messagesTextarea}
+      <div className={hasError ? css.inputAreaError : css.inputArea}>
+        <input
+          className={css.input}
           {...input}
-          {...meta}
-          {...props}
+          {...input}
+          {...restProps}
         />
-        <button className={hasError ? css.sendMessagesError : css.send}>
-          SEND
-        </button>
       </div>
-    </>
-  );
-};
-export const SingInField = ({ input, meta, ...props }) => {
-  let hasError = meta.touched && meta.error;
-  return (
-    <>
-      <div className={hasError ? css.singInAreaError : css.singInArea}>
-        <input className={css.singInTextarea} {...input} {...meta} {...props} />
-      </div>
-      <div className={css.singInError}>
+      <div className={css.inputMessageError}>
         {hasError && <span>{meta.error}</span>}
       </div>
     </>
   );
 };
-export const InformationField = ({ input, meta, ...props }) => {
-  return (
-    <div className={css.InformationArea}>
-      <input
-        className={css.InformationTextarea}
-        {...input}
-        {...meta}
-        {...props}
-      />
-    </div>
-  );
-};
-export const CreateField = (
-  id = null,
-  component,
-  name,
-  type,
-  placeholder,
-  validate
-) => (
+
+export const CreateField = (name, type, validate, component, placeholder) => (
   <Field
-    id={id}
-    component={component}
     name={name}
     type={type}
-    placeholder={placeholder}
     validate={validate}
+    component={component}
+    placeholder={placeholder}
   />
 );

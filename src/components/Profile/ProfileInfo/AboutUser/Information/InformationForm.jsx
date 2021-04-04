@@ -1,10 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import css from "./Information.module.css";
-import {
-  CreateField,
-  InformationField,
-} from "../../../../common/FormValidation/Field";
+import { CreateField, Input } from "../../../../common/FormValidation/Field";
 import { reduxForm } from "redux-form";
 
 function InformationForm(props) {
@@ -31,47 +28,25 @@ function InformationForm(props) {
         </label>
         <div className={props.jobView ? css.showJob : css.hideJob}>
           <div className={css.aboutMe}>
-            {CreateField(
-              null,
-              InformationField,
-              "aboutMe",
-              "text",
-              "About me",
-              null
-            )}
+            {CreateField("aboutMe", "text", [], Input, "About me")}
           </div>
           <div className={css.fullName}>
-            {CreateField(
-              null,
-              InformationField,
-              "fullName",
-              "text",
-              "Name",
-              null
-            )}
+            {CreateField("fullName", "text", [], Input, "Name")}
           </div>
           <div className={css.jobContent}>
             <div className={css.jobInfo}>
-              {CreateField(
-                "lookingForAJob",
-                "input",
-                "lookingForAJob",
-                "checkbox",
-                null,
-                null
-              )}
+              {CreateField("lookingForAJob", "checkbox", [], "input", null)}
               <label for="lookingForAJob" className={css.lookingForAJob}>
                 Looking for a job
               </label>
             </div>
             <div className={css.jobDescription}>
               {CreateField(
-                null,
-                InformationField,
                 "lookingForAJobDescription",
                 "text",
-                "About your skills",
-                null
+                [],
+                Input,
+                "About your skills"
               )}
             </div>
           </div>
@@ -97,16 +72,7 @@ function InformationForm(props) {
         >
           {Object.keys(props.profile.contacts).map((key) => {
             return (
-              <div>
-                {CreateField(
-                  null,
-                  InformationField,
-                  "contacts." + key,
-                  "text",
-                  key,
-                  null
-                )}
-              </div>
+              <div>{CreateField("contacts." + key, "text", [], Input)}</div>
             );
           })}
         </ul>

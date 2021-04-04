@@ -1,11 +1,8 @@
 import React from "react";
 import { reduxForm } from "redux-form";
 import { maxLength, required } from "../../../../utils/validators";
-import {
-  CreateField,
-  MessagesField,
-} from "../../../common/FormValidation/Field";
-
+import { CreateField, Textarea } from "../../../common/FormValidation/Field";
+import css from "../Chat.module.css";
 let maxLength15 = maxLength(20);
 
 type PropsType = {
@@ -14,11 +11,14 @@ type PropsType = {
 
 const MessagesForm = (props: PropsType) => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      {CreateField(null, MessagesField, "newMessage", "text", "Message...", [
-        required,
-        maxLength15,
-      ])}
+    <form onSubmit={props.handleSubmit} className={css.form}>
+      {CreateField(
+        "newMessage",
+        "text",
+        [required, maxLength15],
+        Textarea,
+        "Message..."
+      )}
     </form>
   );
 };

@@ -3,6 +3,13 @@
   margin-bottom: 30px;
 }
 
+/* SECOND CHILD */
 .messages :nth-child(even) {
-  margin-left: 400px;
+  margin-left: 350px;
+}
+
+/* REDUX FORM */
+.form {
+  margin-top: 10%;
+  width: 800px;
 }
