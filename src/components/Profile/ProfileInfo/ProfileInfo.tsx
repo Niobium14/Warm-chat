@@ -17,6 +17,7 @@ type PropsType = {
   };
   savePhoto: (arg0: any) => void;
   isOwner: boolean;
+  isFetching: boolean;
 };
 
 const ProfileInfo = (props: PropsType) => {

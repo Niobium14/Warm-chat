@@ -1,9 +1,9 @@
 import { RootState } from "./../redux-store";
 import { ThunkAction } from "redux-thunk";
 /* eslint-disable eqeqeq */
-import { usersAPI } from "../../api/api";
 import { followUnfollowCase } from "../../components/common/Helpers/helpers";
 import { usersType } from "../../types/types";
+import { ResponseCodes, usersAPI } from "../../api/api";
 
 // TYPE FOR MESSAGES
 const FOLLOW = "FOLLOW";
@@ -211,8 +211,8 @@ export const getUsersThunkCreator = (
       dispatch(toggleIsFetching(true));
       let data = await usersAPI.getUsers(currentPage, pageSize);
       dispatch(toggleIsFetching(false));
-      dispatch(setUsers(data.data.items));
-      dispatch(setTotalUsersCount(data.data.totalCount));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
     } catch (error) {
       dispatch(showError("Something goes wrong"));
     }
@@ -229,7 +229,7 @@ export const setPageThunkCreator = (
       dispatch(toggleIsFetching(true));
       let data = await usersAPI.getUsers(pageNumber, pageSize);
       dispatch(toggleIsFetching(false));
-      dispatch(setUsers(data.data.items));
+      dispatch(setUsers(data.items));
     } catch (error) {
       dispatch(showError("Something goes wrong"));
     }
@@ -245,7 +245,7 @@ const _followUnfollowFlow = async (
   try {
     dispatch(toggleFollowingProgress(true, userId, true));
     let data = await apiMethod(userId);
-    if (data.data.resultCode === 0) {
+    if (data.resultCode === ResponseCodes.Success) {
       dispatch(action(userId));
     }
     dispatch(toggleFollowingProgress(false, userId, false));

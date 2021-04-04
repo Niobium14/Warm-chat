@@ -1,7 +1,12 @@
 import { RootState } from "./../redux-store";
 import { ThunkAction } from "redux-thunk";
 import { stopSubmit } from "redux-form";
-import { authAPI, captchaAPI } from "../../api/api";
+import {
+  authAPI,
+  captchaAPI,
+  ResponseCaptcha,
+  ResponseCodes,
+} from "../../api/api";
 
 // TYPE FOR MESSAGES
 const SET_USER_DATA = "SET-USER-DATA";
@@ -111,9 +116,9 @@ type ThunkType = ThunkAction<void, RootState, unknown, ActionType>;
 // SET NEW DATA
 export const myDataThunkCreator = (): ThunkType => async (dispatch) => {
   try {
-    let response = await authAPI.authMe();
-    if (response.data.resultCode === 0) {
-      let { id, login, email } = response.data.data;
+    let data = await authAPI.authMe();
+    if (data.resultCode === ResponseCodes.Success) {
+      let { id, login, email } = data.data;
       dispatch(setUserData(id, email, login, true));
     }
   } catch (error) {
@@ -129,17 +134,14 @@ export const loginThunkCreator = (
   captcha: string
 ): ThunkType => async (dispatch: any) => {
   try {
-    let response = await authAPI.login(email, password, rememberMe, captcha);
-    if (response.data.resultCode === 0) {
+    let data = await authAPI.login(email, password, rememberMe, captcha);
+    if (data.resultCode === ResponseCodes.Success) {
       dispatch(myDataThunkCreator());
     } else {
-      if (response.data.resultCode === 10) {
+      if (data.resultCode === ResponseCaptcha.CaptchaIsRequired) {
         dispatch(getCaptchaThunkCreator());
       }
-      let message =
-        response.data.messages.length > 0
-          ? response.data.messages[0]
-          : "Some error";
+      let message = data.messages.length > 0 ? data.messages[0] : "Some error";
       dispatch(stopSubmit("singIn", { _error: message }));
     }
   } catch (error) {
@@ -150,8 +152,8 @@ export const loginThunkCreator = (
 // LOGOUT
 export const logoutThunkCreator = (): ThunkType => async (dispatch) => {
   try {
-    let response = await authAPI.logout();
-    if (response.data.resultCode === 0) {
+    let data = await authAPI.logout();
+    if (data.resultCode === ResponseCodes.Success) {
       dispatch(setUserData(null, null, null, false));
     }
   } catch (error) {
@@ -162,8 +164,8 @@ export const logoutThunkCreator = (): ThunkType => async (dispatch) => {
 // LOGOUT
 export const getCaptchaThunkCreator = (): ThunkType => async (dispatch) => {
   try {
-    let response = await captchaAPI.getCaptcha();
-    const captchaUrl = response.data.url;
+    let data = await captchaAPI.getCaptcha();
+    const captchaUrl = data.url;
     dispatch(getCaptcha(captchaUrl));
   } catch (error) {
     dispatch(showError("Something goes wrong"));

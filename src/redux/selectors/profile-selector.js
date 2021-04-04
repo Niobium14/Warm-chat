@@ -14,3 +14,6 @@ export const getUserJobComment = (state) => {
 export const getError = (state) => {
   return state.profilePage.error;
 };
+export const getFetching = (state) => {
+  return state.profilePage.isFetching;
+}

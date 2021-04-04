@@ -38,9 +38,9 @@ let mapStateToProps = (state: RootState): MapStatePropsType => {
 
 type MapDispatchPropsType = {
   getUsersThunkCreator: (currentPage: number, pageSize: number) => void;
-  unfollowUserThunkCreator: (userId: number) => (dispatch: any) => void;
+  unfollowUserThunkCreator: (userId: number) => void;
   setPageThunkCreator: (pageNumber: number, pageSize: number) => void;
-  followUserThunkCreator: (userId: number) => (dispatch: any) => void;
+  followUserThunkCreator: (userId: number) => void;
   toggleIsFetching: (isFetching: boolean) => void;
   toggleFollowingProgress: (
     followingInProgress: boolean,

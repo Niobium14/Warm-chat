@@ -36,3 +36,9 @@ export type usersType = {
   followed: boolean;
 };
 
+export interface CommonResponse {
+  resultCode: number;
+  messages: string;
+  data: object;
+}
+
