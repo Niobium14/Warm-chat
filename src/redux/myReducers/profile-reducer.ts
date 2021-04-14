@@ -1,22 +1,13 @@
 // IMPORT PICTURES FOR NEW POST
-import { RootState } from "./../redux-store";
+import { BaseThunkType, InferActionsTypes, RootState } from "./../redux-store";
 import { ThunkAction } from "redux-thunk";
 import person1 from "../../img/person1.jpg";
 import person2 from "../../img/person2.jpg";
 import person3 from "../../img/person3.jpg";
 import { stopSubmit } from "redux-form";
 import { photosType, postsType, profileType } from "../../types/types";
-import { profileAPI, ResponseCodes } from "../../api/api";
-
-// TYPE FOR MESSAGES
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET-USER-PROFILE";
-const SET_PROFILE_STATUS = "SET-PROFILE-STATUS";
-const UPDATE_PROFILE_STATUS = "UPDATE-PROFILE-STATUS";
-const UPDATE_PROFILE_COMMENT = "UPDATE-PROFILE-COMMENT";
-const SAVE_PHOTO_SUCCESS = "SAVE-PHOTO-SUCCESS";
-const SHOW_ERROR = "SHOW-ERROR";
-const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
+import { ResponseCodes } from "../../api/api";
+import { profileAPI } from "../../api/GetProfile";
 
 // INITIAL STATE
 let initialState = {
@@ -60,7 +51,7 @@ const profileReducer = (
   action: ActionType
 ): initialStateType => {
   switch (action.type) {
-    case ADD_POST: {
+    case "ADD_POST": {
       // ADD POST
       let newPost = {
         id: 5,
@@ -73,42 +64,42 @@ const profileReducer = (
         posts: [...state.posts, newPost],
       };
     }
-    case SET_PROFILE_STATUS: {
+    case "SET_PROFILE_STATUS": {
       // TEXT FROM TEXTAREA (POSTS)
       return {
         ...state,
         status: action.status,
       };
     }
-    case UPDATE_PROFILE_STATUS: {
+    case "UPDATE_PROFILE_STATUS": {
       // TEXT FROM TEXTAREA (POSTS)
       return {
         ...state,
         status: action.status,
       };
     }
-    case UPDATE_PROFILE_COMMENT: {
+    case "UPDATE_PROFILE_COMMENT": {
       // TEXT FROM TEXTAREA (POSTS)
       return {
         ...state,
         comment: action.comment,
       };
     }
-    case SET_USER_PROFILE: {
+    case "SET_USER_PROFILE": {
       // SET USER
       return {
         ...state,
         profile: action.profile,
       };
     }
-    case SAVE_PHOTO_SUCCESS: {
+    case "SAVE_PHOTO_SUCCESS": {
       // SAVE PHOTO
       return {
         ...state,
         profile: { ...state.profile, photos: action.photos } as profileType,
       };
     }
-    case SHOW_ERROR: {
+    case "SHOW_ERROR": {
       // (ADD)SHOW ERROR
       return {
         ...state,
@@ -116,7 +107,7 @@ const profileReducer = (
       };
     }
     // GIF
-    case TOGGLE_IS_FETCHING: {
+    case "TOGGLE_IS_FETCHING": {
       return { ...state, isFetching: action.isFetching };
     }
     default:
@@ -124,123 +115,79 @@ const profileReducer = (
   }
 };
 
-// ACTIONS
-type ActionType =
-  | addPostActionCreatorType
-  | setUserProfileType
-  | setStatusProfileType
-  | updateStatusProfileType
-  | updateCommentProfileType
-  | savePhotoSuccessType
-  | showErrorType
-  | toggleIsFetchingType;
-// ADD POST ACTION CREATOR
-type addPostActionCreatorType = {
-  type: typeof ADD_POST;
-  newPostText: string;
-  commentPhoto: any;
+// action creators
+type ActionType = InferActionsTypes<typeof actions>;
+
+export const actions = {
+  // ADD POST ACTION CREATOR
+  addPostActionCreator: (newPostText: string, commentPhoto: any) =>
+    ({
+      type: "ADD_POST",
+      newPostText,
+      commentPhoto,
+    } as const),
+
+  // SET USER PROFILE ACTION CREATOR
+  setUserProfile: (profile: null | profileType) =>
+    ({
+      type: "SET_USER_PROFILE",
+      profile,
+    } as const),
+
+  // GET STATUS PROFILE ACTION CREATOR
+  setStatusProfile: (status: null | string) =>
+    ({
+      type: "SET_PROFILE_STATUS",
+      status,
+    } as const),
+
+  // UPDATE STATUS PROFILE ACTION CREATOR
+  updateStatusProfile: (status: null | string) =>
+    ({
+      type: "UPDATE_PROFILE_STATUS",
+      status,
+    } as const),
+
+  // UPDATE STATUS PROFILE ACTION CREATOR
+  updateCommentProfile: (comment: string) =>
+    ({
+      type: "UPDATE_PROFILE_COMMENT",
+      comment,
+    } as const),
+
+  // UPDATE STATUS PROFILE ACTION CREATOR
+  savePhotoSuccess: (photos: photosType) =>
+    ({
+      type: "SAVE_PHOTO_SUCCESS",
+      photos,
+    } as const),
+
+  // SHOW ERROR ACTION CREATOR
+  showError: (error: string) =>
+    ({
+      type: "SHOW_ERROR",
+      error,
+    } as const),
+
+  // SET TOTAL USERS COUNT ACTION CREATOR
+  toggleIsFetching: (isFetching: boolean) =>
+    ({
+      type: "TOGGLE_IS_FETCHING",
+      isFetching,
+    } as const),
 };
-// ADD POST ACTION CREATOR
-export const addPostActionCreator = (
-  newPostText: string,
-  commentPhoto: any
-): addPostActionCreatorType => ({
-  type: ADD_POST,
-  newPostText,
-  commentPhoto,
-});
-// SET USER PROFILE ACTION CREATOR
-type setUserProfileType = {
-  type: typeof SET_USER_PROFILE;
-  profile: null | profileType;
-};
-// SET USER PROFILE ACTION CREATOR
-export const setUserProfile = (
-  profile: null | profileType
-): setUserProfileType => ({
-  type: SET_USER_PROFILE,
-  profile,
-});
-// GET STATUS PROFILE ACTION CREATOR
-type setStatusProfileType = {
-  type: typeof SET_PROFILE_STATUS;
-  status: null | string;
-};
-// GET STATUS PROFILE ACTION CREATOR
-export const setStatusProfile = (
-  status: null | string
-): setStatusProfileType => ({
-  type: SET_PROFILE_STATUS,
-  status,
-});
-// UPDATE STATUS PROFILE ACTION CREATOR
-type updateStatusProfileType = {
-  type: typeof UPDATE_PROFILE_STATUS;
-  status: null | string;
-};
-// UPDATE STATUS PROFILE ACTION CREATOR
-export const updateStatusProfile = (
-  status: null | string
-): updateStatusProfileType => ({
-  type: UPDATE_PROFILE_STATUS,
-  status,
-});
-// UPDATE STATUS PROFILE ACTION CREATOR
-type updateCommentProfileType = {
-  type: typeof UPDATE_PROFILE_COMMENT;
-  comment: string;
-};
-// UPDATE STATUS PROFILE ACTION CREATOR
-export const updateCommentProfile = (
-  comment: string
-): updateCommentProfileType => ({
-  type: UPDATE_PROFILE_COMMENT,
-  comment,
-});
-// UPDATE STATUS PROFILE ACTION CREATOR
-type savePhotoSuccessType = {
-  type: typeof SAVE_PHOTO_SUCCESS;
-  photos: photosType;
-};
-// UPDATE STATUS PROFILE ACTION CREATOR
-export const savePhotoSuccess = (photos: photosType): savePhotoSuccessType => ({
-  type: SAVE_PHOTO_SUCCESS,
-  photos,
-});
-// SHOW ERROR ACTION CREATOR
-type showErrorType = {
-  type: typeof SHOW_ERROR;
-  error: string;
-};
-// SHOW ERROR ACTION CREATOR
-export const showError = (error: string): showErrorType => ({
-  type: SHOW_ERROR,
-  error,
-});
-// SET TOTAL USERS COUNT ACTION CREATOR
-type toggleIsFetchingType = {
-  type: typeof TOGGLE_IS_FETCHING;
-  isFetching: boolean;
-};
-// SET TOTAL USERS COUNT ACTION CREATOR
-export const toggleIsFetching = (
-  isFetching: boolean
-): toggleIsFetchingType => ({
-  type: TOGGLE_IS_FETCHING,
-  isFetching,
-});
 
 // THUNKS
-type ThunkType = ThunkAction<void, RootState, unknown, ActionType>;
+type ThunkType = BaseThunkType<ActionType>;
 
 export const getProfileThunkCreator = (userId: number): ThunkType => async (
   dispatch
 ) => {
   try {
     let data = await profileAPI.getProfile(userId);
-    dispatch(setUserProfile(data));
+    dispatch(actions.setUserProfile(data));
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 
@@ -249,9 +196,9 @@ export const getStatusThunkCreator = (userId: number): ThunkType => async (
 ) => {
   try {
     let data = await profileAPI.getStatus(userId);
-    dispatch(setStatusProfile(data));
+    dispatch(actions.setStatusProfile(data));
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 
@@ -259,16 +206,16 @@ export const updateStatusThunkCreator = (status: string): ThunkType => async (
   dispatch
 ) => {
   try {
-    dispatch(toggleIsFetching(true));
+    dispatch(actions.toggleIsFetching(true));
     let response = await profileAPI.updateStatus(status);
     if (response.data.resultCode === ResponseCodes.Success) {
-      dispatch(updateStatusProfile(status));
-      dispatch(toggleIsFetching(false));
+      dispatch(actions.updateStatusProfile(status));
+      dispatch(actions.toggleIsFetching(false));
     } else {
-      dispatch(showError(response.data.messages[0]));
+      dispatch(actions.showError(response.data.messages[0]));
     }
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 
@@ -276,14 +223,14 @@ export const updateCommentThunkCreator = (comment: string): ThunkType => async (
   dispatch
 ) => {
   try {
-    dispatch(toggleIsFetching(true));
+    dispatch(actions.toggleIsFetching(true));
     let response = await profileAPI.updateComment(comment);
     if (response.data.resultCode === ResponseCodes.Success) {
-      dispatch(updateCommentProfile(comment));
-      dispatch(toggleIsFetching(false));
+      dispatch(actions.updateCommentProfile(comment));
+      dispatch(actions.toggleIsFetching(false));
     }
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 
@@ -291,15 +238,15 @@ export const savePhotoThunkCreator = (photos: photosType): ThunkType => async (
   dispatch
 ) => {
   try {
-    dispatch(toggleIsFetching(true));
+    dispatch(actions.toggleIsFetching(true));
     let data = await profileAPI.savePhoto(photos);
     if (data.resultCode === ResponseCodes.Success) {
       //DATA.DATA - photo
-      dispatch(savePhotoSuccess(data.data));
-      dispatch(toggleIsFetching(false));
+      dispatch(actions.savePhotoSuccess(data.data));
+      dispatch(actions.toggleIsFetching(false));
     }
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 
@@ -307,19 +254,19 @@ export const saveProfileThunkCreator = (
   profile: profileType
 ): ThunkType => async (dispatch: any, getState: RootState) => {
   try {
-    dispatch(toggleIsFetching(true));
+    dispatch(actions.toggleIsFetching(true));
     let userId = await getState().auth.userId;
     let data = await profileAPI.saveProfile(profile);
     if (data.resultCode === ResponseCodes.Success) {
       dispatch(getProfileThunkCreator(userId));
-      dispatch(toggleIsFetching(false));
+      dispatch(actions.toggleIsFetching(false));
     } else {
       dispatch(stopSubmit("contacts", { _error: data.messages[0] }));
       return Promise.reject(data.messages[0]);
     }
   } catch (error) {
-    dispatch(toggleIsFetching(false));
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.toggleIsFetching(false));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 

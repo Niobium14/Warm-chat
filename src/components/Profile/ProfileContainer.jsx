@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 import React, { Component } from "react";
-import { connect, ConnectedProps } from "react-redux";
+import { connect } from "react-redux";
 import Profile from "./Profile";
 import {
   getProfileThunkCreator,
@@ -22,8 +22,6 @@ import {
 } from "../../redux/selectors/profile-selector";
 import { checkAuth, getUserId } from "../../redux/selectors/auth-selector";
 import ErrorPage from "../common/Error/ErrorPage";
-import { RootState } from "../../redux/redux-store";
-import { profileType } from "../../types/types";
 
 let mapStateToProps = (state) => ({
   isFetching: getFetching(state),

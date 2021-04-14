@@ -8,8 +8,8 @@ import { usersType } from "../../../types/types";
 type PropsType = {
   users: Array<usersType>;
   followingInProgress: Array<number>;
-  unfollowUserThunkCreator: any;
-  followUserThunkCreator: any;
+  unfollowUserThunkCreator: (userId: number) => void;
+  followUserThunkCreator: (userId: number) => void;
 };
 export const AllUsers = ({
   users,

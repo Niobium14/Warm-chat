@@ -1,12 +1,12 @@
-import { RootState } from "./../redux-store";
+import { BaseThunkType, InferActionsTypes, RootState } from "./../redux-store";
 import { ThunkAction } from "redux-thunk";
 import { stopSubmit } from "redux-form";
 import {
-  authAPI,
-  captchaAPI,
   ResponseCaptcha,
   ResponseCodes,
 } from "../../api/api";
+import { captchaAPI } from "../../api/GetCaptcha";
+import { authAPI } from "../../api/AuthMe";
 
 // TYPE FOR MESSAGES
 const SET_USER_DATA = "SET-USER-DATA";
@@ -52,14 +52,14 @@ const authReducer = (
 ): initialStateType => {
   switch (action.type) {
     //   FOLLOW
-    case SET_USER_DATA:
-    case GET_CAPTCHA_SUCCESS: {
+    case "SET_USER_DATA":
+    case "GET_CAPTCHA_SUCCESS": {
       return {
         ...state,
         ...action.payload,
       };
     }
-    case SHOW_ERROR: {
+    case "SHOW_ERROR": {
       // (ADD)SHOW ERROR
       return {
         ...state,
@@ -71,58 +71,48 @@ const authReducer = (
   }
 };
 
-type ActionType = setUserDataType | getCaptchaType | showErrorType;
-// FOLLOW ACTION CREATOR
-export type setUserDataType = {
-  type: typeof SET_USER_DATA;
-  payload: {
-    userId: number | null;
-    email: string | null;
-    login: string | null;
-    isAuth: boolean;
-  };
-};
-// FOLLOW ACTION CREATOR
-export const setUserData = (
-  userId: number | null,
-  email: string | null,
-  login: string | null,
-  isAuth: boolean
-): setUserDataType => ({
-  type: SET_USER_DATA,
-  payload: { userId, email, login, isAuth },
-});
-// GET CAPTCHA CREATOR
-type getCaptchaType = {
-  type: typeof GET_CAPTCHA_SUCCESS;
-  payload: { captchaUrl: string };
-};
-// GET CAPTCHA CREATOR
-export const getCaptcha = (captchaUrl: string): getCaptchaType => ({
-  type: GET_CAPTCHA_SUCCESS,
-  payload: { captchaUrl },
-});
-// SHOW ERROR ACTION CREATOR
-type showErrorType = {
-  type: typeof SHOW_ERROR;
-  error: string;
-};
-export const showError = (error: string): showErrorType => ({
-  type: SHOW_ERROR,
-  error,
-});
+// action creators
+type ActionType = InferActionsTypes<typeof actions>;
 
-type ThunkType = ThunkAction<void, RootState, unknown, ActionType>;
+export const actions = {
+  // FOLLOW ACTION CREATOR
+  setUserData: (
+    userId: number | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean
+  ) =>
+    ({
+      type: "SET_USER_DATA",
+      payload: { userId, email, login, isAuth },
+    } as const),
+  // GET CAPTCHA CREATOR
+  getCaptcha: (captchaUrl: string) =>
+    ({
+      type: "GET_CAPTCHA_SUCCESS",
+      payload: { captchaUrl },
+    } as const),
+  // SHOW ERROR ACTION CREATOR
+  showError: (error: string) =>
+    ({
+      type: "SHOW_ERROR",
+      error,
+    } as const),
+};
+
+// THUNKS
+type ThunkType = BaseThunkType<ActionType>;
+
 // SET NEW DATA
 export const myDataThunkCreator = (): ThunkType => async (dispatch) => {
   try {
     let data = await authAPI.authMe();
     if (data.resultCode === ResponseCodes.Success) {
       let { id, login, email } = data.data;
-      dispatch(setUserData(id, email, login, true));
+      dispatch(actions.setUserData(id, email, login, true));
     }
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 
@@ -145,7 +135,7 @@ export const loginThunkCreator = (
       dispatch(stopSubmit("singIn", { _error: message }));
     }
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 
@@ -154,10 +144,10 @@ export const logoutThunkCreator = (): ThunkType => async (dispatch) => {
   try {
     let data = await authAPI.logout();
     if (data.resultCode === ResponseCodes.Success) {
-      dispatch(setUserData(null, null, null, false));
+      dispatch(actions.setUserData(null, null, null, false));
     }
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 
@@ -166,9 +156,9 @@ export const getCaptchaThunkCreator = (): ThunkType => async (dispatch) => {
   try {
     let data = await captchaAPI.getCaptcha();
     const captchaUrl = data.url;
-    dispatch(getCaptcha(captchaUrl));
+    dispatch(actions.getCaptcha(captchaUrl));
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 

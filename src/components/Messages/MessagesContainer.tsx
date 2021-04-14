@@ -2,11 +2,11 @@ import { connect, ConnectedProps } from "react-redux";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {
-  addMessageActionCreator,
+  actions,
   dialogsType,
   messagesType,
 } from "../../redux/myReducers/messages-reducer";
-import { RootState } from "../../redux/redux-store";
+import { AppDispatch, RootState } from "../../redux/redux-store";
 import {
   getDialogs,
   getMessages,
@@ -28,11 +28,11 @@ let mapStateToProps = (state: RootState): mapStateToPropsType => {
   };
 };
 
-let mapDispatchToProps = (dispatch: any): mapDispatchToPropsType => {
+let mapDispatchToProps = (dispatch: AppDispatch): mapDispatchToPropsType => {
   return {
     // DISPATCH ADD MESSAGE ACTION CREATOR
     sentMessage: (newMessage: string) => {
-      dispatch(addMessageActionCreator(newMessage));
+      dispatch(actions.addMessageActionCreator(newMessage));
     },
   };
 };

@@ -3,7 +3,7 @@ import css from "./DialogItem.module.css";
 import { NavLink } from "react-router-dom";
 
 type PropsType = {
-  id: string | number;
+  id: number;
   name: React.ReactNode;
 };
 

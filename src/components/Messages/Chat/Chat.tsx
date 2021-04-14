@@ -2,18 +2,19 @@ import React from "react";
 import css from "./Chat.module.css";
 import Message from "./Message/Message";
 import ReduxMessagesForm from "./MessagesForm/MessagesForm";
+import { messagesType } from "../../../redux/myReducers/messages-reducer";
 
 type PropsType = {
-  messages: any[];
-  sentMessage: (arg0: any) => void;
+  messages: Array<messagesType>;
+  sentMessage: (newMessage: string) => void;
 };
 
 const Chat = (props: PropsType) => {
   let messagesElement = props.messages.map((message) => (
     <Message message={message.message} />
   ));
-  let onAddMessage = (values: any) => {
-    props.sentMessage(values.newMessage);
+  let onAddMessage = (value: any) => {
+    props.sentMessage(value.newMessage);
   };
   return (
     <div className={css.chat}>

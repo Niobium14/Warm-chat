@@ -13,14 +13,15 @@ type PropsType = {
   setPage: (pageNumber: number) => void;
   unfollow: (userId: number) => void;
   follow: (userId: number) => void;
+  unfollowUserThunkCreator: (userId: number) => void;
+  followUserThunkCreator: (userId: number) => void;
   totalUsersCount: number;
   pageSize: number;
   currentPage: number;
   users: Array<usersType>;
   followingInProgress: Array<number>;
   isFetching: boolean;
-  unfollowUserThunkCreator: any;
-  followUserThunkCreator: any;
+
 };
 
 function Friends(props: PropsType) {
@@ -30,19 +31,21 @@ function Friends(props: PropsType) {
       {fetching ? (
         <Preloader />
       ) : (
-        <AllUsers
-          users={props.users}
-          followingInProgress={props.followingInProgress}
-          unfollowUserThunkCreator={props.unfollowUserThunkCreator}
-          followUserThunkCreator={props.followUserThunkCreator}
-        />
+        <>
+          <AllUsers
+            users={props.users}
+            followingInProgress={props.followingInProgress}
+            unfollowUserThunkCreator={props.unfollowUserThunkCreator}
+            followUserThunkCreator={props.followUserThunkCreator}
+          />
+          <Paginator
+            totalUsersCount={props.totalUsersCount}
+            pageSize={props.pageSize}
+            currentPage={props.currentPage}
+            setPage={props.setPage}
+          />
+        </>
       )}
-      <Paginator
-        totalUsersCount={props.totalUsersCount}
-        pageSize={props.pageSize}
-        currentPage={props.currentPage}
-        setPage={props.setPage}
-      />
     </div>
   );
 }

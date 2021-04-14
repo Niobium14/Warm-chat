@@ -18,7 +18,13 @@ const LoginForm: React.FC<
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        {createField<SubmitInterfaceKeys>("email", "text", [required, maxLength30], Input, "Email")}
+        {createField<SubmitInterfaceKeys>(
+          "email",
+          "text",
+          [required, maxLength30],
+          Input,
+          "Email"
+        )}
       </div>
       <div>
         {createField<SubmitInterfaceKeys>(
@@ -31,7 +37,13 @@ const LoginForm: React.FC<
       </div>
       {props.error && <div className={css.error}>{props.error}</div>}
       <div className={css.recall}>
-        {createField<SubmitInterfaceKeys>("rememberMe", "checkbox", [], "input", undefined)}
+        {createField<SubmitInterfaceKeys>(
+          "rememberMe",
+          "checkbox",
+          [],
+          "input",
+          undefined
+        )}
         <label htmlFor="rememberMe" className={css.remember}>
           remember me
         </label>
@@ -41,7 +53,13 @@ const LoginForm: React.FC<
           <label htmlFor="captcha">
             <img src={props.captchaUrl} className={css.captchaImg} />
           </label>
-          {createField<SubmitInterfaceKeys>("captcha", "text", [required], Input, "Text from image")}
+          {createField<SubmitInterfaceKeys>(
+            "captcha",
+            "text",
+            [required],
+            Input,
+            "Text from image"
+          )}
         </div>
       )}
       <button className={css.login}>Login</button>

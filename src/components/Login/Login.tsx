@@ -41,7 +41,7 @@ const Login: React.FC<mapStateToPropsType & mapDispatchPropsType> = (props) => {
 // MAP STATE ... TYPE
 type mapStateToPropsType = {
   error: string;
-  captchaUrl: any;
+  captchaUrl: string | null;
   isAuth: boolean;
 };
 // MAP DISPATCH ... TYPE

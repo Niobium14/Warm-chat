@@ -41,4 +41,3 @@ export interface CommonResponse {
   messages: string;
   data: object;
 }
-

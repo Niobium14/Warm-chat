@@ -1,10 +1,6 @@
-import { RootState } from "./../redux-store";
+import { InferActionsTypes, RootState } from "./../redux-store";
 import { ThunkAction } from "redux-thunk";
 import { myDataThunkCreator } from "./auth-reducer";
-
-// TYPE FOR MESSAGES
-const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS";
-const SHOW_ERROR = "SHOW-ERROR";
 
 // INITIAL STATE
 let initialState = {
@@ -22,13 +18,13 @@ const appReducer = (
 ): initialStateType => {
   switch (action.type) {
     //   FOLLOW
-    case INITIALIZED_SUCCESS: {
+    case "INITIALIZED_SUCCESS": {
       return {
         ...state,
         initialized: true,
       };
     }
-    case SHOW_ERROR: {
+    case "SHOW_ERROR": {
       // (ADD)SHOW ERROR
       return {
         ...state,
@@ -40,27 +36,23 @@ const appReducer = (
   }
 };
 
-type ActionType = initializedSuccessType | showErrorType;
-// TYPE OF FOLLOW ACTION CREATOR
-export type initializedSuccessType = {
-  type: typeof INITIALIZED_SUCCESS;
+// action creators
+type ActionType = InferActionsTypes<typeof actions>;
+export const actions = {
+  // FOLLOW ACTION CREATOR
+  initializedSuccess: () =>
+    ({
+      type: "INITIALIZED_SUCCESS",
+    } as const),
+  // SHOW ERROR ACTION CREATOR
+  showError: (error: string) =>
+    ({
+      type: "SHOW_ERROR",
+      error,
+    } as const),
 };
-// FOLLOW ACTION CREATOR
-export const initializedSuccess = (): initializedSuccessType => ({
-  type: INITIALIZED_SUCCESS,
-});
 
-// TYPE OF SHOW ERROR ACTION CREATOR
-export type showErrorType = {
-  type: typeof SHOW_ERROR;
-  error: string;
-};
 
-// SHOW ERROR ACTION CREATOR
-export const showError = (error: string): showErrorType => ({
-  type: SHOW_ERROR,
-  error,
-});
 // SET NEW DATA
 export const initializeApp = (): ThunkAction<
   void,
@@ -71,10 +63,10 @@ export const initializeApp = (): ThunkAction<
   try {
     let promise = dispatch(myDataThunkCreator());
     Promise.all([promise]).then(() => {
-      dispatch(initializedSuccess());
+      dispatch(actions.initializedSuccess());
     });
   } catch (error) {
-    dispatch(showError("Something goes wrong"));
+    dispatch(actions.showError("Something goes wrong"));
   }
 };
 

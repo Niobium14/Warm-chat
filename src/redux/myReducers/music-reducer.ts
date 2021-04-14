@@ -93,7 +93,10 @@ let initialState = {
 type initialStateType = typeof initialState;
 
 // THIS REDUCER TAKES IN THE STATE AND THE ACTION CALLED
-const musicReducer = (state: initialStateType = initialState, action: any): initialStateType => {
+const musicReducer = (
+  state: initialStateType = initialState,
+  action: any
+): initialStateType => {
   switch (action.type) {
     default:
       return state;

@@ -1,9 +1,6 @@
 import { connect, ConnectedProps } from "react-redux";
 import {
-  follow,
-  unfollow,
-  toggleIsFetching,
-  toggleFollowingProgress,
+  actions,
   getUsersThunkCreator,
   setPageThunkCreator,
   unfollowUserThunkCreator,
@@ -24,6 +21,11 @@ import ErrorPage from "../common/Error/ErrorPage";
 import { RootState } from "../../redux/redux-store";
 import { usersType } from "../../types/types";
 
+const follow = actions.follow;
+const unfollow = actions.unfollow;
+const toggleIsFetching = actions.toggleIsFetching;
+const toggleFollowingProgress = actions.toggleFollowingProgress;
+
 let mapStateToProps = (state: RootState): MapStatePropsType => {
   return {
     error: getError(state),
@@ -39,8 +41,8 @@ let mapStateToProps = (state: RootState): MapStatePropsType => {
 type MapDispatchPropsType = {
   getUsersThunkCreator: (currentPage: number, pageSize: number) => void;
   unfollowUserThunkCreator: (userId: number) => void;
-  setPageThunkCreator: (pageNumber: number, pageSize: number) => void;
   followUserThunkCreator: (userId: number) => void;
+  setPageThunkCreator: (pageNumber: number, pageSize: number) => void;
   toggleIsFetching: (isFetching: boolean) => void;
   toggleFollowingProgress: (
     followingInProgress: boolean,
