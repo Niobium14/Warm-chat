@@ -10,7 +10,7 @@ import {
   saveProfileThunkCreator,
   savePhotoThunkCreator,
 } from "../../redux/myReducers/profile-reducer";
-import { withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {
@@ -22,8 +22,29 @@ import {
 } from "../../redux/selectors/profile-selector";
 import { checkAuth, getUserId } from "../../redux/selectors/auth-selector";
 import ErrorPage from "../common/Error/ErrorPage";
+import { RootState } from "../../redux/redux-store";
+import { photosType, profileType } from "../../types/types";
 
-let mapStateToProps = (state) => ({
+type mapStateToPropsType = {
+  isFetching: boolean;
+  jobComment: string;
+  error: string | null;
+  profile: profileType;
+  status: string | null;
+  isAuth: boolean;
+  authorizedUserId: number;
+};
+
+type mapDispatchToPropsType = {
+  getProfileThunkCreator: (userId: string | undefined) => void;
+  getStatusThunkCreator: (userId: string | undefined) => void;
+  updateStatusThunkCreator: (status: string) => void;
+  updateCommentThunkCreator: (comment: string) => void;
+  savePhotoThunkCreator: (photos: photosType) => void;
+  saveProfileThunkCreator: (profile: profileType) => void;
+};
+
+let mapStateToProps = (state: RootState): mapStateToPropsType => ({
   isFetching: getFetching(state),
   jobComment: getUserJobComment(state),
   error: getError(state),
@@ -42,7 +63,14 @@ const connector = connect(mapStateToProps, {
   saveProfileThunkCreator,
 });
 
-class ProfileContainer extends Component {
+type PathParamsType = {
+  userId: number | undefined;
+};
+type PropsType = mapStateToPropsType &
+  mapDispatchToPropsType &
+  RouteComponentProps<PathParamsType>;
+
+class ProfileContainer extends Component<PropsType> {
   refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId) {

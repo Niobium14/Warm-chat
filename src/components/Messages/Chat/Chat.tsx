@@ -9,11 +9,16 @@ type PropsType = {
   sentMessage: (newMessage: string) => void;
 };
 
+// SUBMIT INTERFACE
+export interface SubmitInterface {
+  newMessage: string;
+}
+
 const Chat = (props: PropsType) => {
   let messagesElement = props.messages.map((message) => (
     <Message message={message.message} />
   ));
-  let onAddMessage = (value: any) => {
+  let onAddMessage = (value: SubmitInterface) => {
     props.sentMessage(value.newMessage);
   };
   return (

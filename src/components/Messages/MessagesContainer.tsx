@@ -40,7 +40,5 @@ let mapDispatchToProps = (dispatch: AppDispatch): mapDispatchToPropsType => {
 const connector = connect(mapStateToProps, mapDispatchToProps);
 export type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type PropsType = PropsFromRedux;
-
 // REDIRECT AND CONNECT
 export default compose(connector, withAuthRedirect)(Messages);

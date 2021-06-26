@@ -1,18 +1,19 @@
 import React from "react";
-import { reduxForm } from "redux-form";
+import { InjectedFormProps, reduxForm } from "redux-form";
 import { maxLength, required } from "../../../../utils/validators";
 import { createField, Textarea } from "../../../common/FormValidation/Field";
+import { SubmitInterface } from "../Chat";
 import css from "../Chat.module.css";
 let maxLength15 = maxLength(20);
 
-type PropsType = {
-  handleSubmit: ((event: React.FormEvent<HTMLFormElement>) => void) | undefined;
-};
+type PropsInterface = {};
 
-const MessagesForm = (props: PropsType) => {
+const MessagesForm: React.FC<
+  InjectedFormProps<SubmitInterface, PropsInterface> & PropsInterface
+> = (props: any) => {
   return (
     <form onSubmit={props.handleSubmit} className={css.form}>
-      {createField(
+      {createField<SubmitInterfaceKeys>(
         "newMessage",
         "text",
         [required, maxLength15],
@@ -23,5 +24,10 @@ const MessagesForm = (props: PropsType) => {
   );
 };
 
-const ReduxMessagesForm = reduxForm({ form: "messages" })(MessagesForm);
+// KEYS
+type SubmitInterfaceKeys = Extract<keyof SubmitInterface, string>;
+
+const ReduxMessagesForm = reduxForm<SubmitInterface, PropsInterface>({
+  form: "messages",
+})(MessagesForm);
 export default ReduxMessagesForm;

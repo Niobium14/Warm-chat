@@ -12,9 +12,18 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import Preloader from "./components/common/Preloader/Preloader";
+import { RootState } from "./redux/redux-store";
+
+type MapStateType = ReturnType<typeof mapStateToProps>;
+
+type MapDispatchType = {
+  initializeApp: () => void;
+};
+
+const SuspendedProfile = withSuspense(ProfileContainer);
 
 // APP
-class App extends Component {
+class App extends Component<MapDispatchType & MapStateType> {
   componentDidMount() {
     this.props.initializeApp();
   }
@@ -25,10 +34,13 @@ class App extends Component {
     return (
       <div className="app-wrapper">
         <NavbarContainer />
-        <div class="app-wrapper-content">
+        <div className="app-wrapper-content">
           <Route path="/" render={() => <Redirect to={"/profile"} />} />
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route path="/friends" render={() => <FriendsContainer pageTitle="friends"/>} />
+          <Route
+            path="/friends"
+            render={() => <FriendsContainer pageTitle="friends" />}
+          />
           <Route path="/messages" render={() => <MessagesContainer />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />
@@ -39,7 +51,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   initialized: state.app.initialized,
 });
 
